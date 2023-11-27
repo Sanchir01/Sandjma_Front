@@ -1,0 +1,15 @@
+query GetAllProductsDashboard($getAllProductInput: GetAllProductInput!) {
+	getAllProducts(getAllProductInput: $getAllProductInput) {
+		length
+		products {
+			id
+			images
+			name
+			price
+			size {
+				id
+				name
+			}
+		}
+	}
+}

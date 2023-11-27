@@ -1,6 +1,12 @@
+import { client } from '@/app/apollo'
+import { ApolloProvider } from '@apollo/client'
 import type { AppProps } from 'next/app'
-import './globals.css'
+import './globals.scss'
 
 export function App({ Component, pageProps }: AppProps) {
-	return <Component {...pageProps} />
+	return (
+		<ApolloProvider client={client}>
+			<Component {...pageProps} />
+		</ApolloProvider>
+	)
 }
