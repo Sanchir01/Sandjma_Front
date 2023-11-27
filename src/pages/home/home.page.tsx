@@ -1,11 +1,10 @@
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import style from './Home.module.scss'
 
 export function HomePage() {
+	console.log(process.env.SERVER_URL)
 	return (
-		<div className='text-button_hover font-bold text-xl border-r-button_Radius bg-pink-700'>
-			123213213123
-		</div>
+		<footer className={style.footer__top}>
+			<div className={style.footer__wrapper}>123213123</div>
+		</footer>
 	)
 }
