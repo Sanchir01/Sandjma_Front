@@ -1,4 +1,10 @@
-import style from './Home.module.scss'
+import { Header } from '@/widgets/header'
+
 export function HomePage() {
-	return <div className={style.home}>123213213123</div>
+	return (
+		<>
+			<Header />
+			<main>12312312</main>
+		</>
+	)
 }
