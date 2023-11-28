@@ -1,6 +1,12 @@
-import { FC } from 'react'
-
-export const Layout: FC = () => {
-  return <div>Layout</div>
+import { Footer } from '@/widgets/footer'
+import { Header } from '@/widgets/header'
+import { FC, ReactNode } from 'react'
+export const Layout: FC<{ children?: ReactNode }> = ({ children }) => {
+	return (
+		<>
+			<Header />
+			{children}
+			<Footer />
+		</>
+	)
 }
-

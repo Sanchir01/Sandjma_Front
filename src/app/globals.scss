@@ -29,10 +29,11 @@ body {
 }
 
 .wrapper {
-	min-height: 100%;
-	@apply flex flex-col;
+	min-height: 100dvh;
+	display: flex;
+	flex-direction: column;
 }
-main {
+.main {
 	flex-grow: 1;
 }
 

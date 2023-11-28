@@ -1,4 +1,4 @@
-import { Logo } from '@/shared/logo'
+import { Logo } from '@/shared/ui/logo'
 import styles from '@/shared/styles/Header.module.scss'
 import Link from 'next/link'
 import { FC } from 'react'
