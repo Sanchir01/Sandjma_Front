@@ -43,11 +43,6 @@ export const SliderDefault: FC<ISliderProps> = ({
 				}
 			}}
 		>
-<<<<<<< HEAD
-			{image.map(img => (
-				<SwiperSlide key={img} className={cn(className)}>
-					123
-=======
 			{products.map(({ id, images }) => (
 				<SwiperSlide key={id}>
 					<div className={cn(className, styles.slider__content)}>
@@ -64,7 +59,6 @@ export const SliderDefault: FC<ISliderProps> = ({
 
 						{children}
 					</div>
->>>>>>> adc952434085e865501f1db8831fa8250ff88caf
 				</SwiperSlide>
 			))}
 		</Swiper>
