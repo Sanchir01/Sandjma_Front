@@ -27,10 +27,7 @@ export const Slider: FC<ISliderProps> = ({
 			loop={loop}
 		>
 			{image.map(img => (
-				<SwiperSlide
-					key={img}
-					className={cn(className, bgSlide && `bg-[url(${img})]`)}
-				>
+				<SwiperSlide key={img} className={cn(className)}>
 					123
 				</SwiperSlide>
 			))}

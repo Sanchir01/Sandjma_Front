@@ -1,0 +1,43 @@
+.footer {
+	display: flex;
+	width: 100vw;
+	height: 500px;
+	background-color: #c2c7da;
+
+	&__top {
+		display: flex;
+
+		gap: 80px;
+	}
+
+	&__bot {
+		display: flex;
+		&__left {
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+			&__text {
+				opacity: 0.3;
+
+				font-size: 16px;
+				font-style: normal;
+				font-weight: 500;
+				line-height: normal;
+				text-transform: uppercase;
+			}
+		}
+		&__right {
+			text-wrap: balance;
+			text-align: right;
+
+			font-size: 120px;
+			font-style: normal;
+			font-weight: 900;
+			line-height: 118.5px; /* 98.75% */
+			letter-spacing: -12px;
+			text-transform: uppercase;
+
+			opacity: 0.1;
+		}
+	}
+}
