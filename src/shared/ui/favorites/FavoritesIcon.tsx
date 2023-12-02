@@ -4,9 +4,7 @@ import { Heart } from 'lucide-react'
 import Link from 'next/link'
 import { FC, Suspense } from 'react'
 
-
-
-const FavoritesLogo: FC<IIconProps> = ({ size, color, href }) => {
+export const FavoritesLogo: FC<IIconProps> = ({ size, color, href }) => {
 	return (
 		<Suspense fallback={fallbackIcon}>
 			<Link href={href}>
@@ -15,5 +13,3 @@ const FavoritesLogo: FC<IIconProps> = ({ size, color, href }) => {
 		</Suspense>
 	)
 }
-
-export default FavoritesLogo

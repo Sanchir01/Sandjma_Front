@@ -1,5 +1,10 @@
-import { Logo } from '@/shared/ui/logo'
 import styles from '@/shared/styles/Header.module.scss'
+import { IconCart } from '@/shared/ui/cart'
+import { FavoritesLogo } from '@/shared/ui/favorites'
+
+import { Logo } from '@/shared/ui/logo'
+import { ProfileLogo } from '@/shared/ui/profile'
+import { IconSearch } from '@/shared/ui/search'
 import Link from 'next/link'
 import { FC } from 'react'
 
@@ -8,17 +13,17 @@ export const Header: FC = () => {
 		<header className={styles.header}>
 			<div className='container'>
 				<div className={styles.header__content}>
-					<div className={styles.header__left}>
+					<nav className={styles.header__left}>
 						<Link href={'/catalog'}>каталог</Link>
 						<Link href={'/lookbook'}>лукбук</Link>
-						<Link href={'/help '}>помощь</Link>
-					</div>
+						<Link href={'/help '}>помощ</Link>
+					</nav>
 					<Logo />
 					<div className={styles.header__right}>
-						<Link href={'/catalog'}>поиск</Link>
-						<Link href={'/favorites'}>избранное</Link>
-						<Link href={'/cart'}>корзина</Link>
-						<Link href={'/porfile'}>кабинет</Link>
+						<IconSearch href={'/catalog/search'} />
+						<FavoritesLogo href={'/favorites'} />
+						<IconCart href={'/cart'} />
+						<ProfileLogo href={'/profile'} />
 					</div>
 				</div>
 			</div>

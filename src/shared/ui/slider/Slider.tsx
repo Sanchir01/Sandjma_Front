@@ -1,3 +1,4 @@
+import styles from '@/shared/styles/Slider.module.scss'
 import { ISliderProps } from '@/shared/types/Slider.interface'
 import cn from 'clsx'
 import Image from 'next/image'
@@ -20,12 +21,34 @@ export const SliderDefault: FC<ISliderProps> = ({
 			spaceBetween={spaceBetween}
 			slidesPerView={slidesPerView}
 			loop={loop}
+			breakpoints={{
+				319: {
+					spaceBetween: 10,
+					slidesPerView: 1.4
+				},
+				560: {
+					slidesPerView: 2.5
+				},
+				900: {
+					slidesPerView: 3.2
+				},
+				1200: {
+					slidesPerView: 3.8
+				},
+				1540: {
+					slidesPerView: 4
+				},
+				1600: {
+					slidesPerView: 4.5
+				}
+			}}
 		>
 			{products.map(({ id, images }) => (
 				<SwiperSlide key={id}>
-					<div className={cn(className)}>
-						<Link href={`/catalog/${id}`} className='h-[600px] w-[430px]'>
+					<div className={cn(className, styles.slider__content)}>
+						<Link href={`/catalog/${id}`} className={styles.slider__imageBlock}>
 							<Image
+								className={styles.slider__imageBlock__image}
 								src={images[0]}
 								alt={images[0]}
 								width={400}

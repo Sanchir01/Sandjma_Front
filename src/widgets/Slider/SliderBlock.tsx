@@ -1,15 +1,24 @@
+import styles from '@/shared/styles/Slider.module.scss'
 import { ISliderBlockProduct } from '@/shared/types/Slider.interface'
-import { SliderDefault } from '@/shared/ui'
-import { FC } from 'react'
+import { SliderDefault } from '@/shared/ui/slider'
+import React from 'react'
 
-export const SliderBlock: FC<ISliderBlockProduct> = ({ product }) => {
+export const SliderBlock: React.FC<ISliderBlockProduct> = ({
+	product,
+	title
+}) => {
 	return (
-		<SliderDefault
-			priority={true}
-			className={'max-w-[430px] flex flex-col gap-2'}
-			products={product}
-			slidesPerView={4}
-			loop
-		></SliderDefault>
+		<section className={styles.slider}>
+			<h2 className={styles.slider__title}>{title}</h2>
+			<SliderDefault
+				priority={true}
+				className={'flex flex-col gap-2'}
+				products={product}
+				slidesPerView={4.5}
+				spaceBetween={15}
+			>
+				<div className=''>123123</div>
+			</SliderDefault>
+		</section>
 	)
 }

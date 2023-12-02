@@ -1,1 +1,1 @@
-export { SliderBlock } from './SliderBlock'
+export * from './SliderBlock'

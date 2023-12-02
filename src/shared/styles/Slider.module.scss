@@ -1,0 +1,25 @@
+.slider {
+	margin-top: 100px;
+	padding: 0 20px;
+
+	&__title {
+		font-weight: 700;
+		padding-bottom: 20px;
+		font-size: clamp(1rem, 0.786rem + 1.07vw, 1.75rem);
+	}
+
+	&__imageBlock {
+		width: clamp(11.875rem, 5.817rem + 16.154vw, 25rem);
+		height: clamp(200px, 2.933rem + 23.846vw, 500px);
+		&__image {
+			width: 100%;
+			@apply h-full object-cover;
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.slider {
+		padding: 0 10px;
+	}
+}

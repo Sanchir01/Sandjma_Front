@@ -8,6 +8,19 @@ export function HomePage() {
 	})
 
 	return (
-		<>{items && <SliderBlock product={items?.getAllProducts.products!} />}</>
+		<>
+			{items && (
+				<SliderBlock
+					product={items?.getAllProducts.products!}
+					title='Новинки'
+				/>
+			)}
+			{items && (
+				<SliderBlock
+					product={items?.getAllProducts.products!}
+					title='Новинки'
+				/>
+			)}
+		</>
 	)
 }
