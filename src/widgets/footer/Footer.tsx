@@ -9,7 +9,7 @@ import { Logo } from '@/shared/ui/logo'
 export const Footer: FC = () => {
 	return (
 		<footer className={style.footer}>
-			<div className='container'>
+			<div className={style.footer__container}>
 				<div className={style.footer__top}>
 					{ColumnArr.map((obj, index) => (
 						<FooterColumn key={index} title={obj.title} column={obj.content} />
@@ -17,7 +17,10 @@ export const Footer: FC = () => {
 				</div>
 				<div className={style.footer__bot}>
 					<div className={style.footer__bot__left}>
-						<Logo />
+						<div className={style.footer__bot__left__logo}>
+							<Logo />
+						</div>
+
 						<div className={style.footer__bot__left__text}>
 							© 2024. Все права защищены
 						</div>
