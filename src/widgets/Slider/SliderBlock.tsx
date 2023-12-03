@@ -12,12 +12,12 @@ export const SliderBlock: React.FC<ISliderBlockProduct> = ({
 			<h2 className={styles.slider__title}>{title}</h2>
 			<SliderDefault
 				priority={true}
-				className={'flex flex-col gap-2'}
+				className={''}
 				products={product}
 				slidesPerView={4.5}
 				spaceBetween={15}
 			>
-				<div className=''>123123</div>
+				<div className='mt-3'>123123</div>
 			</SliderDefault>
 		</section>
 	)

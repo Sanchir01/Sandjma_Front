@@ -1,3 +1,4 @@
+import HeroSlider from '@/widgets/HeroSlider/HeroSlider'
 import { SliderBlock } from '@/widgets/Slider'
 import { useQuery } from '@apollo/client'
 import { GetAllProductsDashboardDocument } from 'gql/gql/graphql'
@@ -9,6 +10,7 @@ export function HomePage() {
 
 	return (
 		<>
+			<HeroSlider />
 			{items && (
 				<SliderBlock
 					product={items?.getAllProducts.products!}

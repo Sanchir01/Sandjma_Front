@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
-import style from '@/shared/styles/Footer.module.scss'
 import { FooterColumn } from '@/shared/FooterColumn'
+import style from '@/shared/styles/Footer.module.scss'
 
 import { ColumnArr } from '@/shared/constants/FooterContent'
 import { Logo } from '@/shared/ui/logo'

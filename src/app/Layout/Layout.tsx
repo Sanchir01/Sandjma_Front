@@ -1,4 +1,3 @@
-import { Footer } from '@/widgets/footer'
 import { Header } from '@/widgets/header'
 import { FC, ReactNode } from 'react'
 export const Layout: FC<{ children?: ReactNode }> = ({ children }) => {
@@ -6,7 +5,7 @@ export const Layout: FC<{ children?: ReactNode }> = ({ children }) => {
 		<>
 			<Header />
 			{children}
-			<Footer />
+			{/* <Footer /> */}
 		</>
 	)
 }

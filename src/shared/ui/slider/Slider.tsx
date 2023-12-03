@@ -38,14 +38,14 @@ export const SliderDefault: FC<ISliderProps> = ({
 				1540: {
 					slidesPerView: 4
 				},
-				1600: {
+				1650: {
 					slidesPerView: 4.5
 				}
 			}}
 		>
 			{products.map(({ id, images }) => (
-				<SwiperSlide key={id}>
-					<div className={cn(className, styles.slider__content)}>
+				<SwiperSlide key={id} className={styles.slider__content}>
+					<article className={cn(className)}>
 						<Link href={`/catalog/${id}`} className={styles.slider__imageBlock}>
 							<Image
 								className={styles.slider__imageBlock__image}
@@ -58,7 +58,7 @@ export const SliderDefault: FC<ISliderProps> = ({
 						</Link>
 
 						{children}
-					</div>
+					</article>
 				</SwiperSlide>
 			))}
 		</Swiper>
