@@ -6,6 +6,11 @@ import style from '@/shared/styles/Footer.module.scss'
 import { ColumnArr } from '@/shared/constants/FooterContent'
 import { Logo } from '@/shared/ui/logo'
 
+export interface ILogo {
+	width: number
+	height: number
+}
+
 export const Footer: FC = () => {
 	return (
 		<footer className={style.footer}>
@@ -17,9 +22,7 @@ export const Footer: FC = () => {
 				</div>
 				<div className={style.footer__bot}>
 					<div className={style.footer__bot__left}>
-						<div className={style.footer__bot__left__logo}>
-							<Logo />
-						</div>
+						<Logo />
 
 						<div className={style.footer__bot__left__text}>
 							© 2024. Все права защищены
