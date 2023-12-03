@@ -2,6 +2,10 @@
 	margin-top: 100px;
 	padding: 0 20px;
 
+	&__content {
+		max-width: clamp(11.875rem, 5.817rem + 16.154vw, 25rem);
+		height: auto;
+	}
 	&__title {
 		font-weight: 700;
 		padding-bottom: 20px;
@@ -13,7 +17,7 @@
 		height: clamp(200px, 2.933rem + 23.846vw, 500px);
 		&__image {
 			width: 100%;
-			@apply h-full object-cover;
+			@apply h-auto object-cover;
 		}
 	}
 }
