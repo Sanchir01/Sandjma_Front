@@ -8,6 +8,11 @@ import { useMediaQuery } from '@/shared/hooks'
 import '@/shared/styles/_mixins.scss'
 import { Logo } from '@/shared/ui/icons/logo'
 
+export interface ILogo {
+	width: number
+	height: number
+}
+
 export const Footer: FC = () => {
 	const isMedia960 = useMediaQuery('(min-width: 1200px)')
 	const isMedia640 = useMediaQuery('(min-width: 1200px)')

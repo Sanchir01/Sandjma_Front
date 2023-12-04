@@ -20,7 +20,9 @@
 	&__bot {
 		display: flex;
 		justify-content: space-between;
+
 		@apply items-end;
+		align-items: flex-end;
 		&__left {
 			text-start: end;
 			&__text {
@@ -42,7 +44,7 @@
 	}
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1280px) {
 	.footer {
 		margin-top: 40px;
 		&__container {
@@ -61,6 +63,9 @@
 				align-items: center;
 				justify-content: space-between;
 				flex-direction: row-reverse;
+				&__text {
+					font-size: 14px;
+				}
 			}
 			&__right {
 				display: none;
