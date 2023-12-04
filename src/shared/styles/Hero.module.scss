@@ -4,5 +4,16 @@
 		background-position: top center;
 		background-size: cover;
 		min-height: 100dvh;
+		&__link {
+			min-height: 100dvh;
+			padding-top: 50dvh;
+			@apply flex flex-col items-center;
+		}
+		&__title {
+			font-size: clamp(1.625rem, 0.517rem + 2.955vw, 4.063rem);
+		}
+		&__subtitle {
+			font-size: clamp(1.25rem, 0.852rem + 1.061vw, 2.125rem);
+		}
 	}
 }

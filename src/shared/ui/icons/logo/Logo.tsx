@@ -1,10 +1,10 @@
 import { FC } from 'react'
 
-export const Logo: FC = () => {
+export const Logo: FC<{ width: number }> = ({ width }) => {
 	return (
 		<svg
-			width='162'
-			height='35'
+			width={width}
+			height='auto'
 			viewBox='0 0 162 35'
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'

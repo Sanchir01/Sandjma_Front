@@ -1,4 +1,5 @@
 .footer {
+	margin-top: 100px;
 	background-color: #c2c7da;
 
 	&__container {
@@ -13,34 +14,29 @@
 		display: flex;
 		gap: 80px;
 		padding-bottom: 65px;
+		@apply big-desktop:flex big-desktop:flex-wrap mobile-adapt:grid-cols-2 mobile-adapt:grid;
 	}
 
 	&__bot {
 		display: flex;
 		justify-content: space-between;
-
+		@apply items-end;
 		&__left {
+			text-start: end;
 			&__text {
-				margin-top: 15px;
 				opacity: 0.3;
-				font-size: 16px;
-				font-style: normal;
+				font-size: clamp(0.75rem, 0.636rem + 0.303vw, 1rem);
 				font-weight: 500;
-				line-height: normal;
 				text-transform: uppercase;
 			}
 		}
 		&__right {
 			text-wrap: balance;
 			text-align: right;
-
 			font-size: 120px;
 			font-style: normal;
-
-			line-height: 118.5px; /* 98.75% */
 			letter-spacing: -12px;
 			text-transform: uppercase;
-
 			opacity: 0.1;
 		}
 	}
@@ -48,14 +44,21 @@
 
 @media screen and (max-width: 1300px) {
 	.footer {
-		&__top {
+		margin-top: 40px;
+		&__container {
 			display: flex;
-			flex-wrap: wrap;
+			padding: 20px;
+		}
+
+		&__top {
+			gap: 30px;
+			padding-bottom: 40px;
 		}
 		&__bot {
 			&__left {
 				width: 100%;
 				display: flex;
+				align-items: center;
 				justify-content: space-between;
 				flex-direction: row-reverse;
 			}

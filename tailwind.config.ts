@@ -24,8 +24,14 @@ const config: Config = {
 			borderRadius: {
 				button_bRadius: 'rounded-md'
 			}
+		},
+		screens: {
+			'big-desktop': { max: '1440px' },
+			'for-desktop': { max: "'1025px'" },
+			'small-tablet': { max: '768px' },
+			'mobile-adapt': { max: '576px' }
 		}
 	},
 	plugins: []
-} 
+}
 export default config

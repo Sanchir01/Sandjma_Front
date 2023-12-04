@@ -1,6 +1,6 @@
 import styles from '@/shared/styles/Slider.module.scss'
 import { ISliderBlockProduct } from '@/shared/types/Slider.interface'
-import { SliderDefault } from '@/shared/ui/slider'
+import { SliderDefault } from '@/shared/ui/icons/slider'
 import React from 'react'
 
 export const SliderBlock: React.FC<ISliderBlockProduct> = ({
