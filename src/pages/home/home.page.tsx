@@ -1,4 +1,4 @@
-import HeroSlider from '@/widgets/HeroSlider/HeroSlider'
+import { HeroSlider } from '@/widgets/HeroSlider'
 import { SliderBlock } from '@/widgets/Slider'
 import { useQuery } from '@apollo/client'
 import { GetAllProductsDashboardDocument } from 'gql/gql/graphql'
@@ -23,6 +23,7 @@ export function HomePage() {
 					title='Новинки'
 				/>
 			)}
+			<div className=''></div>
 		</>
 	)
 }

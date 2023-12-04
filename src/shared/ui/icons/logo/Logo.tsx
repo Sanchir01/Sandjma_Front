@@ -1,10 +1,13 @@
+import { useMediaQuery } from '@/shared/hooks'
 import { FC } from 'react'
 
-export const Logo: FC<{ width: number }> = ({ width }) => {
+export const Logo: FC = () => {
+	const isMedia960 = useMediaQuery('(min-width: 1200px)')
+	const isMedia640 = useMediaQuery('(min-width: 640px)')
 	return (
 		<svg
-			width={width}
-			height='auto'
+			width={isMedia960 ? 135 : isMedia640 ? 112 : 95}
+			height='100%'
 			viewBox='0 0 162 35'
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'

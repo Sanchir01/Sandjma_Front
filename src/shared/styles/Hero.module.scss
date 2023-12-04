@@ -4,6 +4,7 @@
 		background-position: top center;
 		background-size: cover;
 		min-height: 100dvh;
+		@apply tablet:bg-left;
 		&__link {
 			min-height: 100dvh;
 			padding-top: 50dvh;

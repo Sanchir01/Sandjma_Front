@@ -27,7 +27,7 @@ const config: Config = {
 		},
 		screens: {
 			'big-desktop': { max: '1440px' },
-			'for-desktop': { max: "'1025px'" },
+			tablet: { max: '1024px' },
 			'small-tablet': { max: '768px' },
 			'mobile-adapt': { max: '576px' }
 		}

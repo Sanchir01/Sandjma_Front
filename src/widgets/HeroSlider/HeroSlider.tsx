@@ -6,7 +6,7 @@ import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-const HeroSlider: FC = () => {
+export const HeroSlider: FC = () => {
 	return (
 		<section className={styles.hero}>
 			<Swiper
@@ -35,5 +35,3 @@ const HeroSlider: FC = () => {
 		</section>
 	)
 }
-
-export default HeroSlider

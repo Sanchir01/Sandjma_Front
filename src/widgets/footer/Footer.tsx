@@ -14,8 +14,7 @@ export interface ILogo {
 }
 
 export const Footer: FC = () => {
-	const isMedia960 = useMediaQuery('(min-width: 1200px)')
-	const isMedia640 = useMediaQuery('(min-width: 1200px)')
+	
 
 	return (
 		<footer className={style.footer}>
@@ -28,7 +27,7 @@ export const Footer: FC = () => {
 				<div className={style.footer__bot}>
 					<div className={style.footer__bot__left}>
 						<div className={style.footer__bot__left__logo}>
-							<Logo width={isMedia960 ? 135 : isMedia640 ? 112 : 99} />
+							<Logo />
 						</div>
 						<div className={style.footer__bot__left__text}>
 							© 2024. Все права защищены
