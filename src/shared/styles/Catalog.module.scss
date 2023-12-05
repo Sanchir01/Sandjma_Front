@@ -1,5 +1,10 @@
 .catalog {
 	margin-top: 40px;
+	&__items {
+		grid-template-columns: repeat(5, 1fr);
+		gap: 30px 10px;
+		@apply grid;
+	}
 }
 .wrapper {
 	padding: 0 40px;

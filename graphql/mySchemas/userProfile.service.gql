@@ -1,0 +1,11 @@
+mutation ToggleFavoritesProfile($productId: Float!) {
+	toggleFavoritesProfile(productId: $productId)
+}
+
+query GetUserFavoritesIdArray {
+	getProfile {
+		favorites {
+			id
+		}
+	}
+}
