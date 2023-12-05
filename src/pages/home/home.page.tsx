@@ -7,7 +7,6 @@ export function HomePage() {
 	const { data: items } = useQuery(GetAllProductsDashboardDocument, {
 		variables: { getAllProductInput: { page: '1', newProduct: true } }
 	})
-
 	return (
 		<>
 			<HeroSlider />

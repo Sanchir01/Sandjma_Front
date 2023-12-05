@@ -1,7 +1,10 @@
-export const BurgerIcon = ({ rotate }: { rotate: boolean }) => {
+import { useBurger } from '@/app/store/useBurger'
+
+export const BurgerIcon = () => {
+	const burger = useBurger(state => state.toggleBurger)
 	return (
-		<div className={rotate ? 'burger_btn active' : 'burger_btn '}>
-			<span  />
+		<div className={burger ? 'burger_btn active' : 'burger_btn '}>
+			<span />
 		</div>
 	)
 }

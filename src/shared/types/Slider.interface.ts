@@ -1,13 +1,11 @@
 import { ReactNode } from 'react'
 
 export interface ISliderProps {
-	className: string
 	spaceBetween?: number
 	slidesPerView: number
 	loop?: boolean
-	priority?: boolean
+
 	children?: ReactNode
-	products: IItemsSliderProduct[]
 }
 export interface IItemsSliderProduct {
 	__typename?: string | undefined
@@ -18,5 +16,6 @@ export interface IItemsSliderProduct {
 }
 export interface ISliderBlockProduct {
 	title: string
+	loop?: boolean
 	product: IItemsSliderProduct[]
 }

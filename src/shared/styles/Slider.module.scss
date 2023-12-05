@@ -1,7 +1,7 @@
 .slider {
 	margin-top: 100px;
 	padding: 0 20px;
-
+	@apply small-tablet:mt-10;
 	&__content {
 		max-width: clamp(160px, 5.817rem + 16.154vw, 25rem);
 		height: auto;
@@ -24,6 +24,6 @@
 
 @media (max-width: 600px) {
 	.slider {
-		padding: 0 10px;
+		padding: 0 15px;
 	}
 }

@@ -1,20 +1,13 @@
-import styles from '@/shared/styles/Slider.module.scss'
 import { ISliderProps } from '@/shared/types/Slider.interface'
-import cn from 'clsx'
-import Image from 'next/image'
-import Link from 'next/link'
 import { FC } from 'react'
 import 'swiper/css'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper } from 'swiper/react'
 
 export const SliderDefault: FC<ISliderProps> = ({
-	className,
 	spaceBetween,
 	slidesPerView = 1,
 	loop = false,
-	children,
-	priority = false,
-	products
+	children
 }) => {
 	return (
 		<Swiper
@@ -24,7 +17,7 @@ export const SliderDefault: FC<ISliderProps> = ({
 			breakpoints={{
 				319: {
 					spaceBetween: 10,
-					slidesPerView: 1.4
+					slidesPerView: 1.7
 				},
 				560: {
 					slidesPerView: 2.5
@@ -43,24 +36,7 @@ export const SliderDefault: FC<ISliderProps> = ({
 				}
 			}}
 		>
-			{products.map(({ id, images }) => (
-				<SwiperSlide key={id} className={styles.slider__content}>
-					<article className={cn(className)}>
-						<Link href={`/catalog/${id}`} className={styles.slider__imageBlock}>
-							<Image
-								className={styles.slider__imageBlock__image}
-								src={images[0]}
-								alt={images[0]}
-								width={400}
-								height={400}
-								priority={priority}
-							/>
-						</Link>
-
-						{children}
-					</article>
-				</SwiperSlide>
-			))}
+			{children}
 		</Swiper>
 	)
 }
