@@ -38,6 +38,10 @@ export const Header: FC = () => {
 						<Logo />
 					</Link>
 					<div className={styles.header__right}>
+						<div className='relative'>
+							<IconCart href={'/cart'} />
+							<span className='absolute top-1 left-[10px] text-[11px]'>1</span>
+						</div>
 						{isMedia1024 ? (
 							<></>
 						) : (
@@ -46,10 +50,6 @@ export const Header: FC = () => {
 								<ProfileLogo href={'/profile'} />
 							</>
 						)}
-						<div className='relative'>
-							<IconCart href={'/cart'} />
-							<span className='absolute top-1 left-[10px] text-[11px]'>1</span>
-						</div>
 					</div>
 					{isMedia1024 ? (
 						<BurgerMenu active={burger} setActive={toggleBurger} />

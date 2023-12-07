@@ -18,7 +18,8 @@ export const SliderBlock: React.FC<ISliderBlockProduct> = ({
 				{product.map(item => (
 					<SwiperSlide key={item.id}>
 						<OneCart
-							id={0}
+							className='max-w-[400px]'
+							id={item.id}
 							images={item.images}
 							price={item.price}
 							name={item.name}

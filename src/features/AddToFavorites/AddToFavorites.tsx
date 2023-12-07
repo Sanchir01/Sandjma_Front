@@ -1,3 +1,5 @@
+
+import { Button } from '@/shared/ui'
 import { useMutation, useQuery } from '@apollo/client'
 import {
 	GetUserFavoritesIdArrayDocument,
@@ -50,19 +52,25 @@ export const AddToFavorites: FC<IToggleFavoritesFeature> = ({ id }) => {
 	const toggle = async (id: number) => {
 		await mutate({ variables: { productId: id } })
 			.then(res => toast.success(res.data?.toggleFavoritesProfile as string))
-			.catch(er => console.log(er.message))
+			.catch(er =>
+				console.log(
+					er.message === 'forbidden resource'
+						? 'Вам нужно пройти регистрацию'
+						: 'ошибкан а сервере'
+				)
+			)
 	}
-	console.log(favorites?.getProfile?.favorites)
+
 	const isExistFavorites = loading
 		? false
 		: favorites?.getProfile?.favorites?.some(el => el.id === id)
 	return (
-		<button onClick={() => toggle(id)}>
+		<Button onClick={() => toggle(id)}>
 			{isExistFavorites ? (
 				<Heart size={20} fill={'black'} />
 			) : (
 				<Heart size={20} fill={'white'} />
 			)}
-		</button>
+		</Button>
 	)
 }

@@ -3,26 +3,32 @@ import styles from '@/shared/styles/Catalog.module.scss'
 import { CartProduct } from '@/widgets'
 import { useSuspenseQuery } from '@apollo/client'
 import { GetAllProductsDashboardDocument } from 'gql/gql/graphql'
+import { IPropsCatalog } from 'pages/catalog'
 import { FC } from 'react'
-export const Catalog: FC = () => {
+
+export const Catalog: FC<IPropsCatalog> = ({ products }) => {
 	const { data } = useSuspenseQuery(GetAllProductsDashboardDocument, {
-		variables: { getAllProductInput: { page: '1' } }
+        variables: { getAllProductInput: { page: '1' } },
+        
 	})
+
+	console.log(products)
 	return (
 		<section className={styles.catalog}>
 			<div className={styles.wrapper}>
-				<div className=''>breadcrums</div>
+				<div className=''>breadcrumb</div>
 				<div className={styles.catalog__filters}>
 					<Sorting />
 				</div>
-				{data ? (
+				{products ? (
 					<div className={styles.catalog__items}>
-						{data.getAllProducts.products.map(item => (
+						{products.map(item => (
 							<CartProduct
 								key={item.id}
-								product={item}
 								id={item.id}
 								images={item.images}
+								name={item.name}
+								price={item.price}
 							/>
 						))}
 					</div>
