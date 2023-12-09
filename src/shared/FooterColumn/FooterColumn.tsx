@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React from 'react'
 
 import style from '@/shared/styles/FooterColumn.module.scss'
 import Link from 'next/link'
