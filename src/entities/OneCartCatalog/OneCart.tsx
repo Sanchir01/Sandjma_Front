@@ -26,9 +26,9 @@ export const OneCart: FC<IEntityCartProps> = ({
 					priority={priority}
 				/>
 			</Link>
-			<div className='flex justify-between mt-3'>
-				<div className='flex flex-col gap-1'>
-					<div className=''>{name}</div>
+			<div className='flex justify-between mt-3 mr-3'>
+				<div className='flex flex-col gap-1 '>
+					<div className=''>{name}</div> 
 					<div className=''>{price}</div>
 				</div>
 				{children}

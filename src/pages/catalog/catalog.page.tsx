@@ -23,6 +23,7 @@ export const Catalog: FC<IPropsCatalog> = ({ products }) => {
 				<div className={styles.wrapper}>
 					<div className=''>breadcrumb</div>
 					<div className={styles.catalog__filters}>
+						123123
 						<Sorting />
 					</div>
 					{products.length && data ? (

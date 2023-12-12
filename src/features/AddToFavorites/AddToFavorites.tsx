@@ -1,4 +1,3 @@
-
 import { Button } from '@/shared/ui'
 import { useMutation, useQuery } from '@apollo/client'
 import {
@@ -46,9 +45,14 @@ export const AddToFavorites: FC<IToggleFavoritesFeature> = ({ id }) => {
 					}
 				})
 			}
-		}
+		},
+		refetchQueries: []
 	})
-	const { data: favorites, loading } = useQuery(GetUserFavoritesIdArrayDocument)
+	const { data: favorites, loading } = useQuery(
+		GetUserFavoritesIdArrayDocument,
+		{ fetchPolicy: 'cache-first' }
+	)
+	console.log(favorites)
 	const toggle = async (id: number) => {
 		await mutate({ variables: { productId: id } })
 			.then(res => toast.success(res.data?.toggleFavoritesProfile as string))

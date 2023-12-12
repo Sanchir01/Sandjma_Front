@@ -5,6 +5,9 @@
 		gap: 30px 10px;
 		@apply grid;
 	}
+	&__filters {
+		@apply flex justify-between;
+	}
 }
 .wrapper {
 	padding: 0 40px;

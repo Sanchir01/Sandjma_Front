@@ -13,7 +13,7 @@ const authLink = setContext((_, { headers }) => {
 	return {
 		headers: {
 			...headers,
-			Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzAxNzY1MzE0LCJleHAiOjE3MDE5MzgxMTR9.KBZHlFeVhyGyvMywvp4UoQbKbjaKZuEkBeFnwR8BvoI`
+			Authorization: token ? `Bearer ${token}` : ''
 		}
 	}
 })
