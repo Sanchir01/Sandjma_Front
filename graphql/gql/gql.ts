@@ -13,7 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "mutation Login($loginInput: LoginInput!) {\n  login(loginInput: $loginInput) {\n    accessToken\n    refreshToken\n    user {\n      id\n      isAdmin\n    }\n  }\n}": types.LoginDocument,
+    "mutation Login($loginInput: LoginInput!) {\n  login(loginInput: $loginInput) {\n    accessToken\n    refreshToken\n    user {\n      id\n      isAdmin\n    }\n  }\n}\n\nmutation Register($authInput: AuthInput!) {\n  register(authInput: $authInput) {\n    accessToken\n    refreshToken\n    user {\n      id\n      isAdmin\n    }\n  }\n}": types.LoginDocument,
     "query GetAllProductsDashboard($getAllProductInput: GetAllProductInput!) {\n  getAllProducts(getAllProductInput: $getAllProductInput) {\n    length\n    products {\n      id\n      images\n      name\n      price\n      size {\n        id\n        name\n      }\n    }\n  }\n}": types.GetAllProductsDashboardDocument,
     "mutation ToggleFavoritesProfile($productId: Float!) {\n  toggleFavoritesProfile(productId: $productId)\n}\n\nquery GetUserFavoritesIdArray {\n  getProfile {\n    favorites {\n      id\n    }\n  }\n}": types.ToggleFavoritesProfileDocument,
 };
@@ -35,7 +35,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "mutation Login($loginInput: LoginInput!) {\n  login(loginInput: $loginInput) {\n    accessToken\n    refreshToken\n    user {\n      id\n      isAdmin\n    }\n  }\n}"): (typeof documents)["mutation Login($loginInput: LoginInput!) {\n  login(loginInput: $loginInput) {\n    accessToken\n    refreshToken\n    user {\n      id\n      isAdmin\n    }\n  }\n}"];
+export function graphql(source: "mutation Login($loginInput: LoginInput!) {\n  login(loginInput: $loginInput) {\n    accessToken\n    refreshToken\n    user {\n      id\n      isAdmin\n    }\n  }\n}\n\nmutation Register($authInput: AuthInput!) {\n  register(authInput: $authInput) {\n    accessToken\n    refreshToken\n    user {\n      id\n      isAdmin\n    }\n  }\n}"): (typeof documents)["mutation Login($loginInput: LoginInput!) {\n  login(loginInput: $loginInput) {\n    accessToken\n    refreshToken\n    user {\n      id\n      isAdmin\n    }\n  }\n}\n\nmutation Register($authInput: AuthInput!) {\n  register(authInput: $authInput) {\n    accessToken\n    refreshToken\n    user {\n      id\n      isAdmin\n    }\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

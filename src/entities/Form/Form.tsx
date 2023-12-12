@@ -2,6 +2,7 @@ import { AuthEnum } from '@/features'
 import { IFormProps } from '@/shared/types/Form.types'
 import { Heading } from '@/shared/ui'
 import { Field } from '@/shared/ui/input'
+import cn from 'clsx'
 import { FC } from 'react'
 import InputMask from 'react-input-mask'
 import { validEmail } from '../ui/valid-email'
@@ -13,16 +14,19 @@ export const FromEntity: FC<IFormProps> = ({
 	formRegister,
 	onSubmit,
 	errors,
-	type
+	type,
+	className
 }) => {
 	return (
 		<section className=' flex h-[80dvh]'>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className='rounded-lg bg-bg-color shadow-lg p-8 m-auto'
+				className={cn('rounded-lg bg-bg-color shadow-lg p-8 m-auto', className)}
 			>
 				<Heading className=' text-center mb-4'>
-					{type === AuthEnum.login ? 'Вход в личный кабинет' : 'Регистрация'}
+					{type === AuthEnum.login
+						? 'Вход в личный кабинет'
+						: 'Регистрация пользователя'}
 				</Heading>
 
 				<div className='flex flex-col gap-3'>

@@ -4,7 +4,7 @@
 		background-position: top center;
 		background-size: cover;
 		min-height: 100dvh;
-		@apply tablet:bg-left;
+
 		&__link {
 			min-height: 100dvh;
 			padding-top: 50dvh;
@@ -16,5 +16,11 @@
 		&__subtitle {
 			font-size: clamp(1.25rem, 0.852rem + 1.061vw, 2.125rem);
 		}
+	}
+}
+
+@media (max-width: (1024px)) {
+	.hero__slide {
+		@apply bg-left;
 	}
 }

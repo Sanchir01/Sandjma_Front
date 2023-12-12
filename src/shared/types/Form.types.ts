@@ -14,4 +14,5 @@ export interface IFormProps {
 	onSubmit: SubmitHandler<IPhonePassword>
 	errors: FieldErrors<IPhonePassword>
 	type: AuthEnum
+	className?: string
 }

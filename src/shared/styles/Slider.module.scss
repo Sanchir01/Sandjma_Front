@@ -1,7 +1,6 @@
 .slider {
 	margin-top: 100px;
 	padding: 0 20px;
-	@apply small-tablet:mt-10;
 	&__content {
 		max-width: clamp(160px, 5.817rem + 16.154vw, 25rem);
 		height: auto;
@@ -19,6 +18,11 @@
 			max-height: 500px;
 			@apply object-cover block;
 		}
+	}
+}
+@media (max-width: 768px) {
+	.slider {
+		@apply mt-10;
 	}
 }
 

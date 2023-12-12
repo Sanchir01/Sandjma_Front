@@ -8,3 +8,14 @@ mutation Login($loginInput: LoginInput!) {
 		}
 	}
 }
+
+mutation Register($authInput: AuthInput!) {
+	register(authInput: $authInput) {
+		accessToken
+		refreshToken
+		user {
+			id
+			isAdmin
+		}
+	}
+}

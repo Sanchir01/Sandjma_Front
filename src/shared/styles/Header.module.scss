@@ -1,7 +1,7 @@
 .header {
 	height: 80px;
 
-	@apply tablet:h-[50px] tablet:py-4 shadow-md py-[30px];
+	@apply shadow-md py-[30px];
 	&__content {
 		display: flex;
 		justify-content: space-between;
@@ -36,12 +36,22 @@
 		height: calc(100% - 100px);
 		background: rgba(0, 0, 0, 0.9);
 		transition: 0.4s ease-in;
-		@apply small-tablet:w-full;
 	}
 	&__text {
 		@apply flex flex-col gap-5 text-xl pt-20 pl-4;
 	}
 	&__footer {
 		@apply h-[50px] bg-black mt-auto block flex-1 content-end;
+	}
+}
+
+@media (max-width: 1024px) {
+	.header {
+		@apply h-[50px] py-4;
+	}
+}
+@media (max-width: (768px)) {
+	.menu__content {
+		@apply w-full;
 	}
 }
