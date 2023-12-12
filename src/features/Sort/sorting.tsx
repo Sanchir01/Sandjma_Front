@@ -1,29 +1,33 @@
+import { useFilters } from '@/app/store/useFilters'
+import { SortingArray } from '@/shared/constants/SortingArray'
 import {
 	Select,
 	SelectContent,
+	SelectGroup,
 	SelectItem,
 	SelectTrigger,
 	SelectValue
-} from '@/shared/ui/Select/select'
-
+} from '@/shared/ui'
 import { FC } from 'react'
 
 export const Sorting: FC = () => {
+	const changeSorting = useFilters(state => state.changeSorting)
 	return (
 		<div className='min-w-[200px] flex gap-2 items-center'>
 			<div className=' flex gap-2'>
 				<span>Сортировка </span>
 				<span>по:</span>
 			</div>
-
-			<Select>
+			<Select onValueChange={value => changeSorting(value)}>
 				<SelectTrigger>
-					<SelectValue placeholder='выберите категорию' />
+					<SelectValue placeholder='выберите сортировку' />
 				</SelectTrigger>
-				<SelectContent className='bg-white'>
-					<SelectItem value='light'>Light</SelectItem>
-					<SelectItem value='dark'>Dark</SelectItem>
-					<SelectItem value='system'>System</SelectItem>
+				<SelectContent className='bg-white rounded-lg'>
+					{SortingArray.map(item => (
+						<SelectGroup key={item.id}>
+							<SelectItem value={item.value}>{item.name}</SelectItem>
+						</SelectGroup>
+					))}
 				</SelectContent>
 			</Select>
 		</div>
