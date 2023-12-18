@@ -6,7 +6,7 @@ export const Logo: FC = () => {
 	const isMedia640 = useMediaQuery('(min-width: 640px)')
 	return (
 		<svg
-			width={isMedia960 ? 135 : isMedia640 ? 112 : 95}
+			width={isMedia960 ? 135 : isMedia640 ? 112 : 110}
 			height='100%'
 			viewBox='0 0 162 35'
 			fill='none'

@@ -45,24 +45,17 @@ export const AddToFavorites: FC<IToggleFavoritesFeature> = ({ id }) => {
 					}
 				})
 			}
-		},
-		refetchQueries: []
+		}
 	})
 	const { data: favorites, loading } = useQuery(
 		GetUserFavoritesIdArrayDocument,
 		{ fetchPolicy: 'cache-first' }
 	)
-	console.log(favorites)
+
 	const toggle = async (id: number) => {
 		await mutate({ variables: { productId: id } })
 			.then(res => toast.success(res.data?.toggleFavoritesProfile as string))
-			.catch(er =>
-				console.log(
-					er.message === 'forbidden resource'
-						? 'Вам нужно пройти регистрацию'
-						: 'ошибкан а сервере'
-				)
-			)
+			.catch(er => er.message)
 	}
 
 	const isExistFavorites = loading

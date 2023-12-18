@@ -4,22 +4,32 @@ import { useQuery } from '@apollo/client'
 import { GetAllProductsDashboardDocument } from 'gql/gql/graphql'
 
 export function HomePage() {
-	const { data: items } = useQuery(GetAllProductsDashboardDocument, {
-		variables: { getAllProductInput: { page: '1', newProduct: true } }
+	const { data: items, loading: LoadingNews } = useQuery(
+		GetAllProductsDashboardDocument,
+		{
+			variables: { getAllProductInput: { newProduct: true } }
+		}
+	)
+	const { data, loading } = useQuery(GetAllProductsDashboardDocument, {
+		variables: { getAllProductInput: { seller: true } }
 	})
 	return (
 		<>
 			<HeroSlider />
-			{items && (
+			{LoadingNews ? (
+				<div className=''>Загрузка</div>
+			) : (
 				<SliderBlock
-					product={items?.getAllProducts.products!}
+					products={items?.getAllProducts.products!}
 					title='Новинки'
 				/>
 			)}
-			{items && (
+			{loading ? (
+				<div className=''>загрузка</div>
+			) : (
 				<SliderBlock
-					product={items?.getAllProducts.products!}
-					title='Новинки'
+					products={data?.getAllProducts.products!}
+					title='Популярное'
 				/>
 			)}
 			<div className=''></div>

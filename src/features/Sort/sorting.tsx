@@ -22,9 +22,9 @@ export const Sorting: FC = () => {
 				<SelectTrigger>
 					<SelectValue placeholder='выберите сортировку' />
 				</SelectTrigger>
-				<SelectContent className='bg-white rounded-lg'>
+				<SelectContent className='bg-white rounded-lg cursor-pointer'>
 					{SortingArray.map(item => (
-						<SelectGroup key={item.id}>
+						<SelectGroup className='' key={item.id}>
 							<SelectItem value={item.value}>{item.name}</SelectItem>
 						</SelectGroup>
 					))}

@@ -8,6 +8,8 @@ import { FavoritesLogo } from '@/shared/ui/icons/favorites'
 import { Logo } from '@/shared/ui/icons/logo'
 import { ProfileLogo } from '@/shared/ui/icons/profile'
 import { BurgerMenu } from '@/widgets/Burger'
+import { useQuery } from '@apollo/client'
+import { GetUserFavoritesIdArrayDocument } from 'gql/gql/graphql'
 import Link from 'next/link'
 import { FC } from 'react'
 
@@ -15,6 +17,10 @@ export const Header: FC = () => {
 	const isMedia1024 = useMediaQuery('(max-width:1024px)')
 	const burger = useBurger(state => state.toggleBurger)
 	const toggleBurger = useBurger(state => state.setToggleBurger)
+	const { data: favorites, loading } = useQuery(
+		GetUserFavoritesIdArrayDocument,
+		{ fetchPolicy: 'cache-first' }
+	)
 	return (
 		<header className={styles.header}>
 			<div className='container'>
@@ -46,7 +52,14 @@ export const Header: FC = () => {
 							<></>
 						) : (
 							<>
-								<FavoritesLogo href={'/favorites'} />
+								<div className='relative'>
+									<FavoritesLogo href={'/favorites'} />
+									<span className='absolute bottom-1 left-2 text-[12px]'>
+										{loading || favorites?.getProfile.favorites?.length === null
+											? ''
+											: favorites?.getProfile.favorites?.length}
+									</span>
+								</div>
 								<ProfileLogo href={'/profile'} />
 							</>
 						)}

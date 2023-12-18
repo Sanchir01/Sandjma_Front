@@ -9,14 +9,18 @@ export const OneCart: FC<IEntityCartProps> = ({
 	priority = false,
 	className,
 	children,
-	id,
 	name,
 	price,
-	images
+	images,
+	colorId,
+	slug
 }) => {
 	return (
 		<article className={cn(className)}>
-			<Link href={`/catalog/${id}`} className={styles.slider__imageBlock}>
+			<Link
+				href={`/catalog/${slug}/${String(colorId)}`}
+				className={styles.slider__imageBlock}
+			>
 				<Image
 					className={styles.slider__imageBlock__image}
 					src={images[0]}
@@ -28,7 +32,7 @@ export const OneCart: FC<IEntityCartProps> = ({
 			</Link>
 			<div className='flex justify-between mt-3 mr-3'>
 				<div className='flex flex-col gap-1 '>
-					<div className=''>{name}</div> 
+					<div className=''>{name}</div>
 					<div className=''>{price}</div>
 				</div>
 				{children}

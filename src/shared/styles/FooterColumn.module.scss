@@ -11,7 +11,6 @@
 	&__content {
 		display: flex;
 		flex-direction: column;
-
 		gap: 15px;
 		&__text {
 			font-size: clamp(0.75rem, 0.7rem + 0.25vw, 1rem);
@@ -41,6 +40,7 @@
 			font-size: 14px;
 		}
 		&__content {
+			gap: 5px;
 			&__text {
 				font-size: 12px;
 			}

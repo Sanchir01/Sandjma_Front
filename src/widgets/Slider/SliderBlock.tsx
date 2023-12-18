@@ -7,7 +7,7 @@ import React from 'react'
 import { SwiperSlide } from 'swiper/react'
 
 export const SliderBlock: React.FC<ISliderBlockProduct> = ({
-	product,
+	products = [],
 	title,
 	loop
 }) => {
@@ -15,14 +15,15 @@ export const SliderBlock: React.FC<ISliderBlockProduct> = ({
 		<section className={styles.slider}>
 			<h2 className={styles.slider__title}>{title}</h2>
 			<SliderDefault slidesPerView={4.5} spaceBetween={15} loop={loop}>
-				{product.map(item => (
+				{products.map(item => (
 					<SwiperSlide key={item.id}>
 						<OneCart
 							className='max-w-[400px]'
-							id={item.id}
 							images={item.images}
 							price={item.price}
 							name={item.name}
+							slug={item.slug}
+							colorId={item.productColorId}
 						>
 							<AddToFavorites id={item.id} />
 						</OneCart>

@@ -6,6 +6,7 @@ export interface ISeo {
 	title: string
 	description?: string
 	image?: string
+	keyword?: string
 }
 
 export const titleMerge = (title: string) => `${title} | Sandjma`
@@ -14,7 +15,8 @@ export const Meta: FC<PropsWithChildren<ISeo>> = ({
 	title,
 	children,
 	description,
-	image
+	image,
+	keyword
 }) => {
 	const pathname = usePathname()
 	const currentUrl = `${process.env.CLIENT_URL}${pathname}`
@@ -39,6 +41,7 @@ export const Meta: FC<PropsWithChildren<ISeo>> = ({
 						/>
 						<meta property='site_name' content={'Sandjma'} />
 						<meta property='og:description' content={description} />
+						<meta name='keyword' content={keyword} />
 					</>
 				) : (
 					<meta name='robots' content='noindex, nofollow' />

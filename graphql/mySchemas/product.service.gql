@@ -2,14 +2,42 @@ query GetAllProductsDashboard($getAllProductInput: GetAllProductInput!) {
 	getAllProducts(getAllProductInput: $getAllProductInput) {
 		length
 		products {
+			colors {
+				id
+				imageCss
+				name
+				slug
+			}
+			description
 			id
 			images
+			insulationId
 			name
 			price
 			size {
 				id
 				name
 			}
+			slug
+		}
+	}
+}
+
+query GetProductByColor($getProductByColor: GetProductByColor!) {
+	getProductByColor(getProductByColor: $getProductByColor) {
+		id
+		colors {
+			id
+			imageCss
+			name
+		}
+		images
+		name
+		price
+		slug
+		size {
+			id
+			name
 		}
 	}
 }

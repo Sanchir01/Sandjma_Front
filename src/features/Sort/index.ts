@@ -1,1 +1,1 @@
-export * from './Sorting'
+export * from './sorting'

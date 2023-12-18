@@ -6,9 +6,6 @@
 		@apply grid;
 	}
 	&__filters {
-		@apply flex justify-between;
+		@apply flex justify-between items-center;
 	}
-}
-.wrapper {
-	padding: 0 40px;
 }

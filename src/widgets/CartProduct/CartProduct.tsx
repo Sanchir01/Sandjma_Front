@@ -7,11 +7,26 @@ export interface ICartProduct {
 	price: number
 	id: number
 	images: string[]
+	slug: string
+	colorId: number
 }
 
-export const CartProduct: FC<ICartProduct> = ({ price, id, images, name }) => {
+export const CartProduct: FC<ICartProduct> = ({
+	price,
+	id,
+	images,
+	name,
+	slug,
+	colorId
+}) => {
 	return (
-		<OneCart id={id} images={images} price={price} name={name}>
+		<OneCart
+			colorId={colorId}
+			slug={slug}
+			images={images}
+			price={price}
+			name={name}
+		>
 			<AddToFavorites id={id} />
 		</OneCart>
 	)

@@ -12,16 +12,26 @@ export interface ISize {
 	id: number
 	name: string
 }
-export interface IItemsSliderProduct {
+export interface IColors {
+	id: number
+	imageCss: string
+	name: string
+}
+export interface IOneProduct {
 	__typename?: string | undefined
 	id: number
 	images: string[]
 	name: string
 	price: number
+	slug: string
+	productColorId: number
+	colors?: IColors[]
 	size: ISize[]
 }
-export interface ISliderBlockProduct {
+export interface IPropsCatalog {
+	products: IOneProduct[]
+}
+export interface ISliderBlockProduct extends IPropsCatalog {
 	title: string
 	loop?: boolean
-	product: IItemsSliderProduct[]
 }
