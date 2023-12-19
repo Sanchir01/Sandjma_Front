@@ -13,6 +13,7 @@ export function HomePage() {
 	const { data, loading } = useQuery(GetAllProductsDashboardDocument, {
 		variables: { getAllProductInput: { seller: true } }
 	})
+
 	return (
 		<>
 			<HeroSlider />

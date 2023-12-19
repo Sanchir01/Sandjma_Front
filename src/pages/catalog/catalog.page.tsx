@@ -3,6 +3,7 @@ import { Sorting } from '@/features/Sort'
 import styles from '@/shared/styles/Catalog.module.scss'
 import { IPropsCatalog } from '@/shared/types/Slider.interface'
 import { Meta } from '@/shared/ui'
+import { CartProduct, SkeletonCart } from '@/widgets'
 import { useQuery } from '@apollo/client'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { GetAllProductsDashboardDocument } from 'gql/gql/graphql'
@@ -26,33 +27,29 @@ export const Catalog: FC<IPropsCatalog> = ({ products }) => {
 							<Sorting />
 						</div>
 					</div>
-					<></>
+					{loading ? (
+						<div className={styles.catalog__items}>
+							{[...Array(10)].map((_, i) => (
+								<SkeletonCart key={i} />
+							))}
+						</div>
+					) : (
+						<div ref={parent} className={styles.catalog__items}>
+							{data?.getAllProducts.products.map(item => (
+								<CartProduct
+									colorId={item.productColorId}
+									slug={item.slug}
+									key={item.id}
+									id={item.id}
+									images={item.images}
+									name={item.name}
+									price={item.price}
+								/>
+							))}
+						</div>
+					)}
 				</div>
 			</section>
 		</Meta>
 	)
 }
-
-// {
-// 	loading ? (
-// 		<div className={styles.catalog__items}>
-// 			{[...Array(10)].map((_, i) => (
-// 				<SkeletonCart key={i} />
-// 			))}
-// 		</div>
-// 	) : (
-// 		<div ref={parent} className={styles.catalog__items}>
-// 			{data?.getAllProducts.products.map(item => (
-// 				<CartProduct
-// 					colorId={item.productColorId}
-// 					slug={item.slug}
-// 					key={item.id}
-// 					id={item.id}
-// 					images={item.images}
-// 					name={item.name}
-// 					price={item.price}
-// 				/>
-// 			))}
-// 		</div>
-// 	)
-// }
