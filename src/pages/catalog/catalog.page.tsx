@@ -4,6 +4,7 @@ import styles from '@/shared/styles/Catalog.module.scss'
 import { IPropsCatalog } from '@/shared/types/Slider.interface'
 import { Meta } from '@/shared/ui'
 import { CartProduct, SkeletonCart } from '@/widgets'
+import Filters from '@/widgets/Filters/Filters'
 import { useQuery } from '@apollo/client'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { GetAllProductsDashboardDocument } from 'gql/gql/graphql'
@@ -22,7 +23,9 @@ export const Catalog: FC<IPropsCatalog> = ({ products }) => {
 			<section className={styles.catalog}>
 				<div className='container'>
 					<div className='flex items-center mb-10 justify-between'>
-						<div className=''>breadcrumb</div>
+						<div className=''>
+							<Filters />
+						</div>
 						<div className={styles.catalog__filters}>
 							<Sorting />
 						</div>

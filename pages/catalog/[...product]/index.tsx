@@ -12,13 +12,13 @@ export const getStaticPaths = (async () => {
 		query: GetAllProductsDashboardDocument,
 		variables: { getAllProductInput: { page: '1' } }
 	})
-	const paths = data.getAllProducts.products.map(item => ({
+	const paths = data?.getAllProducts.products.map(item => ({
 		params: {
 			product: [item.slug, item.productColorId.toString()]
 		}
 	}))
 	return {
-		paths,
+		paths: paths,
 		fallback: 'blocking'
 	}
 }) satisfies GetStaticPaths
@@ -33,7 +33,7 @@ export const getStaticProps = (async ({ params }: any) => {
 
 	return {
 		props: {
-			product: data.getProductByColor[0]
+			product: data?.getProductByColor[0]
 		},
 		revalidate: 60
 	}
@@ -42,5 +42,5 @@ export const getStaticProps = (async ({ params }: any) => {
 export default function Page({ product }: { product: IOneProduct }) {
 	const router = useRouter()
 	console.log(router.query.product, product)
-	return <div>logogogog</div>
+	return <div>{product.name}</div>
 }
