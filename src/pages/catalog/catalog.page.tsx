@@ -1,5 +1,6 @@
 import { useFilters } from '@/app/store/useFilters'
-import { Sorting } from '@/features/Sort'
+import { MySelect } from '@/features/Sort'
+import { SortingArray } from '@/shared/constants/SortingArray'
 import styles from '@/shared/styles/Catalog.module.scss'
 import { IPropsCatalog } from '@/shared/types/Slider.interface'
 import { Meta } from '@/shared/ui'
@@ -9,15 +10,32 @@ import { useQuery } from '@apollo/client'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { GetAllProductsDashboardDocument } from 'gql/gql/graphql'
 import { FC } from 'react'
+import { useShallow } from 'zustand/react/shallow'
 
 export const Catalog: FC<IPropsCatalog> = ({ products }) => {
-	const sorting = useFilters(state => state.sorting)
+	const [sorting, changeSorting, category, color, insulation] = useFilters(
+		useShallow(state => [
+			state.sorting,
+			state.changeSorting,
+			state.category,
+			state.color,
+			state.insulation
+		])
+	)
 	const [parent] = useAutoAnimate({ easing: 'ease-in-out', duration: 500 })
-	const { data, loading, error } = useQuery(GetAllProductsDashboardDocument, {
-		variables: { getAllProductInput: { page: '1', sort: sorting } },
+	const { data, loading } = useQuery(GetAllProductsDashboardDocument, {
+		variables: {
+			getAllProductInput: {
+				page: '1',
+				sort: sorting,
+				categoryId: category,
+				colorId: Number(color),
+				getProductByInsulation: Number(insulation)
+			}
+		},
 		fetchPolicy: 'cache-first'
 	})
-	console.log(products)
+
 	return (
 		<Meta title={'Catalog'} description='Super magaz'>
 			<section className={styles.catalog}>
@@ -27,7 +45,16 @@ export const Catalog: FC<IPropsCatalog> = ({ products }) => {
 							<Filters />
 						</div>
 						<div className={styles.catalog__filters}>
-							<Sorting />
+							<MySelect
+								content={SortingArray}
+								onChange={changeSorting}
+								placeholder={'Выберите сортировку'}
+							>
+								<div className='flex gap-2 items-center'>
+									<span>Сортировка </span>
+									<span>по:</span>
+								</div>
+							</MySelect>
 						</div>
 					</div>
 					{loading ? (
@@ -37,19 +64,21 @@ export const Catalog: FC<IPropsCatalog> = ({ products }) => {
 							))}
 						</div>
 					) : (
-						<div ref={parent} className={styles.catalog__items}>
-							{data?.getAllProducts.products.map(item => (
-								<CartProduct
-									colorId={item.productColorId}
-									slug={item.slug}
-									key={item.id}
-									id={item.id}
-									images={item.images}
-									name={item.name}
-									price={item.price}
-								/>
-							))}
-						</div>
+						products && (
+							<div ref={parent} className={styles.catalog__items}>
+								{data?.getAllProducts.products.map(item => (
+									<CartProduct
+										colorId={item.productColorId}
+										slug={item.slug}
+										key={item.id}
+										id={item.id}
+										images={item.images}
+										name={item.name}
+										price={item.price}
+									/>
+								))}
+							</div>
+						)
 					)}
 				</div>
 			</section>

@@ -1,0 +1,21 @@
+query GetAllCategories {
+	getAllCategories {
+		id
+		name
+	}
+}
+
+query GetAllInsolation {
+	getAllInsolation {
+		id
+		name
+	}
+}
+
+query GetAllColors {
+	getAllColors {
+		id
+		imageCss
+		name
+	}
+}

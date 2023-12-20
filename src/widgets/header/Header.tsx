@@ -2,6 +2,7 @@ import { useBurger } from '@/app/store/useBurger'
 import { header } from '@/shared/constants/header'
 import { useMediaQuery } from '@/shared/hooks'
 import styles from '@/shared/styles/Header.module.scss'
+import { Button } from '@/shared/ui'
 import { BurgerIcon } from '@/shared/ui/icons/burger'
 import { IconCart } from '@/shared/ui/icons/cart'
 import { FavoritesLogo } from '@/shared/ui/icons/favorites'
@@ -26,9 +27,9 @@ export const Header: FC = () => {
 			<div className='container'>
 				<div className={styles.header__content}>
 					{isMedia1024 ? (
-						<button className='pointer ' onClick={toggleBurger}>
+						<Button className='pointer ' onClick={toggleBurger}>
 							<BurgerIcon />
-						</button>
+						</Button>
 					) : (
 						<nav>
 							<ul className={styles.header__left}>

@@ -11,10 +11,10 @@ export const getStaticProps = (async () => {
 	})
 
 	return {
-		props: { products: data.getAllProducts.products },
+		props: { products: data?.getAllProducts.products },
 		revalidate: 60
 	}
-}) satisfies GetStaticProps<IPropsCatalog>
+}) satisfies GetStaticProps
 
 const HomePage: NextPage<IPropsCatalog> = ({ products }) => {
 	return <Catalog products={products} />
