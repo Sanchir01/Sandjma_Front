@@ -62,7 +62,7 @@ export const AddToFavorites: FC<IToggleFavoritesFeature> = ({ id }) => {
 		? false
 		: favorites?.getProfile?.favorites?.some(el => el.id === id)
 	return (
-		<Button onClick={() => toggle(id)}>
+		<Button aria-label='Add to favorites' onClick={() => toggle(id)}>
 			{isExistFavorites ? (
 				<Heart size={20} fill={'black'} />
 			) : (

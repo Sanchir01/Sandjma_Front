@@ -1,3 +1,4 @@
+import { useBurger } from '@/app/store/useBurger'
 import { header } from '@/shared/constants/header'
 import styles from '@/shared/styles/Header.module.scss'
 import { FavoritesLogo } from '@/shared/ui/icons/favorites'
@@ -5,22 +6,23 @@ import { ProfileLogo } from '@/shared/ui/icons/profile'
 import cn from 'clsx'
 import Link from 'next/link'
 import { FC } from 'react'
-export interface IBurgerMenu {
-	active: boolean
-	setActive: () => void
-}
+import { useShallow } from 'zustand/react/shallow'
 
-export const BurgerMenu: FC<IBurgerMenu> = ({ active, setActive }) => {
+export const BurgerMenu: FC = () => {
+	const [burger, toggleBurger] = useBurger(
+		useShallow(state => [state.toggleBurger, state.setToggleBurger])
+	)
+
 	return (
 		<div
-			className={cn(styles.menu, active ? styles.menu__active : '')}
-			onClick={setActive}
+			className={cn(styles.menu, burger ? styles.menu__active : '')}
+			onClick={toggleBurger}
 		>
 			<div className={styles.menu__content} onClick={e => e.stopPropagation()}>
 				<nav>
 					<ul className={styles.menu__text}>
 						{header.map(content => (
-							<li key={content.id}>
+							<li onClick={toggleBurger} key={content.id}>
 								<Link href={content.href}>{content.title}</Link>
 							</li>
 						))}

@@ -21,16 +21,18 @@ export interface IPropsSelect {
 	placeholder: string
 	content: IPropsSelectContent[]
 	onChange: (value: string) => void
+	defaultValue?: string
 }
 
 export const MySelect: FC<IPropsSelect> = ({
 	content,
 	onChange,
 	children,
-	placeholder
+	placeholder,
+	defaultValue
 }) => {
 	return (
-		<div className='min-w-[300px] flex gap-2 items-center justify-between'>
+		<div className='max-[850px]:min-w-[200px] min-w-[300px] flex gap-2 items-center justify-between'>
 			{children}
 			<div className='min-w-[200px]'>
 				<Select onValueChange={value => onChange(value)}>
@@ -40,7 +42,11 @@ export const MySelect: FC<IPropsSelect> = ({
 					<SelectContent className='bg-white rounded-lg '>
 						{content ? (
 							content.map(item => (
-								<SelectGroup key={item.id}>
+								<SelectGroup
+									defaultChecked
+									defaultValue={defaultValue}
+									key={item.id}
+								>
 									<SelectItem className='cursor-pointer' value={item.value}>
 										<div className='flex gap-2 items-center'>
 											<div>{item.name} </div>

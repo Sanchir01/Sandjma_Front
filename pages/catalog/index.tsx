@@ -7,7 +7,13 @@ import { GetStaticProps, NextPage } from 'next'
 export const getStaticProps = (async () => {
 	const { data } = await client.query({
 		query: GetAllProductsDashboardDocument,
-		variables: { getAllProductInput: { page: '1' } }
+		variables: { getAllProductInput: { page: '1', sort: 'hight-price' } },
+		fetchPolicy: 'cache-first',
+		context: {
+			fetchOptions: {
+				next: { revalidate: 600 }
+			}
+		}
 	})
 
 	return {

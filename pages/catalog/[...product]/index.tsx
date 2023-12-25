@@ -10,9 +10,9 @@ import { useRouter } from 'next/router'
 export const getStaticPaths = (async () => {
 	const { data } = await client.query({
 		query: GetAllProductsDashboardDocument,
-		variables: { getAllProductInput: { page: '1' } }
+		variables: { getAllProductInput: { page: '1', sort: 'hight-price' } }
 	})
-	const paths = data?.getAllProducts.products.map(item => ({
+	const paths = data.getAllProducts.products.map(item => ({
 		params: {
 			product: [item.slug, item.productColorId.toString()]
 		}
@@ -35,7 +35,7 @@ export const getStaticProps = (async ({ params }: any) => {
 		props: {
 			product: data?.getProductByColor[0]
 		},
-		revalidate: 60
+		revalidate: 600
 	}
 }) satisfies GetStaticProps
 

@@ -8,6 +8,7 @@ export interface IFiltersStore {
 	changeCategory: (data: string) => void
 	changeColors: (data: string) => void
 	changeInsulation: (data: string) => void
+	resetFilters: () => void
 }
 
 export const useFilters = create<IFiltersStore>(set => ({
@@ -18,5 +19,7 @@ export const useFilters = create<IFiltersStore>(set => ({
 	changeCategory: (data: string) => set({ category: data }),
 	changeSorting: (data: string) => set({ sorting: data }),
 	changeColors: (data: string) => set({ color: data }),
-	changeInsulation: (data: string) => set({ insulation: data })
+	changeInsulation: (data: string) => set({ insulation: data }),
+	resetFilters: () =>
+		set({ sorting: '', category: '', insulation: '', color: '' })
 }))

@@ -1,4 +1,5 @@
 import { useFilters } from '@/app/store/useFilters'
+import { useUser } from '@/app/store/useUser'
 import { IPropsSelectContent, MySelect } from '@/features'
 import {
 	Button,
@@ -22,23 +23,32 @@ import { FC } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 
 const Filters: FC = () => {
-	const [changeCategory, changeColors, changeInsulation] = useFilters(
-		useShallow(state => [
-			state.changeCategory,
-			state.changeColors,
-			state.changeInsulation
-		])
+	const [changeCategory, changeColors, changeInsulation, resetFilters] =
+		useFilters(
+			useShallow(state => [
+				state.changeCategory,
+				state.changeColors,
+				state.changeInsulation,
+				state.resetFilters
+			])
+		)
+	const { data: categories, loading: loadingCategory } = useQuery(
+		GetAllCategoriesDocument
 	)
-	const { data: categories } = useQuery(GetAllCategoriesDocument)
-	const { data: colors } = useQuery(GetAllColorsDocument)
-	const { data: insulation } = useQuery(GetAllInsolationDocument)
+	const { data: colors, loading: loadingColors } =
+		useQuery(GetAllColorsDocument)
+
+	const { data: insulation, loading: loadingInsulation } = useQuery(
+		GetAllInsolationDocument
+	)
+	
 	return (
 		<Sheet>
 			<SheetTrigger className='flex gap-2'>
 				<SlidersHorizontal className='hover:cursor-pointer' />
 				<span className='text-sm'>Фильтры</span>
 			</SheetTrigger>
-			<SheetContent side={'left'} className='bg-white'>
+			<SheetContent side={'left'} className='bg-white max-[650px]:w-full'>
 				<SheetHeader>
 					<SheetTitle>Filters</SheetTitle>
 					<SheetDescription>
@@ -46,53 +56,70 @@ const Filters: FC = () => {
 						account and remove your data from our servers.
 					</SheetDescription>
 				</SheetHeader>
-
 				<div className='flex flex-col gap-2'>
-					<MySelect
-						content={
-							categories?.getAllCategories.map(({ id, name }) => ({
-								id,
-								value: id.toString(),
-								name
-							})) as IPropsSelectContent[]
-						}
-						placeholder='выберитe категорию'
-						onChange={changeCategory}
-					>
-						<span className='text-xl'>Категории</span>
-					</MySelect>
-					<MySelect
-						content={
-							colors?.getAllColors.map(({ id, name, imageCss }) => ({
-								id,
-								name,
-								value: id.toString(),
-								color: imageCss
-							})) as IPropsSelectContent[]
-						}
-						placeholder='выберите цвет'
-						onChange={changeColors}
-					>
-						<span className='text-xl'>Цвета</span>
-					</MySelect>
-					<MySelect
-						content={
-							insulation?.getAllInsolation.map(({ id, name }) => ({
-								id,
-								name,
-								value: id.toString()
-							})) as IPropsSelectContent[]
-						}
-						placeholder='выберите толщину'
-						onChange={changeInsulation}
-					>
-						<span className='text-xl'>Толщина</span>
-					</MySelect>
+					{loadingCategory
+						? 'Loading'
+						: categories && (
+								<MySelect
+									content={
+										categories.getAllCategories.map(({ id, name }) => ({
+											id,
+											value: id.toString(),
+											name
+										})) as IPropsSelectContent[]
+									}
+									placeholder='выберитe категорию'
+									onChange={changeCategory}
+								>
+									<span className='text-xl'>Категории</span>
+								</MySelect>
+						  )}
+					{loadingColors
+						? 'Loading'
+						: colors && (
+								<MySelect
+									content={
+										colors.getAllColors.map(({ id, name, imageCss }) => ({
+											id,
+											name,
+											value: id.toString(),
+											color: imageCss
+										})) as IPropsSelectContent[]
+									}
+									placeholder='выберите цвет'
+									onChange={changeColors}
+								>
+									<span className='text-xl'>Цвета</span>
+								</MySelect>
+						  )}
+					{loadingInsulation
+						? 'Loading'
+						: insulation && (
+								<MySelect
+									content={
+										insulation?.getAllInsolation.map(({ id, name }) => ({
+											id,
+											name,
+											value: id.toString()
+										})) as IPropsSelectContent[]
+									}
+									placeholder='выберите толщину'
+									onChange={changeInsulation}
+								>
+									<span className='text-xl'>Толщина</span>
+								</MySelect>
+						  )}
 				</div>
 
-				<SheetFooter>
+				<SheetFooter className='mt-5'>
 					<SheetClose asChild>
-						<Button type='submit'>Применить Фильтры</Button>
+						<Button
+							type='submit'
+							onClick={resetFilters}
+							className='w-full bg-[#232323] text-white p-3 mt-3 hover:bg-[#333333] max-[650px]:hover:hidden'
+						>
+							Сбросить фильтры
+						</Button>
 					</SheetClose>
 				</SheetFooter>
 			</SheetContent>

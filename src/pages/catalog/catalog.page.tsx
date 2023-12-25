@@ -27,12 +27,14 @@ export const Catalog: FC<IPropsCatalog> = ({ products }) => {
 		variables: {
 			getAllProductInput: {
 				page: '1',
+				perPage: '20',
 				sort: sorting,
 				categoryId: category,
 				colorId: Number(color),
 				getProductByInsulation: Number(insulation)
 			}
 		},
+		returnPartialData: true,
 		fetchPolicy: 'cache-first'
 	})
 
@@ -40,17 +42,16 @@ export const Catalog: FC<IPropsCatalog> = ({ products }) => {
 		<Meta title={'Catalog'} description='Super magaz'>
 			<section className={styles.catalog}>
 				<div className='container'>
-					<div className='flex items-center mb-10 justify-between'>
-						<div className=''>
-							<Filters />
-						</div>
-						<div className={styles.catalog__filters}>
+					<div className={styles.catalog__filters}>
+						<Filters />
+						<div className={styles.catalog__sorting}>
 							<MySelect
+								defaultValue={'hight-price'}
 								content={SortingArray}
 								onChange={changeSorting}
 								placeholder={'Выберите сортировку'}
 							>
-								<div className='flex gap-2 items-center'>
+								<div className={styles.catalog__filters__title}>
 									<span>Сортировка </span>
 									<span>по:</span>
 								</div>
@@ -64,9 +65,10 @@ export const Catalog: FC<IPropsCatalog> = ({ products }) => {
 							))}
 						</div>
 					) : (
-						products && (
+						products &&
+						data && (
 							<div ref={parent} className={styles.catalog__items}>
-								{data?.getAllProducts.products.map(item => (
+								{data.getAllProducts.products.map(item => (
 									<CartProduct
 										colorId={item.productColorId}
 										slug={item.slug}

@@ -6,6 +6,50 @@
 		@apply grid;
 	}
 	&__filters {
+		@apply flex justify-between items-center mb-10;
+		&__title {
+			@apply flex gap-2 items-center;
+		}
+		&__cotent{
+			
+		}
+	}
+	&__sorting {
 		@apply flex justify-between items-center;
+	}
+}
+
+@media (max-width: 1440px) {
+	.catalog {
+		&__items {
+			grid-template-columns: repeat(4, 1fr);
+			gap: 30px 10px;
+			@apply grid;
+		}
+	}
+}
+
+@media (max-width: 980px) {
+	.catalog {
+		&__items {
+			grid-template-columns: repeat(3, 1fr);
+			gap: 30px 10px;
+			@apply grid;
+		}
+	}
+}
+@media (max-width: 650px) {
+	.catalog {
+		&__items {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 20px 10px;
+			@apply grid;
+		}
+		&__filters {
+			@apply flex justify-between items-center mb-10;
+			&__title {
+				@apply hidden;
+			}
+		}
 	}
 }

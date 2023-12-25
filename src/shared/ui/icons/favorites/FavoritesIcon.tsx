@@ -7,7 +7,7 @@ import { FC, Suspense } from 'react'
 export const FavoritesLogo: FC<IIconProps> = ({ size, color, href }) => {
 	return (
 		<Suspense fallback={fallbackIcon}>
-			<Link href={href}>
+			<Link  aria-label={'перехож в избранное'} href={href}>
 				<Heart color={color} size={size} />
 			</Link>
 		</Suspense>
