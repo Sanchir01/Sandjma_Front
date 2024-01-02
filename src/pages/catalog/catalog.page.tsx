@@ -1,18 +1,19 @@
 import { useFilters } from '@/app/store/useFilters'
 import { MySelect } from '@/features/Sort'
+import { useGetAllProductsQuery } from '@/shared/api/react-query.hooks'
 import { SortingArray } from '@/shared/constants/SortingArray'
 import styles from '@/shared/styles/Catalog.module.scss'
-import { IPropsCatalog } from '@/shared/types/Slider.interface'
 import { Meta } from '@/shared/ui'
 import { CartProduct, SkeletonCart } from '@/widgets'
 import Filters from '@/widgets/Filters/Filters'
-import { useQuery } from '@apollo/client'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { GetAllProductsDashboardDocument } from 'gql/gql/graphql'
+import { GetAllProductsDashboardQuery } from 'gql/gql/graphql'
 import { FC } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 
-export const Catalog: FC<IPropsCatalog> = ({ products }) => {
+export const Catalog: FC<{ products: GetAllProductsDashboardQuery }> = ({
+	products
+}) => {
 	const [sorting, changeSorting, category, color, insulation] = useFilters(
 		useShallow(state => [
 			state.sorting,
@@ -23,19 +24,15 @@ export const Catalog: FC<IPropsCatalog> = ({ products }) => {
 		])
 	)
 	const [parent] = useAutoAnimate({ easing: 'ease-in-out', duration: 500 })
-	const { data, loading } = useQuery(GetAllProductsDashboardDocument, {
-		variables: {
-			getAllProductInput: {
-				page: '1',
-				perPage: '20',
-				sort: sorting,
-				categoryId: category,
-				colorId: Number(color),
-				getProductByInsulation: Number(insulation)
-			}
-		},
-		returnPartialData: true,
-		fetchPolicy: 'cache-first'
+
+	const { data, isFetching } = useGetAllProductsQuery({
+		colorId: Number(color),
+		sort: sorting,
+		page: '1',
+		categoryId: category,
+		getProductByInsulation: Number(insulation),
+		initialData: products,
+		enabled: !!products
 	})
 
 	return (
@@ -58,14 +55,13 @@ export const Catalog: FC<IPropsCatalog> = ({ products }) => {
 							</MySelect>
 						</div>
 					</div>
-					{loading ? (
+					{isFetching ? (
 						<div className={styles.catalog__items}>
 							{[...Array(10)].map((_, i) => (
 								<SkeletonCart key={i} />
 							))}
 						</div>
 					) : (
-						products &&
 						data && (
 							<div ref={parent} className={styles.catalog__items}>
 								{data.getAllProducts.products.map(item => (

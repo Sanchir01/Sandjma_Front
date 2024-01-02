@@ -1,6 +1,7 @@
 import { useFilters } from '@/app/store/useFilters'
-import { useUser } from '@/app/store/useUser'
 import { IPropsSelectContent, MySelect } from '@/features'
+import { useGetAllQueriesData } from '@/shared/api/react-query.hooks'
+import { filtersService } from '@/shared/service/filters.service'
 import {
 	Button,
 	Sheet,
@@ -12,11 +13,10 @@ import {
 	SheetTitle,
 	SheetTrigger
 } from '@/shared/ui'
-import { useQuery } from '@apollo/client'
 import {
-	GetAllCategoriesDocument,
-	GetAllColorsDocument,
-	GetAllInsolationDocument
+	GetAllCategoriesQuery,
+	GetAllColorsQuery,
+	GetAllInsolationQuery
 } from 'gql/gql/graphql'
 import { SlidersHorizontal } from 'lucide-react'
 import { FC } from 'react'
@@ -32,16 +32,23 @@ const Filters: FC = () => {
 				state.resetFilters
 			])
 		)
-	const { data: categories, loading: loadingCategory } = useQuery(
-		GetAllCategoriesDocument
-	)
-	const { data: colors, loading: loadingColors } =
-		useQuery(GetAllColorsDocument)
+	const { data: categories, isLoading: loadingCategory } =
+		useGetAllQueriesData<GetAllCategoriesQuery>({
+			key: 'category',
+			query: () => filtersService.getAllCategory()
+		})
+	const { data: colors, isLoading: loadingColors } =
+		useGetAllQueriesData<GetAllColorsQuery>({
+			key: 'colors',
+			query: () => filtersService.getAllColors()
+		})
 
-	const { data: insulation, loading: loadingInsulation } = useQuery(
-		GetAllInsolationDocument
-	)
-	
+	const { data: insulation, isLoading: loadingInsulation } =
+		useGetAllQueriesData<GetAllInsolationQuery>({
+			key: 'insulation',
+			query: () => filtersService.getAllInsolation()
+		})
+
 	return (
 		<Sheet>
 			<SheetTrigger className='flex gap-2'>

@@ -1,10 +1,9 @@
+import st from '@/shared/styles/Catalog.module.scss'
 import styles from '@/shared/styles/Slider.module.scss'
 import { IEntityCartProps } from '@/shared/types/OneCart.interface'
-import cn from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
-
 export const OneCart: FC<IEntityCartProps> = ({
 	priority = false,
 	className,
@@ -16,7 +15,7 @@ export const OneCart: FC<IEntityCartProps> = ({
 	slug
 }) => {
 	return (
-		<article className={cn(className)}>
+		<article className={st.catalog__items__article}>
 			<Link
 				href={`/catalog/${slug}/${String(colorId)}`}
 				className={styles.slider__imageBlock}
@@ -31,9 +30,9 @@ export const OneCart: FC<IEntityCartProps> = ({
 				/>
 			</Link>
 			<div className='flex justify-between mt-3 mr-3'>
-				<div className='flex flex-col gap-1 '>
-					<div className=''>{name}</div>
-					<div className=''>{price}</div>
+				<div className='flex flex-col gap-1'>
+					<div className={st.catalog__items__article__name}>{name}</div>
+					<div className={st.catalog__items__article__price}>{price}</div>
 				</div>
 				{children}
 			</div>

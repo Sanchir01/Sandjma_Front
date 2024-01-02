@@ -10,18 +10,13 @@ import { FavoritesLogo } from '@/shared/ui/icons/favorites'
 import { Logo } from '@/shared/ui/icons/logo'
 import { ProfileLogo } from '@/shared/ui/icons/profile'
 import { BurgerMenu } from '@/widgets/Burger'
-import { useQuery } from '@apollo/client'
-import { GetUserFavoritesIdArrayDocument } from 'gql/gql/graphql'
 import Link from 'next/link'
 import { FC } from 'react'
 
 export const Header: FC = () => {
 	const isMedia1024 = useMediaQuery('(max-width:1024px)')
 	const toggleBurger = useBurger(state => state.setToggleBurger)
-	const { data: favorites, loading } = useQuery(
-		GetUserFavoritesIdArrayDocument,
-		{ fetchPolicy: 'cache-first' }
-	)
+
 	const userProfile = useUser(state => state.user)
 	return (
 		<header className={styles.header}>
@@ -50,25 +45,12 @@ export const Header: FC = () => {
 						<Logo />
 					</Link>
 					<div className={styles.header__right}>
-						<div className='relative'>
-							<IconCart aria_label='Перейти в корзину' href={'/cart'} />
-							<span className='absolute top-1 left-[10px] text-[11px]'>1</span>
-						</div>
+						<FavoritesLogo href={'/favorites'} />
+						<IconCart href={'/cart'} />
 						{isMedia1024 ? (
 							<></>
 						) : (
 							<>
-								<div className='relative'>
-									<FavoritesLogo
-										aria_label='перейти_к_избранному'
-										href={'/favorites'}
-									/>
-									<span className='absolute bottom-1 left-2 text-[12px]'>
-										{loading || favorites?.getProfile.favorites?.length === 0
-											? ''
-											: favorites?.getProfile.favorites?.length}
-									</span>
-								</div>
 								<ProfileLogo
 									aria_label='Перейти к профилю'
 									href={userProfile ? '/profile' : '/auth'}

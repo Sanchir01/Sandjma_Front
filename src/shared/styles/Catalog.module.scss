@@ -4,14 +4,14 @@
 		grid-template-columns: repeat(5, 1fr);
 		gap: 30px 10px;
 		@apply grid;
+		&__article {
+			max-width: 350px;
+		}
 	}
 	&__filters {
 		@apply flex justify-between items-center mb-10;
 		&__title {
 			@apply flex gap-2 items-center;
-		}
-		&__cotent{
-			
 		}
 	}
 	&__sorting {
@@ -35,6 +35,12 @@
 			grid-template-columns: repeat(3, 1fr);
 			gap: 30px 10px;
 			@apply grid;
+			&__article {
+				max-width: 300px;
+				&__name {
+					font-size: 20px;
+				}
+			}
 		}
 	}
 }
@@ -44,6 +50,16 @@
 			grid-template-columns: repeat(2, 1fr);
 			gap: 20px 10px;
 			@apply grid;
+			&__article {
+				width: 100%;
+				height: auto;
+				&__name {
+					font-size: 15px;
+				}
+				&__price {
+					font-size: 15px;
+				}
+			}
 		}
 		&__filters {
 			@apply flex justify-between items-center mb-10;

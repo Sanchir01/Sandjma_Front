@@ -1,17 +1,13 @@
-import { client } from '@/shared/api/apollo-client'
+import { productService } from '@/shared/service/products.service'
 import { IOneProduct } from '@/shared/types/Slider.interface'
-import {
-	GetAllProductsDashboardDocument,
-	GetProductByColorDocument
-} from 'gql/gql/graphql'
+import { GetProductByColorDocument } from 'gql/gql/graphql'
+import request from 'graphql-request'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 
 export const getStaticPaths = (async () => {
-	const { data } = await client.query({
-		query: GetAllProductsDashboardDocument,
-		variables: { getAllProductInput: { page: '1', sort: 'hight-price' } }
-	})
+	const data = await productService.getAllProducts({ page: '1' })
+	
 	const paths = data.getAllProducts.products.map(item => ({
 		params: {
 			product: [item.slug, item.productColorId.toString()]
@@ -26,11 +22,11 @@ export const getStaticPaths = (async () => {
 export const getStaticProps = (async ({ params }: any) => {
 	const [slug, productColorId] = params?.product
 
-	const { data } = await client.query({
-		query: GetProductByColorDocument,
-		variables: { getProductByColor: { colorId: Number(productColorId), slug } }
-	})
-
+	const data = await request(
+		process.env.SERVER_GRAPHQL as string,
+		GetProductByColorDocument,
+		{ getProductByColor: { colorId: Number(productColorId), slug } }
+	)
 	return {
 		props: {
 			product: data?.getProductByColor[0]
