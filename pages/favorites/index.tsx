@@ -1,7 +1,8 @@
 import { NextPageAuth } from '@/app/Auth_Provider/types'
+import { FavoritesPageComponents } from '@/pages/Favorites'
 
 const FavoritesPage: NextPageAuth = () => {
-	return <div></div>
+	return <FavoritesPageComponents />
 }
 FavoritesPage.isOnlyUser = true
 

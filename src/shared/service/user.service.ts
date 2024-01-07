@@ -1,4 +1,5 @@
 import {
+	GetAllFavoritesDocument,
 	GetUserFavoritesIdArrayDocument,
 	ToggleFavoritesProfileDocument
 } from 'gql/gql/graphql'
@@ -23,5 +24,8 @@ export const userService = {
 	},
 	async addToFavorites(id: number) {
 		return myRequest.request(ToggleFavoritesProfileDocument, { productId: id })
+	},
+	async getAllFavorites() {
+		return myRequest.request(GetAllFavoritesDocument)
 	}
 }

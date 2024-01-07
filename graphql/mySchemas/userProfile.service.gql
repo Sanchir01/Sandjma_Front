@@ -10,3 +10,21 @@ query GetUserFavoritesIdArray {
 	}
 }
 
+query GetUserFavoritesIdArray {
+	getProfile {
+		favorites {
+			id
+		}
+	}
+}
+
+query GetAllFavorites {
+	getProfile {
+		favorites {
+			id
+			images
+			name
+			price
+		}
+	}
+}

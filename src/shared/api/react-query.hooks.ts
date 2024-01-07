@@ -58,11 +58,11 @@ export const useGetAllQueriesData = <T>({
 	key: string
 	query: QueryFunction<T>
 }) => {
-	const { data, isLoading } = useQuery<T>({
+	const { data, isLoading, isFetching } = useQuery<T>({
 		queryKey: [key],
 		queryFn: query
 	})
-	return { data, isLoading }
+	return { data, isLoading, isFetching }
 }
 
 export const useAllMutation = <T>({
