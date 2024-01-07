@@ -31,7 +31,9 @@ export const AddToFavorites: FC<IToggleFavoritesFeature> = ({ id }) => {
 	const toggle = async (id: number) => {
 		mutateAsync(id)
 			.then(res => toast.success(res.toggleFavoritesProfile))
-			.catch(res => toast.loading('вам нужно пройти регистрацию', res))
+			.catch(
+				res => (toast.error('вам нужно пройти регистрацию'), console.log(res))
+			)
 	}
 
 	const isExistFavorites = loading

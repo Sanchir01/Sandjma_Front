@@ -19,3 +19,10 @@ mutation Register($authInput: AuthInput!) {
 		}
 	}
 }
+
+mutation GetNewTokens {
+	newToken {
+		refreshToken
+		accessToken
+	}
+}

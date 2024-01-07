@@ -1,21 +1,24 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import type { AppProps } from 'next/app'
-import React from 'react'
+import AuthProvider from './Auth_Provider/AuthProvider'
+import { TypeComponentsAuthFields } from './Auth_Provider/types'
 import { Layout } from './Layout/Layout'
+import ReactQueryProvider from './ReactQuery_Provider/ReactQueryProvider'
 import './globals.scss'
-export function App({ Component, pageProps }: AppProps) {
-	const [queryClient] = React.useState(() => new QueryClient())
+export function App({
+	Component,
+	pageProps
+}: AppProps & TypeComponentsAuthFields) {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<div className={'wrapper'}>
-				<Layout>
-					<main className={'main'}>
-						<Component {...pageProps} />
-					</main>
-				</Layout>
-			</div>
-			<ReactQueryDevtools initialIsOpen={false} />
-		</QueryClientProvider>
+		<ReactQueryProvider>
+			<AuthProvider Component={{ isOnlyUser: Component.isOnlyUser }}>
+				<div className={'wrapper'}>
+					<Layout>
+						<main className={'main'}>
+							<Component {...pageProps} />
+						</main>
+					</Layout>
+				</div>
+			</AuthProvider>
+		</ReactQueryProvider>
 	)
 }

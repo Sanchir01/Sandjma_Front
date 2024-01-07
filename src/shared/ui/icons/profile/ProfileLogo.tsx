@@ -1,20 +1,15 @@
-import { fallbackIcon } from '@/shared/constants/Suspense/IconSuspense'
+import { useUser } from '@/app/store/useUser'
+import { useStoreZustand } from '@/shared/hooks/useStoreZustand'
 import { IIconProps } from '@/shared/types/Icons.interface'
 import { UsersRound } from 'lucide-react'
 import Link from 'next/link'
-import { FC, Suspense } from 'react'
+import { FC } from 'react'
 
-export const ProfileLogo: FC<IIconProps> = ({
-	size,
-	color,
-	href,
-	aria_label
-}) => {
+export const ProfileLogo: FC<IIconProps> = ({ size, color, aria_label }) => {
+	const userProfile = useStoreZustand(useUser, state => state.user)
 	return (
-		<Suspense fallback={fallbackIcon}>
-			<Link aria-label={aria_label} href={href}>
-				<UsersRound color={color} size={size} />
-			</Link>
-		</Suspense>
+		<Link aria-label={aria_label} href={userProfile ? '/profile' : '/auth'}>
+			<UsersRound color={color} size={size} />
+		</Link>
 	)
 }

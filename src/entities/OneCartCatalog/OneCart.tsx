@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { FC } from 'react'
 export const OneCart: FC<IEntityCartProps> = ({
 	priority = false,
-	className,
 	children,
 	name,
 	price,

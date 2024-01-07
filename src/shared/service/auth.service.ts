@@ -1,4 +1,8 @@
-import { LoginDocument, RegisterDocument } from 'gql/gql/graphql'
+import {
+	GetNewTokensDocument,
+	LoginDocument,
+	RegisterDocument
+} from 'gql/gql/graphql'
 import { myRequest } from './user.service'
 
 export const authService = {
@@ -17,5 +21,8 @@ export const authService = {
 		return myRequest.request(RegisterDocument, {
 			authInput: { email, password, phone }
 		})
+	},
+	async getNewToken() {
+		return myRequest.request(GetNewTokensDocument)
 	}
 }
