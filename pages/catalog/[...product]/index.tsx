@@ -6,6 +6,7 @@ import {
 } from 'gql/gql/graphql'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
+import { OneProduct } from '@/pages/oneproduct'
 
 export const getStaticPaths = (async () => {
 	const { data } = await client.query({
@@ -42,5 +43,16 @@ export const getStaticProps = (async ({ params }: any) => {
 export default function Page({ product }: { product: IOneProduct }) {
 	const router = useRouter()
 	console.log(router.query.product, product)
-	return <div>{product.name}</div>
+	return (
+		<OneProduct
+			images={product.images}
+			colors={product.colors}
+			id={product.id}
+			name={product.name}
+			price={product.price}
+			slug={product.slug}
+			productColorId={product.productColorId}
+			size={product.size}
+		/>
+	)
 }
