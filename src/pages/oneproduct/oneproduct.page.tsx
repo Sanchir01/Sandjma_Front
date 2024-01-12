@@ -7,13 +7,13 @@ import {
 	AccordionItem,
 	AccordionTrigger
 } from '@/shared/ui/accordion/accordion'
-import { Minus, Plus } from 'lucide-react'
 
 import styles from '@/shared/styles/OneProduct.module.scss'
 import { IOneProduct } from '@/shared/types/Slider.interface'
 import { Button } from '@/shared/ui'
 
 import cn from 'clsx'
+import { ImageOneProduct } from '@/features/ImageOneProduct'
 
 export const OneProduct: React.FC<IOneProduct> = ({
 	id,
@@ -39,7 +39,8 @@ export const OneProduct: React.FC<IOneProduct> = ({
 		<div className={styles.oneproduct}>
 			<div className='container'>
 				<div className={styles.oneproduct__wrapper}>
-					<div className={styles.oneproduct__images}>
+					{/* <ImageOneProduct /> */}
+					{/* <div className={styles.oneproduct__images}>
 						{images.map((image, i) => (
 							<Image
 								src={image}
@@ -49,7 +50,7 @@ export const OneProduct: React.FC<IOneProduct> = ({
 								height={480}
 							/>
 						))}
-					</div>
+					</div> */}
 					<div className={styles.oneproduct__content}>
 						<div className={styles.oneproduct__content__order}>
 							<div className={styles.oneproduct__content__order__title}>
@@ -80,7 +81,7 @@ export const OneProduct: React.FC<IOneProduct> = ({
 									</Button>
 								))}
 							</div>
-							<div className={styles.oneproduct__content__order__quantity}>
+							{/* <div className={styles.oneproduct__content__order__quantity}>
 								<div
 									className={styles.oneproduct__content__order__quantity__text}
 								>
@@ -102,7 +103,7 @@ export const OneProduct: React.FC<IOneProduct> = ({
 										<Plus size={12} strokeWidth={4} />
 									</Button>
 								</div>
-							</div>
+							</div> */}
 							<div className={styles.oneproduct__content__order__size}>
 								{size.map(size => (
 									<Button
