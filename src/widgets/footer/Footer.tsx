@@ -4,7 +4,6 @@ import { FooterColumn } from '@/shared/FooterColumn'
 import style from '@/shared/styles/Footer.module.scss'
 
 import { ColumnArr } from '@/shared/constants/FooterContent'
-import { useMediaQuery } from '@/shared/hooks'
 import '@/shared/styles/_mixins.scss'
 import { Logo } from '@/shared/ui/icons/logo'
 
@@ -14,8 +13,6 @@ export interface ILogo {
 }
 
 export const Footer: FC = () => {
-	
-
 	return (
 		<footer className={style.footer}>
 			<div className={style.footer__container}>

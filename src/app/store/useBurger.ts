@@ -7,10 +7,11 @@ export interface IUseBurger {
 
 export const useBurger = create<IUseBurger>((set, get) => ({
 	toggleBurger: false,
-	setToggleBurger: () => (
-		get().toggleBurger
+	setToggleBurger: () => {
+		const { toggleBurger } = get()
+		toggleBurger
 			? (document.body.style.overflow = '')
 			: (document.body.style.overflow = 'hidden'),
-		set({ toggleBurger: !get().toggleBurger })
-	)
+			set({ toggleBurger: !toggleBurger })
+	}
 }))

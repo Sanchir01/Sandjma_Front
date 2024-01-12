@@ -1,17 +1,16 @@
+import { productService } from '@/shared/service/products.service'
 import { HeroSlider } from '@/widgets/HeroSlider'
 import { SliderBlock } from '@/widgets/Slider'
-import { useQuery } from '@apollo/client'
-import { GetAllProductsDashboardDocument } from 'gql/gql/graphql'
+import { useQuery } from '@tanstack/react-query'
 
 export function HomePage() {
-	const { data: items, loading: LoadingNews } = useQuery(
-		GetAllProductsDashboardDocument,
-		{
-			variables: { getAllProductInput: { newProduct: true } }
-		}
-	)
-	const { data, loading } = useQuery(GetAllProductsDashboardDocument, {
-		variables: { getAllProductInput: { seller: true } }
+	const { data: items, isFetching: LoadingNews } = useQuery({
+		queryKey: ['news'],
+		queryFn: () => productService.getAllProducts({ newProduct: true })
+	})
+	const { data, isFetching: fetchingFavorites } = useQuery({
+		queryKey: ['favorites'],
+		queryFn: () => productService.getAllProducts({ seller: true })
 	})
 
 	return (
@@ -25,7 +24,7 @@ export function HomePage() {
 					title='Новинки'
 				/>
 			)}
-			{loading ? (
+			{fetchingFavorites ? (
 				<div className=''>загрузка</div>
 			) : (
 				<SliderBlock

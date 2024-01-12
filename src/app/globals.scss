@@ -48,13 +48,6 @@ body {
 	color: white !important;
 }
 
-@media (max-width: 768px) {
-	.swiper-button-next::after,
-	.swiper-button-prev::after {
-		font-size: 22px !important;
-	}
-}
-
 .burger_btn:before,
 .burger_btn:after {
 	content: '';
@@ -104,4 +97,17 @@ body {
 }
 .burger_btn.active span {
 	transform: scale(0);
+}
+@media (max-width: 850px) {
+	.container {
+		max-width: 100%;
+		padding: 0 15px;
+		margin: 0 auto;
+	}
+}
+@media (max-width: 768px) {
+	.swiper-button-next::after,
+	.swiper-button-prev::after {
+		font-size: 22px !important;
+	}
 }

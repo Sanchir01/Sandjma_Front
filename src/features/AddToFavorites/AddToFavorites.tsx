@@ -1,8 +1,12 @@
-import { Button } from '@/shared/ui'
-import { useMutation, useQuery } from '@apollo/client'
 import {
-	GetUserFavoritesIdArrayDocument,
-	ToggleFavoritesProfileDocument
+	useAllMutation,
+	useGetAllQueriesData
+} from '@/shared/api/react-query.hooks'
+import { userService } from '@/shared/service/user.service'
+import { Button } from '@/shared/ui'
+import {
+	GetUserFavoritesIdArrayQuery,
+	ToggleFavoritesProfileMutation
 } from 'gql/gql/graphql'
 import { Heart } from 'lucide-react'
 import { FC } from 'react'
@@ -13,56 +17,30 @@ export interface IToggleFavoritesFeature {
 }
 
 export const AddToFavorites: FC<IToggleFavoritesFeature> = ({ id }) => {
-	const [mutate] = useMutation(ToggleFavoritesProfileDocument, {
-		update(cache) {
-			const ArrayId = cache.readQuery({
-				query: GetUserFavoritesIdArrayDocument
-			})
-			const isArray = ArrayId?.getProfile.favorites?.find(el => el.id === id)
-			const isDeleteFavorites = ArrayId?.getProfile.favorites?.filter(
-				el => el.id !== id
-			)
-
-			if (!!isArray) {
-				cache.writeQuery({
-					query: GetUserFavoritesIdArrayDocument,
-					data: {
-						getProfile: {
-							favorites: [...isDeleteFavorites!]
-						}
-					}
-				})
-			} else {
-				cache.writeQuery({
-					query: GetUserFavoritesIdArrayDocument,
-					data: {
-						getProfile: {
-							favorites: [
-								{ __typename: 'Product', id: id },
-								...ArrayId?.getProfile.favorites!
-							]
-						}
-					}
-				})
-			}
-		}
+	const { mutateAsync } = useAllMutation<ToggleFavoritesProfileMutation>({
+		key: ['addToFavorites'],
+		mutation: () => userService.addToFavorites(id),
+		invalidateQueryKey: ['favoritesLength']
 	})
-	const { data: favorites, loading } = useQuery(
-		GetUserFavoritesIdArrayDocument,
-		{ fetchPolicy: 'cache-first' }
-	)
+	const { data: favorites, isLoading: loading } =
+		useGetAllQueriesData<GetUserFavoritesIdArrayQuery>({
+			key: 'favoritesLength',
+			query: () => userService.getAllFavoritesArray()
+		})
 
 	const toggle = async (id: number) => {
-		await mutate({ variables: { productId: id } })
-			.then(res => toast.success(res.data?.toggleFavoritesProfile as string))
-			.catch(er => er.message)
+		mutateAsync(id)
+			.then(res => toast.success(res.toggleFavoritesProfile))
+			.catch(
+				res => (toast.error('вам нужно пройти регистрацию'), console.log(res))
+			)
 	}
 
 	const isExistFavorites = loading
 		? false
 		: favorites?.getProfile?.favorites?.some(el => el.id === id)
 	return (
-		<Button onClick={() => toggle(id)}>
+		<Button aria-label='Add to favorites' onClick={() => toggle(id)}>
 			{isExistFavorites ? (
 				<Heart size={20} fill={'black'} />
 			) : (

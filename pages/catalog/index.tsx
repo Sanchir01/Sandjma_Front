@@ -1,22 +1,23 @@
 import { Catalog } from '@/pages/catalog'
-import { client } from '@/shared/api/apollo-client'
-import { IPropsCatalog } from '@/shared/types/Slider.interface'
-import { GetAllProductsDashboardDocument } from 'gql/gql/graphql'
+import { productService } from '@/shared/service/products.service'
+import { GetAllProductsDashboardQuery } from 'gql/gql/graphql'
 import { GetStaticProps, NextPage } from 'next'
 
 export const getStaticProps = (async () => {
-	const { data } = await client.query({
-		query: GetAllProductsDashboardDocument,
-		variables: { getAllProductInput: { page: '1' } }
+	const data = await productService.getAllProducts({
+		page: '1',
+		sort: 'hight-price'
 	})
-
+	console.log(data)
 	return {
-		props: { products: data.getAllProducts.products },
+		props: { products: data },
 		revalidate: 60
 	}
-}) satisfies GetStaticProps<IPropsCatalog>
+}) satisfies GetStaticProps
 
-const HomePage: NextPage<IPropsCatalog> = ({ products }) => {
+const HomePage: NextPage<{
+	products: GetAllProductsDashboardQuery
+}> = ({ products }) => {
 	return <Catalog products={products} />
 }
 

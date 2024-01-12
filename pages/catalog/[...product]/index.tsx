@@ -1,19 +1,17 @@
-import { client } from '@/shared/api/apollo-client'
+import useCartStore from '@/app/store/useCart'
+import { productService } from '@/shared/service/products.service'
 import { IOneProduct } from '@/shared/types/Slider.interface'
-import {
-	GetAllProductsDashboardDocument,
-	GetProductByColorDocument
-} from 'gql/gql/graphql'
+import { Button } from '@/shared/ui'
+import { GetProductByColorDocument } from 'gql/gql/graphql'
+import request from 'graphql-request'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { OneProduct } from '@/pages/oneproduct'
 
 export const getStaticPaths = (async () => {
-	const { data } = await client.query({
-		query: GetAllProductsDashboardDocument,
-		variables: { getAllProductInput: { page: '1' } }
-	})
-	const paths = data?.getAllProducts.products.map(item => ({
+	const data = await productService.getAllProducts({ page: '1' })
+
+	const paths = data.getAllProducts.products.map(item => ({
 		params: {
 			product: [item.slug, item.productColorId.toString()]
 		}
@@ -27,16 +25,16 @@ export const getStaticPaths = (async () => {
 export const getStaticProps = (async ({ params }: any) => {
 	const [slug, productColorId] = params?.product
 
-	const { data } = await client.query({
-		query: GetProductByColorDocument,
-		variables: { getProductByColor: { colorId: Number(productColorId), slug } }
-	})
-
+	const data = await request(
+		process.env.SERVER_GRAPHQL as string,
+		GetProductByColorDocument,
+		{ getProductByColor: { colorId: Number(productColorId), slug } }
+	)
 	return {
 		props: {
 			product: data?.getProductByColor[0]
 		},
-		revalidate: 60
+		revalidate: 600
 	}
 }) satisfies GetStaticProps
 

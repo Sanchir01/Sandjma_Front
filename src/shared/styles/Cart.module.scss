@@ -1,0 +1,15 @@
+.cart {
+	&__wrapper {
+		@apply flex flex-col;
+	}
+	&__content {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+	}
+	&__item {
+		@apply border-b-2 border-black py-5 flex gap-[30px] w-full;
+	}
+	&__item:last-child {
+		@apply border-none;
+	}
+}

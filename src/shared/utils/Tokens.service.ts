@@ -5,7 +5,7 @@ export enum EnumTokens {
 	REFRESH_TOKEN = 'refreshToken'
 }
 
-export const AuthService = {
+export const AuthServiceTokens = {
 	saveTokenToStorage: (refreshToken: string) => {
 		const oneDay = 2 * 24 * 60 * 60 * 1000
 		const expirationDate = new Date(Date.now() + oneDay)
@@ -18,14 +18,14 @@ export const AuthService = {
 		})
 	},
 	getRefreshToken: () => Cookies.get(EnumTokens.REFRESH_TOKEN),
-
+	getAccessToken: () => Cookies.get(EnumTokens.ACCESS_TOKEN),
 	removerTokenFromStorage: () => {
 		Cookies.remove(EnumTokens.REFRESH_TOKEN)
 		Cookies.remove(EnumTokens.ACCESS_TOKEN)
 	},
 
 	logout: () => {
-		AuthService.removerTokenFromStorage()
+		AuthServiceTokens.removerTokenFromStorage()
 		localStorage.removeItem('User')
 	}
 }

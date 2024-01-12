@@ -1,10 +1,11 @@
 import { useUser } from '@/app/store/useUser'
 import { FromEntity } from '@/entities'
 import { AuthButton, AuthEnum } from '@/features'
-import { AuthService } from '@/shared/utils'
-import { useMutation } from '@apollo/client'
-import { LoginDocument, RegisterDocument } from 'gql/gql/graphql'
-import { useRouter } from 'next/router'
+import { authService } from '@/shared/service/auth.service'
+import { AuthServiceTokens } from '@/shared/utils'
+import { useMutation } from '@tanstack/react-query'
+
+import { useRouter } from 'next/navigation'
 import { FC, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -15,10 +16,27 @@ export interface IPhonePassword {
 }
 
 export const Form: FC = () => {
-	const [login] = useMutation(LoginDocument)
-	const [register] = useMutation(RegisterDocument)
+	const { mutateAsync: login } = useMutation({
+		mutationFn: ({ password, phone }: { password: string; phone: string }) =>
+			authService.login({ password, phone }),
+		mutationKey: ['login']
+	})
+
+	const { mutateAsync: register } = useMutation({
+		mutationFn: ({
+			password,
+			phone,
+			email
+		}: {
+			password: string
+			phone: string
+			email: string
+		}) => authService.register({ password, phone, email }),
+		mutationKey: ['register']
+	})
+
 	const setUser = useUser(state => state.setUser)
-	const router = useRouter()
+	const { replace } = useRouter()
 	const {
 		register: formRegister,
 		handleSubmit,
@@ -30,26 +48,21 @@ export const Form: FC = () => {
 	})
 	const onSubmit: SubmitHandler<IPhonePassword> = async data => {
 		if (data.email) {
-			register({
-				variables: {
-					authInput: {
-						email: data.email,
-						password: data.password,
-						phone: data.phone
-					}
-				}
-			}).catch(er => toast.error(er.message))
-		} else {
-			await login({
-				variables: {
-					loginInput: { phone: data.phone, password: data.password }
+			await register({
+				email: data.email,
+				password: data.password,
+				phone: data.password
+			}).then(res => {
+				if (res.register) {
 				}
 			})
-				.then(({ data }) => {
-					if (data?.login) {
-						setUser(data.login.user)
-						AuthService.saveTokenToStorage(data.login.refreshToken)
-						router.push('/catalog')
+		} else {
+			await login({ password: data.password, phone: data.phone })
+				.then(res => {
+					if (res?.login) {
+						setUser(res.login.user)
+						AuthServiceTokens.saveTokenToStorage(res.login.refreshToken)
+						// replace('/catalog')
 					}
 				})
 				.catch(er => toast.error(er.message))

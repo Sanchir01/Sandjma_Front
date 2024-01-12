@@ -1,55 +1,82 @@
 import { useFilters } from '@/app/store/useFilters'
-import { Sorting } from '@/features/Sort'
+import { MySelect } from '@/features/Sort'
+import { useGetAllProductsQuery } from '@/shared/api/react-query.hooks'
+import { SortingArray } from '@/shared/constants/SortingArray'
 import styles from '@/shared/styles/Catalog.module.scss'
-import { IPropsCatalog } from '@/shared/types/Slider.interface'
 import { Meta } from '@/shared/ui'
 import { CartProduct, SkeletonCart } from '@/widgets'
-import Filters from '@/widgets/Filters/Filters'
-import { useQuery } from '@apollo/client'
+import { Filters } from '@/widgets/Filters'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { GetAllProductsDashboardDocument } from 'gql/gql/graphql'
+import { GetAllProductsDashboardQuery } from 'gql/gql/graphql'
 import { FC } from 'react'
+import { useShallow } from 'zustand/react/shallow'
 
-export const Catalog: FC<IPropsCatalog> = ({ products }) => {
-	const sorting = useFilters(state => state.sorting)
+export const Catalog: FC<{ products: GetAllProductsDashboardQuery }> = ({
+	products
+}) => {
+	const [sorting, changeSorting, category, color, insulation] = useFilters(
+		useShallow(state => [
+			state.sorting,
+			state.changeSorting,
+			state.category,
+			state.color,
+			state.insulation
+		])
+	)
 	const [parent] = useAutoAnimate({ easing: 'ease-in-out', duration: 500 })
-	const { data, loading, error } = useQuery(GetAllProductsDashboardDocument, {
-		variables: { getAllProductInput: { page: '1', sort: sorting } },
-		fetchPolicy: 'cache-first'
+
+	const { data, isFetching } = useGetAllProductsQuery({
+		colorId: Number(color),
+		sort: sorting,
+		page: '1',
+		categoryId: category,
+		getProductByInsulation: Number(insulation),
+		initialData: products,
+		enabled: !!products
 	})
-	console.log(products)
+
 	return (
 		<Meta title={'Catalog'} description='Super magaz'>
 			<section className={styles.catalog}>
 				<div className='container'>
-					<div className='flex items-center mb-10 justify-between'>
-						<div className=''>
-							<Filters />
-						</div>
-						<div className={styles.catalog__filters}>
-							<Sorting />
+					<div className={styles.catalog__filters}>
+						<Filters />
+						<div className={styles.catalog__sorting}>
+							<MySelect
+								defaultValue={'hight-price'}
+								content={SortingArray}
+								onChange={changeSorting}
+								placeholder={'Выберите сортировку'}
+							>
+								<div className={styles.catalog__filters__title}>
+									<span>Сортировка </span>
+									<span>по:</span>
+								</div>
+							</MySelect>
 						</div>
 					</div>
-					{loading ? (
+					{isFetching ? (
 						<div className={styles.catalog__items}>
 							{[...Array(10)].map((_, i) => (
 								<SkeletonCart key={i} />
 							))}
 						</div>
 					) : (
-						<div ref={parent} className={styles.catalog__items}>
-							{data?.getAllProducts.products.map(item => (
-								<CartProduct
-									colorId={item.productColorId}
-									slug={item.slug}
-									key={item.id}
-									id={item.id}
-									images={item.images}
-									name={item.name}
-									price={item.price}
-								/>
-							))}
-						</div>
+						data && (
+							<div ref={parent} className={styles.catalog__items}>
+								{data.getAllProducts.products.map(item => (
+									<CartProduct
+										colorId={item.productColorId}
+										slug={item.slug}
+										key={item.id}
+										id={item.id}
+										images={item.images}
+										name={item.name}
+										price={item.price}
+									/>
+								))}
+							</div>
+						)
 					)}
 				</div>
 			</section>

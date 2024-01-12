@@ -10,14 +10,16 @@
 		"gen": "graphql-codegen --config codegen.ts"
 	},
 	"dependencies": {
-		"@apollo/client": "^3.8.7",
 		"@formkit/auto-animate": "^0.8.1",
 		"@radix-ui/react-accordion": "^1.1.2",
 		"@radix-ui/react-dialog": "^1.0.5",
 		"@radix-ui/react-select": "^2.0.0",
+		"@tanstack/react-query": "^5.15.0",
+		"@tanstack/react-query-devtools": "^5.17.0",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.0.0",
 		"graphql": "^16.8.1",
+		"graphql-request": "^6.1.0",
 		"js-cookie": "^3.0.5",
 		"lucide-react": "^0.294.0",
 		"next": "14.0.3",
