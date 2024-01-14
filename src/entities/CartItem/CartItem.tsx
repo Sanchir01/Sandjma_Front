@@ -4,11 +4,12 @@ import { Button } from '@/shared/ui'
 import { Trash } from '@/shared/ui/icons/trash/Trash'
 import cn from 'clsx'
 import Image from 'next/image'
-import { FC, memo } from 'react'
+import { FC, ReactNode, memo } from 'react'
 export interface ICartProps {
 	cartItem: ICart
+	children?: ReactNode
 }
-const CartItem: FC<ICartProps> = ({ cartItem }) => {
+const CartItem: FC<ICartProps> = ({ cartItem, children }) => {
 	const toggleItem = useCartStore(state => state.toggleCartItem)
 	return (
 		<div className={styles.cart__item}>
@@ -34,6 +35,7 @@ const CartItem: FC<ICartProps> = ({ cartItem }) => {
 							/>
 							<span className={styles.cart__color}>{cartItem.color?.name}</span>
 						</div>
+						{children}
 					</div>
 					<div className={cn('flex gap-2', styles.cart__quantity)}>
 						<div className=''>{cartItem.size.name}</div>

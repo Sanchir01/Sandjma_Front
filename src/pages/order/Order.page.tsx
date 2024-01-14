@@ -1,5 +1,6 @@
 import useCartStore from '@/app/store/useCart'
 import CartItem from '@/entities/CartItem/CartItem'
+import Counter from '@/features/Counter/Counter'
 import { useStoreZustand } from '@/shared/hooks/useStoreZustand'
 import { Meta } from '@/shared/ui'
 import { OrderForm } from '@/widgets/OrderForm'
@@ -17,7 +18,16 @@ const OrderPage: FC = () => {
 					{cart?.length !== 0 ? (
 						<div className='flex justify-evenly'>
 							<div ref={parent} className='flex flex-col gap-10'>
-								{cart?.map(item => <CartItem key={item.id} cartItem={item} />)}
+								{cart?.map(item => (
+									<CartItem key={item.id} cartItem={item}>
+										<Counter
+											id={item.id}
+											color={item.color}
+											size={item.size}
+											quantity={item.quantity}
+										/>
+									</CartItem>
+								))}
 							</div>
 							<OrderForm />
 						</div>
