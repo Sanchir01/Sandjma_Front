@@ -44,7 +44,6 @@ export const Filters: FC = () => {
 		<Modal
 			Icon={<FiltersIcon />}
 			side={'left'}
-			headerCn={'border-b-2 border-black pb-2'}
 			title={<div className=''>Фильтры</div>}
 			Button={
 				<Button

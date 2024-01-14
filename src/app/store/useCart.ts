@@ -8,6 +8,7 @@ export interface ICart {
 	price: number
 	size: ISize
 	color: IColors
+	slug: string
 	quantity: number
 }
 
@@ -15,6 +16,9 @@ export interface IUseCartStore {
 	cart: ICart[]
 	toggleCartItem: (item: ICart) => void
 	totalPrice: number
+	minus: (id: number, size: ISize, color: IColors) => void
+	plus: (id: number, size: ISize, color: IColors) => void
+	resetCart: () => void
 }
 
 const useCartStore = create<IUseCartStore>()(

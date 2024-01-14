@@ -62,14 +62,14 @@ export const Form: FC = () => {
 					if (res?.login) {
 						setUser(res.login.user)
 						AuthServiceTokens.saveTokenToStorage(res.login.refreshToken)
-						// replace('/catalog')
+						replace('/catalog')
 					}
 				})
 				.catch(er => toast.error(er.message))
 		}
 
 		console.log(data)
-		// reset()
+		reset()
 	}
 
 	const [type, setType] = useState<AuthEnum>(AuthEnum.login)

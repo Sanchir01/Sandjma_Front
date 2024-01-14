@@ -15,10 +15,10 @@ export const getStaticProps = (async () => {
 	}
 }) satisfies GetStaticProps
 
-const HomePage: NextPage<{
+const CatalogPage: NextPage<{
 	products: GetAllProductsDashboardQuery
 }> = ({ products }) => {
 	return <Catalog products={products} />
 }
 
-export default HomePage
+export default CatalogPage

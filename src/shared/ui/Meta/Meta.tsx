@@ -36,6 +36,7 @@ export const Meta: FC<PropsWithChildren<ISeo>> = ({
 						<meta property='og:title' content={titleMerge(title)} />
 						<meta property='og:url' content={currentUrl} />
 						<meta
+					
 							property='og:image'
 							content={image || '/public/favicon.ico'}
 						/>

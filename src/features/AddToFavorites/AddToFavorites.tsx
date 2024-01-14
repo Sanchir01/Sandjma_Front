@@ -20,7 +20,7 @@ export const AddToFavorites: FC<IToggleFavoritesFeature> = ({ id }) => {
 	const { mutateAsync } = useAllMutation<ToggleFavoritesProfileMutation>({
 		key: ['addToFavorites'],
 		mutation: () => userService.addToFavorites(id),
-		invalidateQueryKey: ['favoritesLength']
+		invalidateQueryKey: ['favoritesArray', 'favoritesLength']
 	})
 	const { data: favorites, isLoading: loading } =
 		useGetAllQueriesData<GetUserFavoritesIdArrayQuery>({

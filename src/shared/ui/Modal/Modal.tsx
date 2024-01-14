@@ -17,7 +17,7 @@ export interface IModal {
 	side: 'top' | 'bottom' | 'left' | 'right' | null
 	title?: ReactNode
 	children?: ReactNode
-	headerCn: string
+	headerCn?: string
 	className?: string
 	description?: string
 	Button: ReactNode
@@ -42,11 +42,7 @@ export const Modal: FC<IModal> = ({
 			</SheetTrigger>
 			<SheetContent
 				side={side}
-				className={cn(
-					'bg-white max-[650px]:w-full ',
-					className,
-					styles.scroll
-				)}
+				className={cn('bg-white max-[650px]:w-full ', className, styles.scroll)}
 			>
 				<SheetHeader className={cn(headerCn)}>
 					<SheetTitle className='flex justify-between'>{title}</SheetTitle>

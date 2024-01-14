@@ -1,6 +1,7 @@
 import st from '@/shared/styles/Catalog.module.scss'
 import styles from '@/shared/styles/Slider.module.scss'
 import { IEntityCartProps } from '@/shared/types/OneCart.interface'
+import cn from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
@@ -11,10 +12,11 @@ export const OneCart: FC<IEntityCartProps> = ({
 	price,
 	images,
 	colorId,
-	slug
+	slug,
+	className
 }) => {
 	return (
-		<article className={st.catalog__items__article}>
+		<article className={cn(st.catalog__items__article, className)}>
 			<Link
 				href={`/catalog/${slug}/${String(colorId)}`}
 				className={styles.slider__imageBlock}

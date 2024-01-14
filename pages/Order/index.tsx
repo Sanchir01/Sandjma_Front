@@ -1,7 +1,5 @@
-import { NextPage } from 'next'
+import OrderPage from '@/pages/order/Order.page'
 
-const Cart: NextPage = () => {
-	return <div className=''>dsadadasd</div>
+export default function Page() {
+	return <OrderPage />
 }
-
-export default Cart

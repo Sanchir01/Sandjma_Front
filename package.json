@@ -1,7 +1,7 @@
 {
-	"name": "front",
+	"name": "sandjma",
 	"version": "0.1.0",
-	"private": true,
+	"private": false,
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
@@ -36,6 +36,7 @@
 		"@graphql-codegen/client-preset": "4.1.0",
 		"@graphql-typed-document-node/core": "^3.2.0",
 		"@parcel/watcher": "^2.3.0",
+		"@svgr/webpack": "^8.1.0",
 		"@types/js-cookie": "^3.0.6",
 		"@types/node": "^20",
 		"@types/react": "^18",

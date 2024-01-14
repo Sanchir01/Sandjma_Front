@@ -1,6 +1,9 @@
 .header {
+	top: 0;
+	z-index: 2;
+	position: sticky;
+	background-color: #f9f9f9;
 	height: 80px;
-
 	@apply shadow-md py-[30px];
 	&__content {
 		display: grid;

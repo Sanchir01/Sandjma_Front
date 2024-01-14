@@ -52,9 +52,10 @@ export default function Page({ product }: { product: IOneProduct }) {
 					image: product.images[0],
 					name: product.name,
 					price: product.price,
-					quantity: 0,
-					size: product.size[0],
-					color: product.colors![product.productColorId]
+					quantity: 1,
+					size: product.size![0],
+					color: product.colors![product.productColorId!],
+					slug: product.slug
 				})
 			}
 		>

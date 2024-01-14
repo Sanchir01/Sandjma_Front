@@ -11,6 +11,7 @@ import {
 	IProductServicePropsGetAll,
 	productService
 } from '../service/products.service'
+import { userService } from '../service/user.service'
 
 export interface IUseGetAllProductsQuery extends IProductServicePropsGetAll {
 	initialData?: GetAllProductsDashboardQuery
@@ -77,14 +78,24 @@ export const useAllMutation = <T>({
 }) => {
 	const client = useQueryClient()
 	const { mutateAsync, data, isPending, isSuccess } = useMutation({
-		mutationKey: key,
 		mutationFn: mutation,
 		onSettled: () => {
-			client.refetchQueries({
-				queryKey: invalidateQueryKey
-			})
+			client.invalidateQueries({ exact: true, queryKey: ['favoritesArray'] })
+			invalidateQueryKey?.map(item =>
+				client.invalidateQueries({ exact: true, queryKey: [`${item}`] })
+			)
 		}
 	})
 
 	return { mutateAsync, data, isPending, isSuccess }
+}
+
+export const useGetAllFavorites = () => {
+	const { data, isFetching } = useQuery({
+		queryFn: () => userService.getAllFavorites(),
+		queryKey: ['favoritesArray'],
+		select: data => data.getProfile.favorites
+	})
+
+	return { data, isFetching }
 }

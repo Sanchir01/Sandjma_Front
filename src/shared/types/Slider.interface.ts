@@ -26,7 +26,15 @@ export interface IOneProduct {
 	slug: string
 	productColorId: number
 	colors?: IColors[]
-	size: ISize[]
+	size?: ISize[]
+}
+
+export interface IFavoritesGrid {
+	__typename?: 'Product' | undefined
+	id: number
+	images: string[]
+	name: string
+	price: number
 }
 export interface IPropsCatalog {
 	products: IOneProduct[]

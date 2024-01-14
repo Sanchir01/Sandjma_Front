@@ -3,10 +3,10 @@ import { MySelect } from '@/features/Sort'
 import { useGetAllProductsQuery } from '@/shared/api/react-query.hooks'
 import { SortingArray } from '@/shared/constants/SortingArray'
 import styles from '@/shared/styles/Catalog.module.scss'
+import { IOneProduct } from '@/shared/types/Slider.interface'
 import { Meta } from '@/shared/ui'
-import { CartProduct, SkeletonCart } from '@/widgets'
+import CatalogGrid from '@/widgets/CatalogGrid/Catalog'
 import { Filters } from '@/widgets/Filters'
-import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { GetAllProductsDashboardQuery } from 'gql/gql/graphql'
 import { FC } from 'react'
 import { useShallow } from 'zustand/react/shallow'
@@ -23,7 +23,7 @@ export const Catalog: FC<{ products: GetAllProductsDashboardQuery }> = ({
 			state.insulation
 		])
 	)
-	const [parent] = useAutoAnimate({ easing: 'ease-in-out', duration: 500 })
+	
 
 	const { data, isFetching } = useGetAllProductsQuery({
 		colorId: Number(color),
@@ -55,29 +55,10 @@ export const Catalog: FC<{ products: GetAllProductsDashboardQuery }> = ({
 							</MySelect>
 						</div>
 					</div>
-					{isFetching ? (
-						<div className={styles.catalog__items}>
-							{[...Array(10)].map((_, i) => (
-								<SkeletonCart key={i} />
-							))}
-						</div>
-					) : (
-						data && (
-							<div ref={parent} className={styles.catalog__items}>
-								{data.getAllProducts.products.map(item => (
-									<CartProduct
-										colorId={item.productColorId}
-										slug={item.slug}
-										key={item.id}
-										id={item.id}
-										images={item.images}
-										name={item.name}
-										price={item.price}
-									/>
-								))}
-							</div>
-						)
-					)}
+					<CatalogGrid
+						data={data?.getAllProducts.products as unknown as IOneProduct[]}
+						isFetching={isFetching}
+					/>
 				</div>
 			</section>
 		</Meta>

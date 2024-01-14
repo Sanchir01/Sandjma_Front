@@ -25,6 +25,8 @@ query GetAllFavorites {
 			images
 			name
 			price
+			productColorId
+			slug
 		}
 	}
 }

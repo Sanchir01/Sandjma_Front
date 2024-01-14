@@ -39,7 +39,7 @@ export const MySelect: FC<IPropsSelect> = ({
 					<SelectTrigger className='rounded'>
 						<SelectValue placeholder={placeholder} />
 					</SelectTrigger>
-					<SelectContent className='bg-white rounded-lg '>
+					<SelectContent className='bg-white rounded-lg'>
 						{content ? (
 							content.map(item => (
 								<SelectGroup
