@@ -1,0 +1,224 @@
+.oneproduct {
+	&__wrapper {
+		display: flex;
+		padding-top: 43px;
+
+		gap: 30px;
+
+		justify-content: center;
+	}
+
+	&__images {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+
+		grid-gap: 10px;
+	}
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 70px;
+		&__order {
+			&__title {
+				color: #282828;
+				font-family: Cruinn;
+				font-size: clamp(1rem, 0.773rem + 1.14vw, 1.625rem);
+				font-style: normal;
+				font-weight: 700;
+
+				text-transform: uppercase;
+
+				padding-bottom: clamp(0.313rem, 0.089rem + 0.71vw, 0.625rem);
+			}
+			&__price {
+				color: #282828;
+				font-family: Cruinn;
+				font-size: clamp(1rem, 0.773rem + 1.14vw, 1.625rem);
+				font-style: normal;
+
+				text-transform: uppercase;
+
+				padding-bottom: clamp(0.625rem, 0.179rem + 1.43vw, 1.25rem);
+			}
+			&__colors {
+				display: flex;
+
+				gap: 10px;
+				padding-bottom: clamp(0.938rem, -0.045rem + 3.14vw, 2.313rem);
+				&__color {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					width: 15px;
+					height: 15px;
+
+					border-radius: 100%;
+				}
+				&__color:focus {
+					border: 2px solid #292929;
+				}
+			}
+			// &__quantity {
+			// 	display: flex;
+			// 	padding-bottom: 30px;
+			// 	align-items: center;
+			// 	gap: 19px;
+			// 	&__text {
+			// 		text-transform: uppercase;
+			// 	}
+			// 	&__num {
+			// 		display: flex;
+			// 		gap: 11px;
+			// 		width: 79px;
+			// 		height: 32px;
+			// 		align-items: center;
+			// 		justify-content: center;
+			// 		border: 1px solid rgba(0, 0, 0, 0.5);
+			// 		opacity: 0.8;
+			// 	}
+			// }
+			&__size {
+				display: flex;
+				gap: 10px;
+				padding-bottom: clamp(0.938rem, -0.179rem + 3.57vw, 2.5rem);
+				&__btn {
+					width: clamp(0.938rem, 0.491rem + 1.43vw, 1.563rem);
+					height: clamp(0.938rem, 0.491rem + 1.43vw, 1.563rem);
+					background: #d9d9d9;
+					text-transform: uppercase;
+
+					font-size: clamp(0.625rem, 0.489rem + 0.68vw, 1rem);
+				}
+				&__btn:hover {
+					background: #000000;
+					color: #f9f9f9;
+				}
+				&__btn:focus {
+					background: #000000;
+					color: #f9f9f9;
+				}
+			}
+			&__add {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				&__cart {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					width: clamp(25rem, 23.214rem + 5.71vw, 27.5rem);
+					height: clamp(1.563rem, 0.446rem + 3.57vw, 3.125rem);
+					background: #d9d9d9;
+					text-transform: uppercase;
+
+					color: #282828;
+					font-family: Cruinn;
+					font-size: clamp(0.625rem, 0.268rem + 1.14vw, 1.125rem);
+					font-style: normal;
+				}
+				&__cart:hover {
+					background: #000000;
+					color: #f9f9f9;
+				}
+				&__favorites {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+
+					width: clamp(1.563rem, 0.446rem + 3.57vw, 3.125rem);
+					height: clamp(1.563rem, 0.446rem + 3.57vw, 3.125rem);
+					background: #d9d9d9;
+				}
+				&__favorites:hover {
+					background: #000000;
+				}
+				&__favorites:focus {
+					background: #000000;
+				}
+			}
+		}
+		&__description {
+			max-width: 500px;
+			&__trigger {
+				color: var(--Main_black, #282828);
+				font-family: Cruinn;
+				font-size: clamp(0.563rem, 0.403rem + 0.8vw, 1rem);
+				font-style: normal;
+
+				text-transform: uppercase;
+			}
+			&__acardcontent {
+				max-width: 441px;
+
+				color: #282828;
+				font-family: Cruinn;
+				font-size: clamp(0.563rem, 0.449rem + 0.57vw, 0.875rem);
+				font-style: normal;
+				font-weight: 400;
+
+				text-transform: uppercase;
+				opacity: 0.8;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1280px) {
+	.oneproduct {
+		&__content {
+			gap: 15px;
+		}
+		&__images {
+			grid-template-columns: repeat(1, 1fr);
+		}
+	}
+}
+@media screen and (max-width: 768px) {
+	.oneproduct {
+		&__wrapper {
+			flex-direction: column;
+			gap: 10px;
+		}
+		&__content {
+			gap: 5px;
+			&__order {
+				&__colors {
+				}
+				&__size {
+					gap: 5px;
+					&__btn {
+					}
+				}
+				&__add {
+					gap: 7px;
+
+					justify-content: center;
+					&__cart {
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.oneproduct {
+		&__wrapper {
+			gap: 7px;
+		}
+		&__content {
+			gap: 7px;
+			&__order {
+				&__size {
+					&__btn {
+					}
+				}
+				&__add {
+					gap: 7px;
+					&__cart {
+					}
+				}
+			}
+		}
+	}
+}

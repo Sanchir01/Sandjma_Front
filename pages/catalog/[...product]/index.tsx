@@ -6,7 +6,7 @@ import { GetProductByColorDocument } from 'gql/gql/graphql'
 import request from 'graphql-request'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
-import { useShallow } from 'zustand/react/shallow'
+import { OneProduct } from '@/pages/oneproduct'
 
 export const getStaticPaths = (async () => {
 	const data = await productService.getAllProducts({ page: '1' })
@@ -40,10 +40,7 @@ export const getStaticProps = (async ({ params }: any) => {
 
 export default function Page({ product }: { product: IOneProduct }) {
 	const router = useRouter()
-	console.log(router.query.product, product.colors, '123213')
-	const [cart, toggleCartItem] = useCartStore(
-		useShallow(state => [state.cart, state.toggleCartItem])
-	)
+	console.log(router.query.product, product)
 	return (
 		<Button
 			onClick={() =>
@@ -52,14 +49,13 @@ export default function Page({ product }: { product: IOneProduct }) {
 					image: product.images[0],
 					name: product.name,
 					price: product.price,
-					quantity: 1,
-					size: product.size![0],
-					color: product.colors![product.productColorId!],
-					slug: product.slug
+					quantity: 0,
+					size: product.size[0],
+					color: product.colors![product.productColorId]
 				})
 			}
 		>
-			{cart.length} sdsadsadsadsadasd
+			
 		</Button>
 	)
 }
