@@ -16,7 +16,7 @@ const PushOrder = () => {
 		mutationFn: ({ cartItems }: { cartItems: OrderItemDto[] }) =>
 			OrderService.createOrder({ cartItems })
 	})
-	const cartItems: OrderItemDto[] = cartArray?.map(item => ({
+	const cartItems = cartArray?.map(item => ({
 		price: item.price,
 		productId: item.id,
 		productName: item.name,
@@ -28,19 +28,26 @@ const PushOrder = () => {
 		if (cartItems) {
 			await mutateAsync({ cartItems: cartItems })
 				.then(
-					res => (
+					() => (
 						toast.success('Заказ оформлен'), resetCart(), replace('/thanks')
 					)
 				)
 				.catch(
 					er => (
-						toast.error('Для создания заказа, нужно зарегистрироваться'),
+						toast.error('Для создания заказа нужно зарегистрироваться'),
 						console.log(er)
 					)
 				)
 		}
 	}
-	return <Button onClick={pushOrder}>Отправить заказ</Button>
+	return (
+		<Button
+			className='bg-[#232323] hover:bg-[#38383] w-full h-10 text-white'
+			onClick={pushOrder}
+		>
+			Отправить заказ
+		</Button>
+	)
 }
 
 export default PushOrder

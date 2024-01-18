@@ -1,12 +1,9 @@
-import useCartStore from '@/app/store/useCart'
+import { IProductPage, OneProduct } from '@/pages/oneproduct'
 import { productService } from '@/shared/service/products.service'
-import { IOneProduct } from '@/shared/types/Slider.interface'
-import { Button } from '@/shared/ui'
 import { GetProductByColorDocument } from 'gql/gql/graphql'
 import request from 'graphql-request'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
-import { OneProduct } from '@/pages/oneproduct'
 
 export const getStaticPaths = (async () => {
 	const data = await productService.getAllProducts({ page: '1' })
@@ -38,24 +35,20 @@ export const getStaticProps = (async ({ params }: any) => {
 	}
 }) satisfies GetStaticProps
 
-export default function Page({ product }: { product: IOneProduct }) {
+export default function Page({ product }: { product: IProductPage }) {
 	const router = useRouter()
-	console.log(router.query.product, product)
 	return (
-		<Button
-			onClick={() =>
-				toggleCartItem({
-					id: product.id,
-					image: product.images[0],
-					name: product.name,
-					price: product.price,
-					quantity: 0,
-					size: product.size[0],
-					color: product.colors![product.productColorId]
-				})
-			}
-		>
-			
-		</Button>
+		<OneProduct
+			description={product.description}
+			images={product.images}
+			colors={product.colors}
+			id={product.id}
+			name={product.name}
+			price={product.price}
+			slug={product.slug}
+			productColorId={product.productColorId}
+			size={product.size}
+			categoryId={product.categoryId.toString()}
+		/>
 	)
 }

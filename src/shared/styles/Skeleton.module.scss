@@ -1,0 +1,22 @@
+.skeleton {
+	@apply max-w-[350px] flex flex-col;
+	&__image {
+	}
+}
+
+@media (max-width: (768px)) {
+	.skeleton {
+		@apply max-w-[350px] flex flex-col;
+		&__image {
+			@apply min-h-[300px];
+		}
+	}
+}
+@media (max-width: 576px) {
+	.skeleton {
+		@apply max-w-[350px] flex flex-col;
+		&__image {
+			@apply min-h-[250px];
+		}
+	}
+}

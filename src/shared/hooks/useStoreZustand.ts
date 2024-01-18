@@ -11,5 +11,5 @@ export const useStoreZustand = <T, F>(
 		setData(result)
 	}, [result])
 
-	return data as F
+	return data
 }

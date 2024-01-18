@@ -2,7 +2,7 @@ import { useFilters } from '@/app/store/useFilters'
 import { IPropsSelectContent, MySelect } from '@/features'
 import { useGetAllQueriesData } from '@/shared/api/react-query.hooks'
 import { filtersService } from '@/shared/service/filters.service'
-import { Button } from '@/shared/ui'
+import { Button, SheetClose } from '@/shared/ui'
 import { Modal } from '@/shared/ui/Modal'
 import { FiltersIcon } from '@/shared/ui/icons/Filters'
 import {
@@ -11,7 +11,7 @@ import {
 	GetAllInsolationQuery
 } from 'gql/gql/graphql'
 
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 
 export const Filters: FC = () => {
@@ -24,6 +24,7 @@ export const Filters: FC = () => {
 				state.resetFilters
 			])
 		)
+	const [categoriesValue, setCategoriesValue] = useState('')
 	const { data: categories, isLoading: loadingCategory } =
 		useGetAllQueriesData<GetAllCategoriesQuery>({
 			key: 'category',
@@ -40,19 +41,36 @@ export const Filters: FC = () => {
 			key: 'insulation',
 			query: () => filtersService.getAllInsolation()
 		})
+	console.log(categoriesValue)
+	const submitFilters = () => {
+		changeCategory(categoriesValue)
+	}
 	return (
 		<Modal
 			Icon={<FiltersIcon />}
 			side={'left'}
 			title={<div className=''>Фильтры</div>}
 			Button={
-				<Button
-					type='submit'
-					className='w-full h-10 mt-5 bg-buttonBg text-white'
-					onClick={resetFilters}
-				>
-					Сбросить фильтры
-				</Button>
+				<div>
+					<SheetClose asChild>
+						<Button
+							type='submit'
+							className='w-full h-10 mt-5 bg-buttonBg text-white'
+							onClick={submitFilters}
+						>
+							Применить фильтры
+						</Button>
+					</SheetClose>
+					<SheetClose asChild>
+						<Button
+							type='reset'
+							className='w-full h-10 mt-5 bg-buttonBg text-white'
+							onClick={resetFilters}
+						>
+							Сбросить фильтры
+						</Button>
+					</SheetClose>
+				</div>
 			}
 		>
 			<div className='flex flex-col gap-2 mt-[30px]'>
@@ -68,7 +86,7 @@ export const Filters: FC = () => {
 									})) as IPropsSelectContent[]
 								}
 								placeholder='выберитe категорию'
-								onChange={changeCategory}
+								onChange={setCategoriesValue}
 							>
 								<span className='text-xl'>Категории</span>
 							</MySelect>

@@ -1,0 +1,29 @@
+.order {
+	@apply mt-10;
+	&__wrapper {
+		@apply flex justify-evenly;
+	}
+}
+
+@media (max-width: 1024px) {
+	.order {
+		@apply mt-4;
+		&__wrapper {
+			@apply px-5 flex flex-col justify-evenly;
+		}
+		&__form {
+			&__push:hover {
+				display: none;
+			}
+		}
+	}
+}
+@media (max-width: (576px)) {
+	.order {
+		&__form {
+			min-width: 300px;
+			&__push:hover {
+			}
+		}
+	}
+}

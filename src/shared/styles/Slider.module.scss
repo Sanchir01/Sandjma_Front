@@ -1,14 +1,14 @@
 .slider {
 	margin-top: 100px;
 	padding: 0 20px;
-	&__content {
-		max-width: clamp(160px, 5.817rem + 16.154vw, 25rem);
-		height: auto;
-	}
 	&__title {
 		font-weight: 500;
 		padding-bottom: 20px;
 		font-size: clamp(1rem, 0.786rem + 1.07vw, 1.75rem);
+	}
+	&__content {
+		max-width: clamp(160px, 5.817rem + 16.154vw, 25rem);
+		height: auto;
 	}
 
 	&__imageBlock {

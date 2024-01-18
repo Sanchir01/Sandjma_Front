@@ -33,6 +33,8 @@ query GetProductByColor($getProductByColor: GetProductByColor!) {
 		name
 		price
 		productColorId
+		description
+		categoryId
 		slug
 		size {
 			id

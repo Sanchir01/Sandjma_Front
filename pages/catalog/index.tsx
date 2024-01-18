@@ -8,7 +8,7 @@ export const getStaticProps = (async () => {
 		page: '1',
 		sort: 'hight-price'
 	})
-	console.log(data)
+
 	return {
 		props: { products: data },
 		revalidate: 60

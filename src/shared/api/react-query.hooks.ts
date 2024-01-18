@@ -99,3 +99,11 @@ export const useGetAllFavorites = () => {
 
 	return { data, isFetching }
 }
+
+export const useGetSimilar = ({ categoryId }: { categoryId: string }) => {
+	const { data, isFetching } = useQuery({
+		queryFn: () => productService.getAllProducts({ categoryId, page: '1' }),
+		queryKey: ['similar']
+	})
+	return { data, isFetching }
+}

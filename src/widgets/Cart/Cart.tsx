@@ -1,6 +1,7 @@
 import useCartStore from '@/app/store/useCart'
 import CartItem from '@/entities/CartItem/CartItem'
 import { AddToCartItem } from '@/features'
+import Counter from '@/features/Counter/Counter'
 import { useStoreZustand } from '@/shared/hooks/useStoreZustand'
 import styles from '@/shared/styles/Cart.module.scss'
 import { Modal } from '@/shared/ui/Modal'
@@ -33,7 +34,20 @@ export const CartDrawer: FC = () => {
 				{cart?.length === 0 ? (
 					<div className='flex h-20 justify-center items-center'>(</div>
 				) : cart ? (
-					cart?.map(item => <CartItem key={item.id} cartItem={item} />)
+					cart?.map(item => (
+						<CartItem key={item.id} cartItem={item}>
+							<div className=''>{item.size.name}</div>
+							<div className='flex items-center gap-2'>
+								<Counter
+									color={item.color}
+									size={item.size}
+									quantity={item.quantity}
+									id={item.id}
+								/>
+							</div>
+							<div className=''>{item.price * item.quantity}</div>
+						</CartItem>
+					))
 				) : (
 					'Корзина пуста '
 				)}

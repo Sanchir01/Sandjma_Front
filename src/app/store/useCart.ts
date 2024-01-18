@@ -10,6 +10,7 @@ export interface ICart {
 	color: IColors
 	slug: string
 	quantity: number
+	productColorId: number
 }
 
 export interface IUseCartStore {

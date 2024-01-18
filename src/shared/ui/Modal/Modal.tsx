@@ -1,7 +1,6 @@
 import styles from '@/shared/styles/Scrollbar.module.scss'
 import {
 	Sheet,
-	SheetClose,
 	SheetContent,
 	SheetDescription,
 	SheetFooter,
@@ -53,9 +52,7 @@ export const Modal: FC<IModal> = ({
 					)}
 				</SheetHeader>
 				{children}
-				<SheetFooter>
-					<SheetClose asChild>{Button}</SheetClose>
-				</SheetFooter>
+				<SheetFooter>{Button}</SheetFooter>
 			</SheetContent>
 		</Sheet>
 	)

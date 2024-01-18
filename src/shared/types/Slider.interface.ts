@@ -5,6 +5,8 @@ export interface ISliderProps {
 	slidesPerView: number
 	loop?: boolean
 	children?: ReactNode
+	BreakIsExist?: boolean
+	centerSlide?: boolean
 }
 
 export interface ISize {
@@ -19,6 +21,7 @@ export interface IColors {
 }
 export interface IOneProduct {
 	__typename?: string | undefined
+
 	id: number
 	images: string[]
 	name: string

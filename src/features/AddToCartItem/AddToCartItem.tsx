@@ -16,12 +16,7 @@ export const AddToCartItem: FC<IAddToCartItem> = (
 ) => {
 	const cart = useStoreZustand(useCartStore, state => state.cart)
 	return (
-		<Button
-			disabled={cart?.length === 0}
-			{...rest}
-			className={cn(className)}
-			onClick={onClick}
-		>
+		<Button {...rest} className={cn(className)} onClick={onClick}>
 			{text}
 		</Button>
 	)

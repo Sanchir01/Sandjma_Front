@@ -4,7 +4,9 @@ import { Button } from '@/shared/ui'
 import { Trash } from '@/shared/ui/icons/trash/Trash'
 import cn from 'clsx'
 import Image from 'next/image'
-import { FC, ReactNode, memo } from 'react'
+import Link from 'next/link'
+import { FC, ReactNode } from 'react'
+
 export interface ICartProps {
 	cartItem: ICart
 	children?: ReactNode
@@ -13,15 +15,17 @@ const CartItem: FC<ICartProps> = ({ cartItem, children }) => {
 	const toggleItem = useCartStore(state => state.toggleCartItem)
 	return (
 		<div className={styles.cart__item}>
-			<Image
-				src={cartItem.image}
-				alt={cartItem.name}
-				width={150}
-				height={190}
-				priority
-				draggable
-				className={styles.cart__image}
-			/>
+			<Link href={`/catalog/${cartItem.slug}/${cartItem.productColorId}`}>
+				<Image
+					src={cartItem.image}
+					alt={cartItem.name}
+					width={150}
+					height={190}
+					priority
+					draggable
+					className={styles.cart__image}
+				/>
+			</Link>
 			<div className={cn(styles.cart__content, 'w-full')}>
 				<div className='flex flex-col gap-5 '>
 					<div className='flex-col flex-1 flex gap-3'>
@@ -30,17 +34,17 @@ const CartItem: FC<ICartProps> = ({ cartItem, children }) => {
 						</span>
 						<div className='flex gap-2 items-center'>
 							<span
-								className='w-2 h-2 rounded'
+								className={cn('w-3 h-3 rounded-full', {
+									'border-2 border-[#999999]':
+										cartItem.color.imageCss === '#fff'
+								})}
 								style={{ backgroundColor: cartItem.color?.imageCss }}
 							/>
 							<span className={styles.cart__color}>{cartItem.color?.name}</span>
 						</div>
-						{children}
 					</div>
-					<div className={cn('flex gap-2', styles.cart__quantity)}>
-						<div className=''>{cartItem.size.name}</div>
-						<div className=''>Количество</div>
-						<div className=''>{cartItem.price * cartItem.quantity}</div>
+					<div className={cn('flex gap-2 items-center', styles.cart__quantity)}>
+						{children}
 					</div>
 				</div>
 				<div className='flex flex-col justify-self-end ml-auto items-center'>
@@ -56,4 +60,4 @@ const CartItem: FC<ICartProps> = ({ cartItem, children }) => {
 	)
 }
 
-export default memo(CartItem)
+export default CartItem

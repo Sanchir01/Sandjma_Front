@@ -23,8 +23,6 @@ export const Catalog: FC<{ products: GetAllProductsDashboardQuery }> = ({
 			state.insulation
 		])
 	)
-	
-
 	const { data, isFetching } = useGetAllProductsQuery({
 		colorId: Number(color),
 		sort: sorting,
