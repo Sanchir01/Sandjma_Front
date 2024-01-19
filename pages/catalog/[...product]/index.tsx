@@ -1,4 +1,4 @@
-import { IProductPage, OneProduct } from '@/pages/oneproduct'
+import { IProductPage, OneProduct } from '@/page/oneproduct'
 import { productService } from '@/shared/service/products.service'
 import { GetProductByColorDocument } from 'gql/gql/graphql'
 import request from 'graphql-request'

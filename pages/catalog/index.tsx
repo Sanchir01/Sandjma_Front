@@ -1,4 +1,4 @@
-import { Catalog } from '@/pages/catalog'
+import { Catalog } from '@/page/catalog'
 import { productService } from '@/shared/service/products.service'
 import { GetAllProductsDashboardQuery } from 'gql/gql/graphql'
 import { GetStaticProps, NextPage } from 'next'
