@@ -25,7 +25,7 @@ export const CartDrawer: FC = () => {
 			Button={
 				<AddToCartItem
 					className={'w-full h-10 bg-buttonBg text-white mt-5'}
-					onClick={() => replace('/order')}
+					onClick={() => replace('/orders')}
 					text={'Оформить заказ'}
 				/>
 			}
