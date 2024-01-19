@@ -1,4 +1,4 @@
-import Thanks from '@/page/thanks/Thanks'
+import Thanks from '@/myPages/thanks/Thanks'
 
 export default function Page() {
 	return <Thanks />

@@ -1,5 +1,5 @@
 import { NextPageAuth } from '@/app/Auth_Provider/types'
-import { FavoritesPageComponents } from '@/page/Favorites'
+import { FavoritesPageComponents } from '@/myPages/Favorites'
 
 const FavoritesPage: NextPageAuth = () => {
 	return <FavoritesPageComponents />
