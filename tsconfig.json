@@ -15,7 +15,7 @@
 		"incremental": true,
 		"paths": {
 			"@/*": ["./src/*"],
-			"pages/*": ["./pages/*"],
+			"myPages/*": ["./myPages/*"],
 			"gql/*": ["./graphql/*"]
 		},
 		"plugins": [

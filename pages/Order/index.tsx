@@ -1,5 +1,3 @@
-import OrderPage from '@/page/order/Order.page'
+import OrderPage from '@/myPages/order/Order.page'
 
-export default function Page() {
-	return <OrderPage />
-}
+export default OrderPage
