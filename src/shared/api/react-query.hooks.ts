@@ -103,7 +103,8 @@ export const useGetAllFavorites = () => {
 export const useGetSimilar = ({ categoryId }: { categoryId: string }) => {
 	const { data, isFetching } = useQuery({
 		queryFn: () => productService.getAllProducts({ categoryId, page: '1' }),
-		queryKey: ['similar']
+		queryKey: ['similar'],
+		enabled: !!categoryId
 	})
 	return { data, isFetching }
 }

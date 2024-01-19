@@ -42,8 +42,10 @@ export const OneProduct: React.FC<IProductPage> = ({
 	const cartStore = useStoreZustand(useCartStore, state => state.cart)
 	const isMedia1024 = useMediaQuery('(max-width:1024px)')
 	const { data, isFetching } = useGetSimilar({ categoryId })
+
 	const [activeSize, setActiveSize] = useState(0)
 	const [colorIndex, setColorIndex] = useState(0)
+
 	const isExistCart = cartStore?.some(
 		t =>
 			t.id === id &&
