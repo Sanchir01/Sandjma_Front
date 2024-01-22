@@ -10,13 +10,21 @@ export interface IAddToCartItem {
 	text: string
 }
 
-export const AddToCartItem: FC<IAddToCartItem> = (
-	{ className, onClick, text },
+export const AddToCartItem: FC<IAddToCartItem> = ({
+	className,
+	onClick,
+	text,
 	...rest
-) => {
+}) => {
 	const cart = useStoreZustand(useCartStore, state => state.cart)
 	return (
-		<Button {...rest} className={cn(className)} onClick={onClick}>
+		<Button
+			disabled={cart?.length === 0}
+			{...rest}
+			className={cn(className)}
+			onClick={onClick}
+			type={'submit'}
+		>
 			{text}
 		</Button>
 	)

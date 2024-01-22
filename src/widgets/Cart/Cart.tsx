@@ -27,6 +27,7 @@ export const CartDrawer: FC = () => {
 					className={'w-full h-10 bg-buttonBg text-white mt-5'}
 					onClick={() => replace('/orders')}
 					text={'Оформить заказ'}
+					
 				/>
 			}
 		>

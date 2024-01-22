@@ -20,6 +20,8 @@ import { SliderDefault } from '@/shared/ui/icons/slider'
 import { SliderBlock } from '@/widgets/Slider'
 import cn from 'clsx'
 
+import { SizePicker } from '@/features/SizePicker'
+import { SkeletonCart } from '@/widgets'
 import { useRouter } from 'next/router'
 import { SwiperSlide } from 'swiper/react'
 export interface IProductPage extends IOneProduct {
@@ -52,7 +54,7 @@ export const OneProduct: React.FC<IProductPage> = ({
 			size![activeSize].id === t.size.id &&
 			t.color.id === colors![colorIndex].id
 	)
-	console.log(colors![colorIndex], 'colors@#$@')
+
 	const router = useRouter()
 	console.log()
 	const pushColor = ({
@@ -65,8 +67,6 @@ export const OneProduct: React.FC<IProductPage> = ({
 		slug: string
 	}) => {
 		setColorIndex(index)
-
-		router.replace(`/catalog/${slug}/${id}`)
 	}
 
 	return (
@@ -102,11 +102,13 @@ export const OneProduct: React.FC<IProductPage> = ({
 								<Image
 									src={image}
 									key={i}
-									alt='картинка'
+									alt={image}
 									width={480}
 									height={480}
-									draggable
 									priority
+									draggable
+									placeholder='blur'
+									blurDataURL={image}
 								/>
 							))}
 						</div>
@@ -138,20 +140,15 @@ export const OneProduct: React.FC<IProductPage> = ({
 								))}
 							</div>
 							<div className='flex gap-2 mt-9'>
-								{size?.map((item, i) => (
-									<Button
-										onClick={() => setActiveSize(i)}
-										className={cn(
-											'items-center h-8 w-8 p-2 justify-center flex',
-											activeSize === i
-												? 'bg-[#383838] text-white'
-												: 'bg-[#D9D9D9]'
-										)}
-										key={item.id}
-									>
-										<div className=''>{item.name}</div>
-									</Button>
-								))}
+								{size ? (
+									<SizePicker
+										size={size}
+										setActiveSize={setActiveSize}
+										activeSize={activeSize}
+									/>
+								) : (
+									<div>asd</div>
+								)}
 							</div>
 							<div className='flex gap-3 items-center mt-10'>
 								<AddToCartItem
@@ -177,7 +174,7 @@ export const OneProduct: React.FC<IProductPage> = ({
 							</div>
 						</div>
 
-						<div className='max-w-[500px]'>
+						<div className='min-w-[500px] max-w-[500px]'>
 							<div className={styles.oneProduct__content__description}>
 								<Accordion type='single' collapsible className='w-full'>
 									<AccordionItem value='item-1'>
@@ -217,7 +214,7 @@ export const OneProduct: React.FC<IProductPage> = ({
 											модные и удобные вещи для вашего гардероба.
 										</AccordionContent>
 									</AccordionItem>
-									<AccordionItem value='item-1'>
+									<AccordionItem value='item-3'>
 										<AccordionTrigger
 											className={
 												styles.oneProduct__content__description__trigger
@@ -239,8 +236,12 @@ export const OneProduct: React.FC<IProductPage> = ({
 					</div>
 				</div>
 				{isFetching ? (
-					<></>
-				) : data?.getAllProducts.length ? (
+					<div className='grid grid-cols-4 mt-[180px] px-10'>
+						{[...Array(4)].map((_, i) => (
+							<SkeletonCart key={i} />
+						))}
+					</div>
+				) : data?.getAllProducts.products.length ? (
 					<div className='mt-10'>
 						<SliderBlock
 							loop
@@ -249,7 +250,7 @@ export const OneProduct: React.FC<IProductPage> = ({
 						></SliderBlock>
 					</div>
 				) : (
-					<></>
+					<>Нету похожих товаров</>
 				)}
 			</div>
 		</div>

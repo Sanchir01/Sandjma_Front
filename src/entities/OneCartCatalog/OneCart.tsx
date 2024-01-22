@@ -33,7 +33,9 @@ export const OneCart: FC<IEntityCartProps> = ({
 			<div className='flex justify-between mt-3 mr-3'>
 				<div className='flex flex-col gap-1'>
 					<div className={st.catalog__items__article__name}>{name}</div>
-					<div className={st.catalog__items__article__price}>{price}</div>
+					<div className={st.catalog__items__article__price}>
+						{price} Рублей
+					</div>
 				</div>
 				{children}
 			</div>
