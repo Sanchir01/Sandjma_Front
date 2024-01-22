@@ -24,6 +24,7 @@ export const FooterColumn: React.FC<IFooterColumn> = ({ title, column }) => {
 						key={text.id}
 						className={style.footer__column__content__text}
 						href={text.href}
+						target='blank'
 					>
 						{text.text}
 					</Link>
