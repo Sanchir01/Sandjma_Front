@@ -2,7 +2,7 @@ export const ColumnArr = [
 	{
 		title: 'Разделы',
 		content: [
-			{ id: 0, text: 'О бредне', href: '/about' },
+			{ id: 0, text: 'О бренде', href: '/about' },
 			{ id: 1, text: 'Лукбук', href: '/lookbook' },
 			{ id: 2, text: 'Помощь', href: '/help' }
 		]
@@ -10,9 +10,9 @@ export const ColumnArr = [
 	{
 		title: 'Социальные сети',
 		content: [
-			{ id: 0, text: 'Истаграм', href: '/inst' },
-			{ id: 1, text: 'Телеграм', href: '/tg' },
-			{ id: 2, text: 'Вконтакте', href: '/vk' }
+			{ id: 0, text: 'Истаграм', href: 'https://www.instagram.com/sandjma/' },
+			{ id: 1, text: 'Телеграм', href: 'https://www.t.me/sandjma' },
+			{ id: 2, text: 'Вконтакте', href: 'https://vk.com/sandjma' }
 		]
 	},
 	{
