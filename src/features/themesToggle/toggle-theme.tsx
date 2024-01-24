@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 'use client'
 
 import { useTheme } from 'next-themes'
@@ -7,13 +8,12 @@ import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
-	DropdownMenuTrigger,
+	DropdownMenuTrigger
 } from '@/shared/ui/dropdown-menu'
 import { Moon, Sun } from 'lucide-react'
 
 export function ToggleTheme() {
-	const { setTheme, theme } = useTheme()
-	console.log(theme)
+	const { setTheme } = useTheme()
 
 	return (
 		<DropdownMenu>
@@ -30,9 +30,6 @@ export function ToggleTheme() {
 				</DropdownMenuItem>
 				<DropdownMenuItem onClick={() => setTheme('dark')}>
 					Тёмная
-				</DropdownMenuItem>
-				<DropdownMenuItem onClick={() => setTheme('system')}>
-					Системная
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
