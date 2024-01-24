@@ -1,11 +1,11 @@
-export const BGContent = [
+export const HeroSliderContent = [
 	{
 		id: 1,
 		title: 'Sandjma 22-23',
 		subtitle: 'Новая коллецкия в магазине Sandjma',
 		href: '/catalog',
 		image: 'https://i.ibb.co/7JXBQPX/bg.jpg',
-		buttonText: 'К покупкам'
+		buttonText: 'К покупкам',
 	},
 	{
 		id: 2,
@@ -13,7 +13,7 @@ export const BGContent = [
 		subtitle: 'Новая коллецкия в магазине Sandjma',
 		href: '/catalog',
 		image: 'https://i.ibb.co/qmRhkzv/photo-2023-10-30-19-14-46-2.png',
-		buttonText: 'К покупкам'
+		buttonText: 'К покупкам',
 	},
 	{
 		id: 3,
@@ -21,7 +21,7 @@ export const BGContent = [
 		subtitle: 'Новая коллецкия в магазине Sandjma',
 		href: '/catalog',
 		image: 'https://i.ibb.co/7JXBQPX/bg.jpg',
-		buttonText: 'К покупкам'
+		buttonText: 'К покупкам',
 	},
 	{
 		id: 4,
@@ -29,6 +29,6 @@ export const BGContent = [
 		subtitle: 'Новая коллецкия в магазине Sandjma',
 		href: '/catalog',
 		image: 'https://i.ibb.co/qmRhkzv/photo-2023-10-30-19-14-46-2.png',
-		buttonText: 'К покупкам'
-	}
+		buttonText: 'К покупкам',
+	},
 ]

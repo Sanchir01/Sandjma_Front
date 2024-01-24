@@ -2,7 +2,7 @@ import Cookies from 'js-cookie'
 
 export enum EnumTokens {
 	ACCESS_TOKEN = 'accessToken',
-	REFRESH_TOKEN = 'refreshToken'
+	REFRESH_TOKEN = 'refreshToken',
 }
 
 export const AuthServiceTokens = {
@@ -14,7 +14,7 @@ export const AuthServiceTokens = {
 			domain: `localhost`,
 			sameSite: 'Strict',
 			secure: false,
-			path: '/'
+			path: '/',
 		})
 	},
 	getRefreshToken: () => Cookies.get(EnumTokens.REFRESH_TOKEN),
@@ -27,5 +27,5 @@ export const AuthServiceTokens = {
 	logout: () => {
 		AuthServiceTokens.removerTokenFromStorage()
 		localStorage.removeItem('User')
-	}
+	},
 }

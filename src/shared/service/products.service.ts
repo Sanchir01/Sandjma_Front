@@ -1,4 +1,7 @@
-import { GetAllProductsDashboardDocument } from 'gql/gql/graphql'
+import {
+	GetAllProductsDashboardDocument,
+	GetProductByColorDocument
+} from 'gql/gql/graphql'
 import { myRequest } from './user.service'
 const url = process.env.SERVER_GRAPHQL as string
 export interface IProductServicePropsGetAll {
@@ -34,7 +37,10 @@ export const productService = {
 				}
 			}
 		})
+	},
+	async getOneProduct({ slug, colorId }: { slug: string; colorId: number }) {
+		return myRequest.request(GetProductByColorDocument, {
+			getProductByColor: { slug, colorId }
+		})
 	}
-	
 }
-

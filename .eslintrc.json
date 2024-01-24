@@ -1,7 +1,12 @@
 {
 	"extends": "next/core-web-vitals",
 	"rules": {
-		"no-var": "error",
-		"prefer-const": "warn"
+		"arrow-body-style": ["error", "as-needed"],
+		"@typescript-eslint/consistent-type-imports": "off",
+		"react-hooks/exhaustive-deps": "error",
+		"no-console": "warn",
+		"max-len": ["error", 100],
+		"no-plusplus": "error",
+		"prefer-destructuring": "error"
 	}
 }

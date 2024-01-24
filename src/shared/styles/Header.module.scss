@@ -2,9 +2,8 @@
 	top: 0;
 	z-index: 2;
 	position: sticky;
-	background-color: #f9f9f9;
 	height: 80px;
-	@apply shadow-md py-[30px];
+	@apply shadow-md py-[20px];
 	&__content {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
@@ -16,11 +15,13 @@
 	&__left {
 		display: flex;
 		gap: 15px;
+		text-transform: uppercase;
 	}
 	&__right {
 		display: flex;
 		gap: 15px;
 		justify-self: right;
+		align-items: center;
 		margin-right: 18px;
 	}
 }
@@ -55,7 +56,7 @@
 
 @media (max-width: 1024px) {
 	.header {
-		@apply h-[50px] py-4;
+		@apply h-[60px] py-3;
 	}
 }
 @media (max-width: (768px)) {

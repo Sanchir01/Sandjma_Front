@@ -7,9 +7,9 @@ const config: CodegenConfig = {
 	generates: {
 		'graphql/gql/': {
 			preset: 'client',
-			plugins: []
-		}
-	}
+			plugins: [],
+		},
+	},
 }
 
 export default config
