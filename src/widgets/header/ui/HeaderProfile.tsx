@@ -1,11 +1,10 @@
-import { UsersRound } from 'lucide-react'
-
 import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuLabel,
-	DropdownMenuTrigger,
+	DropdownMenuTrigger
 } from '@/shared/ui/dropdown-menu'
+import { UsersRound } from 'lucide-react'
 import type { FC } from 'react'
 
 export const HeaderProfile: FC = () => (
@@ -13,7 +12,7 @@ export const HeaderProfile: FC = () => (
 		<DropdownMenuTrigger asChild>
 			<UsersRound className='cursor-pointer' />
 		</DropdownMenuTrigger>
-		<DropdownMenuContent>
+		<DropdownMenuContent className='mt-3'>
 			<DropdownMenuLabel>MyName</DropdownMenuLabel>
 		</DropdownMenuContent>
 	</DropdownMenu>

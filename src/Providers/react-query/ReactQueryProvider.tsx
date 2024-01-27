@@ -4,7 +4,7 @@ export const ReactQuery = ({ children }: { children?: ReactNode }) => {
 	const [value] = useState(
 		() =>
 			new QueryClient({
-				defaultOptions: { queries: { refetchOnWindowFocus: false } },
+				defaultOptions: { queries: { refetchOnWindowFocus: false } }
 			})
 	)
 	return <QueryClientProvider client={value}>{children}</QueryClientProvider>

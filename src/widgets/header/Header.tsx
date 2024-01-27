@@ -5,19 +5,22 @@ import HeaderLogo from '@/widgets/header/ui/HeaderLogo'
 import HeaderNav from '@/widgets/header/ui/HeaderNav'
 import { HeaderProfile } from '@/widgets/header/ui/HeaderProfile'
 import { FC } from 'react'
-
-export const Header: FC<{ children?: React.ReactNode }> = () => {
-	return (
-		<LayoutHeader
-			logo={<HeaderLogo />}
-			nav={<HeaderNav />}
-			profile={<HeaderProfile />}
-			actions={
-				<>
-					<FavoritesLogo />
-					<ToggleTheme />
-				</>
-			}
-		/>
-	)
+export enum HeaderProfileEnum {
+	PRIVATE = 'private',
+	AUTH = 'auth',
+	PUBLIC = 'public'
 }
+
+export const Header: FC<{ variant: HeaderProfileEnum }> = ({ variant }) => (
+	<LayoutHeader
+		logo={<HeaderLogo />}
+		nav={<HeaderNav />}
+		profile={variant === HeaderProfileEnum.AUTH ? <></> : <HeaderProfile />}
+		actions={
+			<>
+				<FavoritesLogo />
+				<ToggleTheme />
+			</>
+		}
+	/>
+)
