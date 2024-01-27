@@ -1,5 +1,3 @@
-import { AuthEnum } from '@/features'
-import { IPhonePassword } from '@/widgets/Form'
 import { ReactNode } from 'react'
 import {
 	FieldErrors,
@@ -7,12 +5,16 @@ import {
 	UseFormHandleSubmit,
 	UseFormRegister
 } from 'react-hook-form'
+export interface IPhonePassword {
+	phone: string
+	password: string
+}
 export interface IFormProps {
 	children: ReactNode
 	handleSubmit: UseFormHandleSubmit<IPhonePassword, undefined>
 	formRegister: UseFormRegister<IPhonePassword>
 	onSubmit: SubmitHandler<IPhonePassword>
 	errors: FieldErrors<IPhonePassword>
-	type: AuthEnum
+
 	className?: string
 }
