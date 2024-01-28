@@ -11,8 +11,9 @@ import {
 	DropdownMenuTrigger
 } from '@/shared/ui/dropdown-menu'
 import { Moon, Sun } from 'lucide-react'
+import { FC } from 'react'
 
-export function ToggleTheme() {
+export const ToggleTheme: FC = () => {
 	const { setTheme } = useTheme()
 
 	return (
