@@ -4,8 +4,9 @@ import { FooterColumn } from '@/shared/FooterColumn'
 import style from '@/shared/styles/Footer.module.scss'
 
 import { ColumnArr } from '@/shared/constants/FooterContent'
+import { LogoIcon } from '@/shared/icons/logo'
 import '@/shared/styles/_mixins.scss'
-import { Logo } from '@/shared/ui/icons'
+import { cn } from '@/shared/utils/utils'
 
 export interface ILogo {
 	width: number
@@ -13,7 +14,7 @@ export interface ILogo {
 }
 
 export const Footer: FC = () => (
-	<footer className={style.footer}>
+	<footer className={cn(style.footer, 'dark:bg-[#282828]')}>
 		<div className={style.footer__container}>
 			<div className={style.footer__top}>
 				{ColumnArr.map((obj, index) => (
@@ -23,7 +24,7 @@ export const Footer: FC = () => (
 			<div className={style.footer__bot}>
 				<div className={style.footer__bot__left}>
 					<div className={style.footer__bot__left__logo}>
-						<Logo />
+						<LogoIcon />
 					</div>
 					<div className={style.footer__bot__left__text}>
 						© 2024. Все права защищены

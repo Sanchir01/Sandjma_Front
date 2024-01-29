@@ -2,20 +2,20 @@ import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
 import {
 	GetAllFavoritesDocument,
 	GetUserFavoritesIdArrayDocument,
-	ToggleFavoritesProfileDocument,
+	ToggleFavoritesProfileDocument
 } from 'gql/gql/graphql'
 import { GraphQLClient } from 'graphql-request'
 
 const token = AuthServiceTokens.getRefreshToken()
 
 export const myRequest = new GraphQLClient(
-	process.env.SERVER_GRAPHQL as string,
+	process.env.NEXT_PUBLIC_SERVER_GRAPHQL ?? '',
 	{
 		headers: {
-			authorization: token ? `Bearer ${token}` : '',
+			authorization: token ? `Bearer ${token}` : ''
 		},
 		next: { revalidate: 600 },
-		credentials: 'include',
+		credentials: 'include'
 	}
 )
 
@@ -28,5 +28,5 @@ export const userService = {
 	},
 	async getAllFavorites() {
 		return myRequest.request(GetAllFavoritesDocument)
-	},
+	}
 }

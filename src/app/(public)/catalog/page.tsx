@@ -1,3 +1,5 @@
+import { myRequest } from '@/shared/service/user.service'
+import { GetAllProductsDashboardDocument } from 'gql/gql/graphql'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -5,6 +7,20 @@ export const metadata: Metadata = {
 	description: 'Супер Магазин Одежды Sandjma'
 }
 
-export default function Page() {
-	return <div>aasdwwasd</div>
+export const getProductData = async () => {
+	const { getAllProducts } = await myRequest.request(
+		GetAllProductsDashboardDocument,
+		{
+			getAllProductInput: { page: '1' }
+		}
+	)
+	return getAllProducts?.products
+}
+
+export default async function Page() {
+	const data = await getProductData()
+
+	return <section>
+		
+	</section>
 }

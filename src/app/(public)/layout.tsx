@@ -1,5 +1,5 @@
-import { Header, HeaderProfileEnum } from '@/widgets/header/Header'
 import { Footer } from '@/widgets/footer/Footer'
+import { Header, HeaderProfileEnum } from '@/widgets/header/Header'
 export default async function Layout({
 	children
 }: {
@@ -8,7 +8,7 @@ export default async function Layout({
 	return (
 		<>
 			<Header variant={HeaderProfileEnum.PUBLIC} />
-			{children}
+			<main className='main'>{children}</main>
 			<Footer />
 		</>
 	)
