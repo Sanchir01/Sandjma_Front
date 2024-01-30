@@ -31,12 +31,12 @@ export const useUser = create<IUserStore>()(
 					const { logout } = get()
 					logout()
 				}
-			},
+			}
 		}),
 		{
 			version: 0,
 			name: 'user',
-			storage: createJSONStorage(() => localStorage),
+			storage: createJSONStorage(() => localStorage)
 		}
 	)
 )
