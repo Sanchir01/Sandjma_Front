@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Cookies from 'js-cookie'
 
 export enum EnumTokens {
@@ -29,3 +30,5 @@ export const AuthServiceTokens = {
 		localStorage.removeItem('User')
 	},
 }
+=======
+>>>>>>> e9ef913d679fa0334312556ba76b45641d8e0a74
