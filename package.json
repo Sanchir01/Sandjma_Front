@@ -13,6 +13,7 @@
 		"gen": "graphql-codegen --config codegen.ts"
 	},
 	"dependencies": {
+		"@formkit/auto-animate": "^0.8.1",
 		"@next/bundle-analyzer": "^14.1.0",
 		"@radix-ui/react-dialog": "^1.0.5",
 		"@radix-ui/react-dropdown-menu": "^2.0.6",
