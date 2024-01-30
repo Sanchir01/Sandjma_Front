@@ -12,14 +12,6 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
-<<<<<<< HEAD
-=======
-		"paths": {
-			"@/*": ["./src/*"],
-			"myPages/*": ["./myPages/*"],
-			"gql/*": ["./graphql/*"]
-		},
->>>>>>> e9ef913d679fa0334312556ba76b45641d8e0a74
 		"plugins": [
 			{
 				"name": "next"
