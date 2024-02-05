@@ -1,12 +1,10 @@
-import { FC } from 'react'
-
-import { FooterColumn } from '@/shared/FooterColumn'
-import style from '@/shared/styles/Footer.module.scss'
-
 import { ColumnArr } from '@/shared/constants/FooterContent'
 import { LogoIcon } from '@/shared/icons/logo'
+import style from '@/shared/styles/Footer.module.scss'
 import '@/shared/styles/_mixins.scss'
 import { cn } from '@/shared/utils/utils'
+import { FooterColumn } from '@/widgets/footer/ui/FooterColumn'
+import { FC } from 'react'
 
 export interface ILogo {
 	width: number
