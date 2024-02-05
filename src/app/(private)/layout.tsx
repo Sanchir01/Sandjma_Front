@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 
 const layout = ({ children }: { children: ReactNode }) => {
-	console.log(12)
+	const ap = ''
 	return <>{children}</>
 }
 
