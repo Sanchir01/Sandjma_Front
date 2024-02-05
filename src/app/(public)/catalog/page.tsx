@@ -2,6 +2,7 @@ import { myRequest } from '@/shared/service/user.service'
 import Catalog from '@/widgets/catalog/Catalog'
 import { GetAllProductsDashboardDocument } from 'gql/gql/graphql'
 import type { Metadata } from 'next'
+
 export const revalidate = 3600
 
 export const metadata: Metadata = {

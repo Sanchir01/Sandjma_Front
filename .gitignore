@@ -40,3 +40,8 @@ next-env.d.ts
 /playwright/.cache/
 
 certificates
+# Sentry Config File
+.sentryclirc
+
+# Sentry Config File
+.sentryclirc
