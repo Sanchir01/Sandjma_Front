@@ -1,9 +1,9 @@
 import { ColumnArr } from '@/shared/constants/FooterContent'
+import { LogoIcon } from '@/shared/icons/logo'
 import style from '@/shared/styles/Footer.module.scss'
 import { cn } from '@/shared/utils/utils'
 import { FC } from 'react'
 import { FooterColumn } from './FooterColumn'
-import { LogoIcon } from '@/shared/icons/logo'
 const LayoutFooter: FC = () => (
 	<footer className={cn(style.footer, 'dark:bg-[#282828]')}>
 		<div className={style.footer__container}>
