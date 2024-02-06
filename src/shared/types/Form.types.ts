@@ -11,7 +11,7 @@ export interface IPhonePassword {
 }
 export interface IFormProps {
 	children: ReactNode
-	handleSubmit: UseFormHandleSubmit<IPhonePassword, undefined>
+	handleSubmit: UseFormHandleSubmit<IPhonePassword>
 	formRegister: UseFormRegister<IPhonePassword>
 	onSubmit: SubmitHandler<IPhonePassword>
 	errors: FieldErrors<IPhonePassword>
