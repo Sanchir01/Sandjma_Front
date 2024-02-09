@@ -36,6 +36,7 @@
 }
 @media screen and (max-width: 768px) {
 	.footer__column {
+		gap: 12px;
 		&__title {
 			font-size: 14px;
 		}

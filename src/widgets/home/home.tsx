@@ -1,6 +1,7 @@
-import { productService } from '@/shared/service/products.service'
-import { HeroSlider } from '@/shared/HeroSlider/HeroSlider'
+'use client'
+import { HeroSlide } from '@/shared/HeroSlider/HeroSlider'
 import { SliderBlock } from '@/shared/SliderBlock/SliderBlock'
+import { productService } from '@/shared/service/products.service'
 import { useQuery } from '@tanstack/react-query'
 
 export function HomePage() {
@@ -15,7 +16,7 @@ export function HomePage() {
 
 	return (
 		<>
-			<HeroSlider />
+			<HeroSlide />
 			{LoadingNews ? (
 				<div className=''>Загрузка</div>
 			) : (

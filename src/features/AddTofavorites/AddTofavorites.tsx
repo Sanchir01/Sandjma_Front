@@ -1,3 +1,5 @@
+'use client'
+import { useMediaQuery } from '@/shared/hooks'
 import { Button } from '@/shared/ui'
 import { Heart } from 'lucide-react'
 import { FC } from 'react'
@@ -12,6 +14,7 @@ export interface IToggleFavoritesFeature {
 }
 
 export const AddToFavorites: FC<IToggleFavoritesFeature> = ({ id }) => {
+	const isMedia664 = useMediaQuery('(min-width: 640px)')
 	const { mutateAsync } = useAddToFavorites(id)
 	const { data: favorites, isLoading: loading } = useGetAllLengthFavorites()
 
@@ -29,12 +32,12 @@ export const AddToFavorites: FC<IToggleFavoritesFeature> = ({ id }) => {
 			aria-label='Add to favorites'
 			variant={'secondary'}
 			onClick={() => toggle(id)}
+			size={isMedia664 ? 'sm' : 'icon'}
 		>
-			{isExistFavorites ? (
-				<Heart size={20} fill={'black'} />
-			) : (
-				<Heart size={20} fill={'white'} />
-			)}
+			<Heart
+				size={isMedia664 ? 20 : 15}
+				fill={isExistFavorites ? 'black' : 'white'}
+			/>
 		</Button>
 	)
 }

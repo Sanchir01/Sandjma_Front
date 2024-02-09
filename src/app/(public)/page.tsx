@@ -1,3 +1,4 @@
+import { HomePage } from '@/widgets/home/home'
 import type { Metadata, Viewport } from 'next'
 
 export const viewport: Viewport = {
@@ -33,5 +34,5 @@ export const metadata: Metadata = {
 	icons: { icon: '../favicon.ico' }
 }
 export default function Home() {
-	return <main className='main'></main>
+	return <HomePage />
 }
