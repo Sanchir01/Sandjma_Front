@@ -1,10 +1,9 @@
 'use client'
-import { HeroSlide } from '@/shared/HeroSlider/HeroSlider'
-import { SliderBlock } from '@/shared/SliderBlock/SliderBlock'
 import { productService } from '@/shared/service/products.service'
+import { SliderBlock } from '@/widgets/slider/ui/SliderBlock'
 import { useQuery } from '@tanstack/react-query'
 
-export function HomePage() {
+export function NewAndSeller() {
 	const { data: items, isFetching: LoadingNews } = useQuery({
 		queryKey: ['news'],
 		queryFn: () => productService.getAllProducts({ newProduct: true })
@@ -15,7 +14,7 @@ export function HomePage() {
 	})
 
 	return (
-		<> 	
+		<>
 			{LoadingNews ? (
 				<div className=''>Загрузка</div>
 			) : (

@@ -1,5 +1,6 @@
 import { HeroSlide } from '@/shared/HeroSlider/HeroSlider'
-import { HomePage } from '@/widgets/slider/home'
+import { NewAndSeller } from '@/widgets/slider/NewAndSeller'
+
 import type { Metadata, Viewport } from 'next'
 
 export const viewport: Viewport = {
@@ -38,7 +39,7 @@ export default function Home() {
 	return (
 		<>
 			<HeroSlide />
-			<HomePage />
+			<NewAndSeller />
 		</>
 	)
 }
