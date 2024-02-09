@@ -3,7 +3,7 @@ import styles from '@/shared/styles/Slider.module.scss'
 import React from 'react'
 import { SwiperSlide } from 'swiper/react'
 import { OneCart } from '../OneCartCatalog/OneCart'
-import { SliderDefault } from '../Slider/Slider'
+import { SliderDefault } from '../SliderCore/Slider'
 import { ISliderBlockProduct } from '../types/Slider.interface'
 
 export const SliderBlock: React.FC<ISliderBlockProduct> = ({

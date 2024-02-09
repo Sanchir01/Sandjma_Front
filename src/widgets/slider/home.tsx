@@ -15,8 +15,7 @@ export function HomePage() {
 	})
 
 	return (
-		<>
-			<HeroSlide />
+		<> 	
 			{LoadingNews ? (
 				<div className=''>Загрузка</div>
 			) : (

@@ -19,6 +19,7 @@ const getProductsData = async () => {
 }
 
 export default async function Page() {
+	
 	const data = await getProductsData()
 
 	return <Catalog initialData={data} />
