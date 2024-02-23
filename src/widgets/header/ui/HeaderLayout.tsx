@@ -3,6 +3,7 @@ import { useBurger } from '@/Providers/store/useBurger'
 import { useMediaQuery } from '@/shared/hooks'
 import styles from '@/shared/styles/Header.module.scss'
 import { Button } from '@/shared/ui/button'
+import ShoppingCartHeader from '@/widgets/cart/Cart'
 import cn from 'clsx'
 import { Menu } from 'lucide-react'
 import { FC } from 'react'
@@ -17,7 +18,7 @@ export const LayoutHeader: FC<IHeaderLayout> = ({
 	logo,
 	actions,
 	profile,
-	nav,
+	nav
 }) => {
 	const isMedia1024 = useMediaQuery('(max-width:1024px)')
 	const toggleBurger = useBurger(state => state.setToggleBurger)
@@ -45,7 +46,7 @@ export const LayoutHeader: FC<IHeaderLayout> = ({
 					)}
 					{logo}
 					<div className={styles.header__right}>
-						<div className=''>Cart</div>
+						<ShoppingCartHeader />
 						{isMedia1024 ? (
 							<></>
 						) : (

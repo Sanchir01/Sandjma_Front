@@ -2,7 +2,7 @@ import { AddToFavorites } from '@/features/AddTofavorites/AddTofavorites'
 import styles from '@/shared/styles/Slider.module.scss'
 import React from 'react'
 import { SwiperSlide } from 'swiper/react'
-import { OneCart } from '../../../shared/OneCartCatalog/OneCart'
+import { OneCart } from '@/entities/product/ProductCart'
 import { SliderDefault } from '../../../shared/SliderCore/Slider'
 import { ISliderBlockProduct } from '../../../shared/types/Slider.interface'
 

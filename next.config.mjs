@@ -3,6 +3,9 @@ import { withSentryConfig } from '@sentry/nextjs'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	reactStrictMode: true,
+	env: {
+		GOOGLE_KEY_RECPTCHA: process.env.GOOGLE_KEY_RECPTCHA
+	},
 	images: {
 		remotePatterns: [
 			{
@@ -17,8 +20,7 @@ const nextConfig = {
 		locales: ['en', 'ru'],
 		defaultLocale: 'ru'
 	},
-	optimizeFonts: true,
-	compress: true
+	optimizeFonts: true
 }
 
 export default withSentryConfig(

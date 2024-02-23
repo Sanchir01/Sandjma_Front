@@ -5,6 +5,7 @@ import HeaderLogo from '@/widgets/header/ui/HeaderLogo'
 import HeaderNav from '@/widgets/header/ui/HeaderNav'
 import { HeaderProfile } from '@/widgets/header/ui/HeaderProfile'
 import { FC } from 'react'
+import ShoppingCartHeader from '../cart/Cart'
 export enum HeaderProfileEnum {
 	PRIVATE = 'private',
 	AUTH = 'auth',
@@ -18,6 +19,7 @@ export const Header: FC<{ variant: HeaderProfileEnum }> = ({ variant }) => (
 		profile={variant === HeaderProfileEnum.AUTH ? <></> : <HeaderProfile />}
 		actions={
 			<>
+				
 				<FavoritesLogo />
 				<ToggleTheme />
 			</>

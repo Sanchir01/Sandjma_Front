@@ -63,4 +63,11 @@
 	.menu__content {
 		@apply w-full;
 	}
+	.header {
+		&__right {
+			justify-self: end;
+
+			gap: 1px;
+		}
+	}
 }
