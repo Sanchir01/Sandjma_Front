@@ -8,6 +8,11 @@ query GetAllProductsDashboard($getAllProductInput: GetAllProductInput!) {
 			price
 			slug
 			productColorId
+			colors {
+				imageCss
+				id
+				name
+			}
 			size {
 				id
 				name

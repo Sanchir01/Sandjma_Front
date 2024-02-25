@@ -1,16 +1,16 @@
 'use client'
-import { productService } from '@/shared/service/products.service'
+import { useGetAllProducts } from '@/entities/product/api/useGetAllProducts'
 import { SliderBlock } from '@/widgets/slider/ui/SliderBlock'
-import { useQuery } from '@tanstack/react-query'
 
 export function NewAndSeller() {
-	const { data: items, isFetching: LoadingNews } = useQuery({
-		queryKey: ['news'],
-		queryFn: () => productService.getAllProducts({ newProduct: true })
-	})
-	const { data, isFetching: fetchingFavorites } = useQuery({
-		queryKey: ['favorites'],
-		queryFn: () => productService.getAllProducts({ seller: true })
+	const {
+		data: items,
+		isFetching: LoadingNews,
+		error
+	} = useGetAllProducts({ newProduct: true, page: '1' })
+	const { data, isFetching: fetchingFavorites } = useGetAllProducts({
+		seller: true,
+		page: '1'
 	})
 
 	return (
@@ -31,7 +31,7 @@ export function NewAndSeller() {
 					title='Популярное'
 				/>
 			)}
-			<div className=''></div>
+			<div className=''>sasdasd</div>
 		</>
 	)
 }

@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query'
 import { GetAllProductsDashboardQuery } from 'gql/gql/graphql'
 
 export interface IUseGetAllProducts extends IProductServicePropsGetAll {
-	initialData: GetAllProductsDashboardQuery
+	initialData?: GetAllProductsDashboardQuery
 }
 
 export const useGetAllProducts = ({
@@ -39,6 +39,5 @@ export const useGetAllProducts = ({
 				newProduct,
 				getProductByInsulation
 			}),
-		initialData,
-		enabled: !!initialData
+		initialData
 	})

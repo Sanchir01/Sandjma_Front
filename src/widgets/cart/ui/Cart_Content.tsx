@@ -1,5 +1,6 @@
 'use client'
 import useCartStore from '@/Providers/store/useCart'
+import CircleColor from '@/entities/product/ui/CircleColor'
 import { useStoreZustand } from '@/shared/hooks/useStoreZustand'
 import styles from '@/shared/styles/Cart.module.scss'
 import { Button } from '@/shared/ui'
@@ -34,16 +35,7 @@ const CartContent: FC = () => {
 							{cartItem.name}
 						</span>
 						<div className='flex gap-2 items-center'>
-							<span
-								className={cn(
-									'w-3 h-3 rounded-full dark:border-white border-2',
-									{
-										'border-2 border-[#999999] ':
-											cartItem.color.imageCss === '#fff'
-									}
-								)}
-								style={{ backgroundColor: cartItem.color?.imageCss }}
-							/>
+							<CircleColor imageCss={cartItem.color?.imageCss} />
 							<span className={styles.cart__color}>{cartItem.color?.name}</span>
 						</div>
 					</div>

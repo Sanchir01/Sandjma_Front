@@ -14,7 +14,7 @@ const GridCatalog = ({
 }) => {
 	const sorting = useFilters(state => state.sorting)
 	const [parent] = useAutoAnimate({ easing: 'ease-in-out', duration: 500 })
-	const { data, isFetching, isPending } = useGetAllProducts({
+	const { data, isFetching, isPending, isLoading } = useGetAllProducts({
 		page: '1',
 		initialData,
 		sort: sorting
@@ -22,7 +22,7 @@ const GridCatalog = ({
 
 	return (
 		<>
-			{isFetching ? (
+			{isLoading ? (
 				<div className={styles.catalog__items}>
 					{[...Array(10)].map((_, i) => (
 						<SkeletonCart key={i} />
@@ -38,6 +38,8 @@ const GridCatalog = ({
 							name={item.name}
 							slug={item.slug}
 							colorId={item.productColorId}
+							colors={item.colors}
+							productColorId={item.productColorId}
 						>
 							<AddToFavorites id={item.id} />
 						</OneCart>

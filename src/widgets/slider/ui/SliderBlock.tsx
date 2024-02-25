@@ -1,8 +1,8 @@
+import { OneCart } from '@/entities/product/ProductCart'
 import { AddToFavorites } from '@/features/AddTofavorites/AddTofavorites'
 import styles from '@/shared/styles/Slider.module.scss'
 import React from 'react'
 import { SwiperSlide } from 'swiper/react'
-import { OneCart } from '@/entities/product/ProductCart'
 import { SliderDefault } from '../../../shared/SliderCore/Slider'
 import { ISliderBlockProduct } from '../../../shared/types/Slider.interface'
 
@@ -13,7 +13,7 @@ export const SliderBlock: React.FC<ISliderBlockProduct> = ({
 }) => (
 	<section className={styles.slider}>
 		<h2 className={styles.slider__title}>{title}</h2>
-		<SliderDefault slidesPerView={4.5} spaceBetween={15} loop={loop}>
+		<SliderDefault slidesPerView={5.1} spaceBetween={10} loop={loop}>
 			{products.map(item => (
 				<SwiperSlide key={item.id}>
 					<OneCart
@@ -23,6 +23,8 @@ export const SliderBlock: React.FC<ISliderBlockProduct> = ({
 						name={item.name}
 						slug={item.slug}
 						colorId={item.productColorId}
+						colors={item.colors || []}
+						productColorId={item.productColorId}
 					>
 						<AddToFavorites id={item.id} />
 					</OneCart>

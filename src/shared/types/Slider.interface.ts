@@ -15,6 +15,7 @@ export interface ISize {
 	name: string
 }
 export interface IColors {
+	__typename?: 'ReturnColors' | undefined
 	id: number
 	imageCss: string
 	name: string
