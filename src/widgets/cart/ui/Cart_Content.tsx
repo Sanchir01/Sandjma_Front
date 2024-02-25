@@ -5,6 +5,7 @@ import { useStoreZustand } from '@/shared/hooks/useStoreZustand'
 import styles from '@/shared/styles/Cart.module.scss'
 import { Button } from '@/shared/ui'
 import { cn } from '@/shared/utils/utils'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { Trash } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,11 +13,16 @@ import { FC } from 'react'
 const CartContent: FC = () => {
 	const cartContetn = useStoreZustand(useCartStore, state => state.cart)
 	const toggleItem = useCartStore(state => state.toggleCartItem)
+	const [parent] = useAutoAnimate({ easing: 'ease-in-out', duration: 400 })
 	if (cartContetn === undefined) {
 		return 'Корзина пуста'
 	}
 	return cartContetn.map(cartItem => (
-		<div key={cartItem.id} className={cn(styles.cart__item, 'px-3')}>
+		<div
+			ref={parent}
+			key={cartItem.id}
+			className={cn(styles.cart__item, 'px-3')}
+		>
 			<Link href={`/catalog/${cartItem.slug}/${cartItem.productColorId}`}>
 				<Image
 					src={cartItem.image}

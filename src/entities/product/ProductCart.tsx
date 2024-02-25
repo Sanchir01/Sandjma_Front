@@ -25,7 +25,7 @@ export const OneCart: FC<IOneCartProps> = ({
 	productColorId
 }) => {
 	console.log()
-	debugger
+
 	return (
 		<article className={cn(st.catalog__items__article, className)}>
 			<Link

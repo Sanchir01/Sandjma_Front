@@ -6,7 +6,6 @@ import LayoutCart from './ui/Layout_cart'
 const ShoppingCartHeader: FC = () => (
 	<LayoutCart
 		content={<CartContent />}
-		footerTrigger={undefined}
 		trigger={<ShoppingCart className='cursor-pointer' />}
 	/>
 )
