@@ -1,6 +1,5 @@
-import AddToCart from '@/features/AddToCart/addToCart'
 import { productService } from '@/shared/service/products.service'
-import Image from 'next/image'
+import { OneProduct } from '@/widgets/oneproduct/OneProduct'
 export async function generateStaticParams() {
 	const data = await productService.getAllProducts({ page: '1' })
 
@@ -57,31 +56,25 @@ export default async function Page({
 }) {
 	const { product } = params
 
-	const data = await productService.getOneProduct({
+	const { getProductByColor } = await productService.getOneProduct({
 		slug: decodeURIComponent(product[0]),
 		colorId: Number(product[1])
 	})
-	console.log(data.getProductByColor)
-	return (
-		<div>
-			{data.getProductByColor.map(item => (
-				<div key={item.id}>
-					<div className=''>{item.name}</div>
-					<Image alt='' width={400} height={400} src={item.images[0]} />
-					<AddToCart
-						cart={{
-							color: item.colors[0],
-							size: item.size[0],
-							id: item.id,
-							image: item.images[0],
-							name: item.name,
-							price: item.price,
-							slug: item.slug,
-							productColorId: item.productColorId
-						}}
-					/>
-				</div>
-			))}
-		</div>
-	)
+	console.log(getProductByColor[0].colors)
+
+	return getProductByColor.map(item => (
+		<OneProduct
+			key={item.id}
+			categoryId={item.categoryId.toString()}
+			description={item.description}
+			id={item.id}
+			images={item.images}
+			name={item.name}
+			price={item.price}
+			slug={item.slug}
+			productColorId={item.productColorId}
+			size={item.size}
+			colors={item.colors}
+		/>
+	))
 }

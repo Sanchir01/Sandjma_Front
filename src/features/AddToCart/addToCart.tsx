@@ -2,8 +2,15 @@
 import useCartStore, { ICart } from '@/Providers/store/useCart'
 import { Button } from '@/shared/ui'
 
-const AddToCart = ({ cart }: { cart: Omit<ICart, 'quantity'> }) => {
+const AddToCart = ({
+	cart,
+	text
+}: {
+	cart: Omit<ICart, 'quantity'>
+	text: string
+}) => {
 	const toggleCart = useCartStore(state => state.toggleCartItem)
+
 	return (
 		<Button
 			onClick={() =>
@@ -20,7 +27,7 @@ const AddToCart = ({ cart }: { cart: Omit<ICart, 'quantity'> }) => {
 				})
 			}
 		>
-			Добавить в корзину )))
+			{text}
 		</Button>
 	)
 }

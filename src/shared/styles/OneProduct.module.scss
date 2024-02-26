@@ -1,9 +1,10 @@
 .oneProduct {
+	padding-top: 43px;
 	&__wrapper {
 		display: flex;
-		padding-top: 43px;
 		gap: 30px;
 		justify-content: center;
+		@apply px-5;
 	}
 
 	&__images {
@@ -11,7 +12,7 @@
 		grid-template-columns: repeat(2, 1fr);
 		grid-gap: 10px;
 	}
-	&__content {
+	&__right {
 		display: flex;
 		flex-direction: column;
 		gap: 70px;

@@ -6,6 +6,7 @@ import { createJSONStorage, persist } from 'zustand/middleware'
 
 export interface IUserProps {
 	id: number
+	email: string
 	isAdmin: boolean
 }
 

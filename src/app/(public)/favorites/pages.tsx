@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-	title: 'Order',
-	description: 'Order Sandjma'
+	title: 'Favorites',
+	description: 'Favorites page'
 }
 
 export default function Page() {
-	return <div>asdawdawdasdwawd</div>
+	return <div>Favorites</div>
 }

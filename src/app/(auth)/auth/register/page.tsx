@@ -11,20 +11,16 @@ import {
 	FormMessage
 } from '@/shared/ui/form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
-import ReCAPTCHA from 'react-google-recaptcha'
+
 import { useForm } from 'react-hook-form'
 import InputMask from 'react-input-mask'
 export default function RegisterPage() {
 	const form = useForm<IInputRegister>({
 		resolver: zodResolver(registerSchema),
 		defaultValues: {
-			phone: '+7 (***) ***-**-**',
-			email: '',
-			name: ''
+			phone: '+7 (***) ***-**-**'
 		}
 	})
-	const [showCaptcha, setShowCaptcha] = useState(false)
 
 	const onSubmit = (data: IInputRegister) => {
 		console.log(data)
@@ -92,15 +88,8 @@ export default function RegisterPage() {
 								</FormItem>
 							)}
 						/>
-						<ReCAPTCHA
-							sitekey={process.env.GOOGLE_KEY_RECPTCHA as string}
-							onChange={() => setShowCaptcha(true)}
-						/>
-						<Button
-							disabled={showCaptcha === false}
-							type='submit'
-							className='w-full'
-						>
+
+						<Button type='submit' className='w-full'>
 							Submit
 						</Button>
 					</form>

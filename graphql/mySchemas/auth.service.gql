@@ -4,6 +4,7 @@ mutation Login($loginInput: LoginInput!) {
 		refreshToken
 		user {
 			id
+			email
 			isAdmin
 		}
 	}

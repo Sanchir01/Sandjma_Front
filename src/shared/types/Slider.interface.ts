@@ -29,8 +29,8 @@ export interface IOneProduct {
 	price: number
 	slug: string
 	productColorId: number
-	colors?: IColors[]
-	size?: ISize[]
+	colors: IColors[]
+	size: ISize[]
 }
 
 export interface IFavoritesGrid {

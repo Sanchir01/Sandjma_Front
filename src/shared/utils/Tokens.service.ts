@@ -7,14 +7,13 @@ export enum EnumTokens {
 
 export const AuthServiceTokens = {
 	saveTokenToStorage: (refreshToken: string) => {
-		const oneDay = 2 * 24 * 60 * 60 * 1000
+		const oneDay = 1 * 24 * 60 * 60 * 1000
 		const expirationDate = new Date(Date.now() + oneDay)
 		Cookies.set(EnumTokens.REFRESH_TOKEN, refreshToken, {
 			expires: expirationDate,
 			domain: `localhost`,
 			sameSite: 'Strict',
-			secure: false,
-			path: '/'
+			secure: true
 		})
 	},
 	getRefreshToken: () => Cookies.get(EnumTokens.REFRESH_TOKEN),
