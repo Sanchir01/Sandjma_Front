@@ -1,3 +1,4 @@
+import Order from '@/widgets/order/Order'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -5,5 +6,5 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-	return <div>Order</div>
+	return <Order />
 }

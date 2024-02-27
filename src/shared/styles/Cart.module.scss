@@ -7,7 +7,7 @@
 		grid-template-columns: repeat(2, 1fr);
 	}
 	&__item {
-		@apply border-b-[1px] border-opacity-25 border-black py-5 flex gap-[30px] w-full;
+		@apply border-b-[1px] border-opacity-25 border-black py-10 flex gap-[30px] w-full;
 	}
 	&__item:last-child {
 		@apply border-none;

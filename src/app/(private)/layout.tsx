@@ -9,12 +9,13 @@ import { ReactNode, useEffect } from 'react'
 
 const layout = ({ children }: { children: ReactNode }) => {
 	const refreshToken = AuthServiceTokens.getRefreshToken()
-	const [checkAuth, logout] = useUser(state => [state.checkAuth, state.logout])
+	const checkAuth = useUser(state => state.checkAuth)
 	const user = useStoreZustand(useUser, state => state.user)
 	console.log(refreshToken)
-	if (refreshToken === undefined) {
-		checkAuth()
-	}
+
+	useEffect(() => {
+		refreshToken === undefined && checkAuth()
+	}, [checkAuth, refreshToken])
 	useEffect(() => {
 		user === null && AuthServiceTokens.removerTokenFromStorage()
 	}, [user])

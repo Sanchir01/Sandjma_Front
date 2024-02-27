@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 		'og:image': 'https://i.ibb.co/7JXBQPX/bg.jpg',
 		'og:image:secure_url': 'https://i.ibb.co/7JXBQPX/bg.jpg',
 		'og:image:type': 'image/jpg',
-		'og:image:width': '1200',
+		'og:image:width': '800',
 		'og:image:height': '630',
 		'og:url': 'https://frontsandjma.vercel.app/'
 	},

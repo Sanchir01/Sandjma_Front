@@ -18,6 +18,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import InputMask from 'react-input-mask'
 export default function LoginPage() {
 	const form = useForm<IInputLogin>({
@@ -40,7 +41,7 @@ export default function LoginPage() {
 				r => (
 					AuthServiceTokens.saveTokenToStorage(r.login.refreshToken),
 					userStorage(r.login.user),
-					console.log(r)
+					toast.success('Удачная авторизация')
 				)
 			)
 			.then(() => replace('/catalog'))
