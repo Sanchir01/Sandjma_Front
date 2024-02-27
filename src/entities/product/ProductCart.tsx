@@ -3,7 +3,7 @@ import styles from '@/shared/styles/Slider.module.scss'
 import { IEntityCartProps } from '@/shared/types/OneCart.interface'
 import { IColors } from '@/shared/types/Slider.interface'
 import { cn } from '@/shared/utils/utils'
-import ImagesGallery from '@/widgets/catalog/ui/ImagesGallery'
+import ImagesGallery from '@/widgets/catalog/ui/CatalogImagesGallery'
 import Link from 'next/link'
 import { FC } from 'react'
 import CircleColor from './ui/CircleColor'
@@ -25,7 +25,7 @@ export const OneCart: FC<IOneCartProps> = ({
 	productColorId
 }) => {
 	console.log()
-
+	const isExistColor = colors.find(item => item.id === productColorId)
 	return (
 		<article className={cn(st.catalog__items__article, className)}>
 			<Link
@@ -38,7 +38,11 @@ export const OneCart: FC<IOneCartProps> = ({
 				<div className='flex flex-col gap-1'>
 					<div className={st.catalog__items__article__name}>{name}</div>
 					<div className={st.catalog__items__article__price}>{price}</div>
-					<CircleColor imageCss={colors[productColorId - 1]?.imageCss} />
+					{isExistColor ? (
+						<CircleColor imageCss={isExistColor.imageCss} />
+					) : (
+						<></>
+					)}
 				</div>
 				{children}
 			</div>

@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	reactStrictMode: true,
-	env: {
-		GOOGLE_KEY_RECPTCHA: process.env.GOOGLE_KEY_RECPTCHA
-	},
 	images: {
 		remotePatterns: [
 			{

@@ -13,12 +13,14 @@ export interface IHeaderLayout {
 	nav?: React.ReactNode
 	profile?: React.ReactNode
 	actions?: React.ReactNode
+	admin?: React.ReactNode
 }
 export const LayoutHeader: FC<IHeaderLayout> = ({
 	logo,
 	actions,
 	profile,
-	nav
+	nav,
+	admin
 }) => {
 	const isMedia1024 = useMediaQuery('(max-width:1024px)')
 	const toggleBurger = useBurger(state => state.setToggleBurger)
@@ -53,6 +55,7 @@ export const LayoutHeader: FC<IHeaderLayout> = ({
 							<>
 								{actions}
 								{profile}
+								{admin}
 							</>
 						)}
 					</div>

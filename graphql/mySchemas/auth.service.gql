@@ -23,6 +23,11 @@ mutation Register($authInput: AuthInput!) {
 
 mutation GetNewTokens {
 	newToken {
+		user {
+			email
+			id
+			isAdmin
+		}
 		refreshToken
 		accessToken
 	}

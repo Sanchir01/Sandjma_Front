@@ -32,8 +32,7 @@ export const metadata: Metadata = {
 		'og:image:height': '630',
 		'og:url': 'https://frontsandjma.vercel.app/'
 	},
-	creator: 'Sanchir team',
-	icons: { icon: '../favicon.ico' }
+	creator: 'Sanchir team'
 }
 export default function Home() {
 	return (

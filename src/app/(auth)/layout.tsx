@@ -1,9 +1,24 @@
+'use client'
+import { useUser } from '@/Providers/store/useUser'
+import { useStoreZustand } from '@/shared/hooks/useStoreZustand'
+import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
 import { Footer } from '@/widgets/footer/Footer'
 import { Header, HeaderProfileEnum } from '@/widgets/header/Header'
+import { redirect } from 'next/navigation'
+import { NextRequest } from 'next/server'
 import { FC } from 'react'
 
-const Layout: FC<{ children: React.ReactNode }> = ({ children }) => {
-	const ap = ''
+const Layout: FC<{ children: React.ReactNode; request: NextRequest }> = ({
+	children
+}) => {
+	const refreshToken = AuthServiceTokens.getRefreshToken()
+	const user = useStoreZustand(useUser, state => state.user)
+	if (refreshToken) {
+		redirect('/catalog')
+	}
+	if (user) {
+		redirect('/catalog')
+	}
 	return (
 		<>
 			<Header variant={HeaderProfileEnum.AUTH} />

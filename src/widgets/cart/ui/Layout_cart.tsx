@@ -38,27 +38,35 @@ const LayoutCart: FC<ICartLayout> = ({ content }) => {
 					)}
 				</div>
 			</SheetTrigger>
-			<SheetContent
-				className={cn(
-					'p-0 max-[650px]:w-full min-[640px]:max-w-[600px]',
-					styles.scroll
-				)}
-			>
-				<SheetHeader className='border-b-2 border-black pt-4 dark:border-white'>
-					<div className='px-4 pb-4 '>
-						<SheetTitle>Корзина</SheetTitle>
-						<SheetDescription>Ваша корзина</SheetDescription>
-					</div>
-				</SheetHeader>
-				{content}
-				<SheetFooter className='mt-5 px-3'>
-					<SheetClose asChild>
-						<Button className='w-full' onClick={() => push('/order')}>
-							оформить заказ
-						</Button>
-					</SheetClose>
-				</SheetFooter>
-			</SheetContent>
+			{
+				<SheetContent
+					className={cn(
+						'p-0 max-[650px]:w-full min-[640px]:max-w-[600px]',
+						styles.scroll
+					)}
+				>
+					<SheetHeader className='border-b-2 border-black pt-4 dark:border-white'>
+						<div className='px-4 pb-4 '>
+							<SheetTitle>Корзина</SheetTitle>
+							<SheetDescription>Ваша корзина</SheetDescription>
+						</div>
+					</SheetHeader>
+					{cart?.length !== 0 ? (
+						<>
+							{content}
+							<SheetFooter className='mt-5 px-3'>
+								<SheetClose asChild>
+									<Button className='w-full' onClick={() => push('/order')}>
+										оформить заказ
+									</Button>
+								</SheetClose>
+							</SheetFooter>
+						</>
+					) : (
+						<div className='mt-2 text-xl'>Корзина Пуста</div>
+					)}
+				</SheetContent>
+			}
 		</Sheet>
 	)
 }

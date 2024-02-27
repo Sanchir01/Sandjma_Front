@@ -3,11 +3,11 @@
 		background-repeat: no-repeat;
 		background-position: top center;
 		background-size: cover;
-		min-height: 100dvh;
+		min-height: 100svh;
 
 		&__link {
-			min-height: 100dvh;
-			padding-top: 50dvh;
+			min-height: 100svh;
+			padding-top: 50svh;
 			@apply flex flex-col items-center;
 		}
 		&__title {

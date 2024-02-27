@@ -19,7 +19,7 @@ export interface IUserStore {
 export const useUser = create<IUserStore>()(
 	persist(
 		(set, get) => ({
-			user: null || ({} as IUserProps),
+			user: null,
 			setUser: (data: IUserProps) => set({ user: data }),
 			logout: () => (
 				set({ user: null }), AuthServiceTokens.removerTokenFromStorage()
@@ -28,6 +28,7 @@ export const useUser = create<IUserStore>()(
 				try {
 					const resp = await authService.getNewToken()
 					AuthServiceTokens.saveTokenToStorage(resp.newToken.refreshToken)
+					set({ user: resp.newToken.user })
 				} catch (er) {
 					const { logout } = get()
 					logout()

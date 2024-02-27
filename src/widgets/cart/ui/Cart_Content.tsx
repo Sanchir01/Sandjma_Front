@@ -45,10 +45,11 @@ const CartContent: FC = () => {
 									</span>
 								</div>
 							</div>
+							<div className=''>{cartItem.size.name}</div>
 							<div
 								className={cn('flex gap-2 items-center', styles.cart__quantity)}
 							>
-								{cartItem.quantity}
+								Количество {cartItem.quantity}
 							</div>
 						</div>
 						<div className='flex flex-col justify-self-end ml-auto items-center'>
