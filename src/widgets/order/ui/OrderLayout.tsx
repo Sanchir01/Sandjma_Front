@@ -15,6 +15,13 @@ const OrderLayout: FC = () => {
 			<div className='wrapper '>
 				{cart !== undefined ? (
 					<>
+						<div className={styles.order__wrapper}>
+							<Content />
+							<OrderForm />
+						</div>
+					</>
+				) : (
+					<>
 						<div className='flex flex-col justify-end items-center gap-5'>
 							<div className=''>Корзина Пуста</div>
 							<Link href={'./catalog'}>
@@ -25,11 +32,6 @@ const OrderLayout: FC = () => {
 							<RecommendedSlider />
 						</div>
 					</>
-				) : (
-					<div className={styles.order__wrapper}>
-						<Content />
-						<OrderForm />
-					</div>
 				)}
 			</div>
 		</section>

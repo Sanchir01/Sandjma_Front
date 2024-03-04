@@ -5,12 +5,9 @@ import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
 import { Footer } from '@/widgets/footer/Footer'
 import { Header, HeaderProfileEnum } from '@/widgets/header/Header'
 import { redirect } from 'next/navigation'
-import { NextRequest } from 'next/server'
 import { FC } from 'react'
 
-const Layout: FC<{ children: React.ReactNode; request: NextRequest }> = ({
-	children
-}) => {
+const Layout: FC<{ children: React.ReactNode }> = ({ children }) => {
 	const refreshToken = AuthServiceTokens.getRefreshToken()
 	const user = useStoreZustand(useUser, state => state.user)
 	if (refreshToken) {

@@ -59,7 +59,8 @@ const nextConfig = {
 		locales: ['en', 'ru'],
 		defaultLocale: 'ru'
 	},
-	optimizeFonts: true
+	optimizeFonts: true,
+	swcMinify: true
 }
 
 export default nextConfig

@@ -1,5 +1,6 @@
 import { HeroSlide } from '@/shared/HeroSlider/HeroSlider'
-import { NewAndSeller } from '@/widgets/slider/NewAndSeller'
+import NewAndSeller from '@/widgets/NewAndSeller/NewAndSeller'
+
 
 import type { Metadata, Viewport } from 'next'
 

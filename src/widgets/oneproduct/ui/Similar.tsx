@@ -1,6 +1,6 @@
 'use client'
 import { useGetAllProducts } from '@/entities/product/api/useGetAllProducts'
-import { SliderBlock } from '@/widgets/slider/ui/SliderBlock'
+import { SliderBlock } from '@/entities/SliderBlock/SliderBlock'
 import { FC } from 'react'
 
 const SimilarSlider: FC<{ categoryId: string }> = ({ categoryId }) => {

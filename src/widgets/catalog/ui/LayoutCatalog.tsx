@@ -5,17 +5,20 @@ export interface ICatalogProps {
 	sorting?: ReactNode
 	grid?: ReactNode
 }
-export const LayoutCatalog: FC<ICatalogProps> = ({ grid, sorting }) => {
+export const LayoutCatalog: FC<ICatalogProps> = ({
+	grid,
+	sorting,
+	filters
+}) => {
 	const a = ''
 	return (
 		<section className={styles.catalog}>
 			<div className='container'>
-				<div className=''>
-					<div className={styles.catalog__filters}>
-						<div className={styles.catalog__sorting}></div>
-						{sorting}
-					</div>
+				<div className={styles.catalog__filters}>
+					{filters}
+					<div className='max-[998px]:hidden'>{sorting}</div>
 				</div>
+
 				{grid}
 			</div>
 		</section>

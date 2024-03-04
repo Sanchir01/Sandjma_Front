@@ -73,7 +73,15 @@ const Actions: FC<IOneProductActions> = ({
 					}}
 					text={isExistCart ? 'удалить из корзины' : 'добавить в корзину'}
 				/>
-				<AddToFavorites id={id} />
+				<AddToFavorites
+					id={id}
+					colors={colors}
+					images={images}
+					name={name}
+					price={0}
+					slug={slug}
+					productColorId={productColorId}
+				/>
 			</div>
 		</>
 	)

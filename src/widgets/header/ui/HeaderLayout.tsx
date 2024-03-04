@@ -33,33 +33,29 @@ export const LayoutHeader: FC<IHeaderLayout> = ({
 		>
 			<div className='container'>
 				<div className={styles.header__content}>
-					{isMedia1024 ? (
-						<Button
-							aria-label='Открыть бургер меню'
-							className='pointer '
-							onClick={toggleBurger}
-							variant={'ghost'}
-							size={'icon'}
-						>
-							<Menu />
-						</Button>
-					) : (
-						nav
-					)}
+					<Button
+						aria-label='Открыть бургер меню'
+						className='pointer  lg:hidden'
+						onClick={toggleBurger}
+						variant={'ghost'}
+						size={'icon'}
+					>
+						<Menu />
+					</Button>
+
+					{nav}
+
 					{logo}
 					<div className={styles.header__right}>
 						<ShoppingCartHeader />
-						{isMedia1024 ? (
-							<></>
-						) : (
-							<>
-								{actions}
-								{profile}
-								{admin}
-							</>
-						)}
+
+						<div className='max-[998px]:hidden flex gap-2 items-center'>
+							{actions}
+							{profile}
+							{admin}
+						</div>
 					</div>
-					{isMedia1024 ? <BurgerMenu /> : <></>}
+					<BurgerMenu />
 				</div>
 			</div>
 		</header>

@@ -9,7 +9,7 @@
 		}
 	}
 	&__filters {
-		@apply flex justify-between items-center mb-10;
+		@apply flex justify-between items-center mb-10 gap-2;
 		&__title {
 			@apply flex gap-2 items-center;
 		}

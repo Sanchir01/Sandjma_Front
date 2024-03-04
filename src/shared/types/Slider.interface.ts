@@ -7,6 +7,7 @@ export interface ISliderProps {
 	children?: ReactNode
 	BreakIsExist?: boolean
 	centerSlide?: boolean
+	bullets?: boolean
 }
 
 export interface ISize {
@@ -22,7 +23,6 @@ export interface IColors {
 }
 export interface IOneProduct {
 	__typename?: string | undefined
-
 	id: number
 	images: string[]
 	name: string

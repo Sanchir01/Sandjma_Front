@@ -7,7 +7,7 @@ import { FC, useEffect, useState } from 'react'
 export const LogoIcon: FC = (props: React.SVGProps<SVGSVGElement>) => {
 	const isMedia960 = useMediaQuery('(min-width: 1200px)')
 	const isMedia640 = useMediaQuery('(min-width: 640px)')
-	const [themeValue, setThemeValue] = useState<boolean>()
+	const [themeValue, setThemeValue] = useState<boolean>(true)
 	const { theme } = useTheme()
 	useEffect(() => {
 		theme === 'dark' ? setThemeValue(true) : setThemeValue(false)
@@ -29,6 +29,7 @@ export const LogoIcon: FC = (props: React.SVGProps<SVGSVGElement>) => {
 			<rect x='76.5' y='3' width='21' height='21.1759' fill='url(#pattern0)' />
 			{themeValue ? (
 				<defs>
+					
 					<pattern
 						id='pattern0'
 						patternContentUnits='objectBoundingBox'

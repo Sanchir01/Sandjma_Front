@@ -12,19 +12,11 @@
 	&__item:last-child {
 		@apply border-none;
 	}
-	&__item:last-child {
-		@apply border-none;
-	}
-	&__image {
-	}
 }
 
 @media (max-width: 413px) {
 	.cart {
-		&__image {
-			width: 130px;
-			height: 140px;
-		}
+		
 		&__name {
 			font-size: 14px;
 		}

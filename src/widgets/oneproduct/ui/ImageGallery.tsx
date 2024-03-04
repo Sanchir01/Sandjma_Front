@@ -11,9 +11,10 @@ const ImageGallery: FC<{ images: string[] }> = ({ images }) => {
 	return isMedia1024 ? (
 		<div className='flex justify-center items-center'>
 			<SliderDefault
+				bullets
 				centerSlide={true}
 				BreakIsExist={false}
-				slidesPerView={1.1}
+				slidesPerView={1}
 				spaceBetween={15}
 			>
 				{images.map((image, i) => (

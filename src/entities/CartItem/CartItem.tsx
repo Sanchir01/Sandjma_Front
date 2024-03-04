@@ -43,7 +43,11 @@ const CartItem: FC<ICartProps> = ({ cartItem, children }) => {
 					</div>
 				</div>
 				<div className='flex flex-col justify-self-end ml-auto items-center'>
-					<Button variant={'default'} onClick={() => toggleItem(cartItem)}>
+					<Button
+						className='w-full px-0'
+						variant={'default'}
+						onClick={() => toggleItem(cartItem)}
+					>
 						<Trash />
 					</Button>
 				</div>

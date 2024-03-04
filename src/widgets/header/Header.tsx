@@ -1,5 +1,6 @@
 import { ToggleTheme } from '@/features/themesToggle/toggle-theme'
-import { FavoritesLogo } from '@/shared/icons/favorites'
+
+import FavoritesLogo from '@/shared/icons/Favorites/FavoritesLogo'
 import { LayoutHeader } from '@/widgets/header/ui/HeaderLayout'
 import HeaderLogo from '@/widgets/header/ui/HeaderLogo'
 import HeaderNav from '@/widgets/header/ui/HeaderNav'

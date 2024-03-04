@@ -3,8 +3,8 @@ import { AddToFavorites } from '@/features/AddTofavorites/AddTofavorites'
 import styles from '@/shared/styles/Slider.module.scss'
 import React from 'react'
 import { SwiperSlide } from 'swiper/react'
-import { SliderDefault } from '../../../shared/SliderCore/Slider'
-import { ISliderBlockProduct } from '../../../shared/types/Slider.interface'
+import { SliderDefault } from '../../shared/SliderCore/Slider'
+import { ISliderBlockProduct } from '../../shared/types/Slider.interface'
 
 export const SliderBlock: React.FC<ISliderBlockProduct> = ({
 	products = [],
@@ -26,7 +26,15 @@ export const SliderBlock: React.FC<ISliderBlockProduct> = ({
 						colors={item.colors || []}
 						productColorId={item.productColorId}
 					>
-						<AddToFavorites id={item.id} />
+						<AddToFavorites
+							id={item.id}
+							name={item.name}
+							price={item.price}
+							slug={item.slug}
+							productColorId={item.productColorId}
+							images={item.images}
+							colors={item.colors}
+						/>
 					</OneCart>
 				</SwiperSlide>
 			))}

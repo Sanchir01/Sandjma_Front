@@ -32,7 +32,7 @@ const LayoutCart: FC<ICartLayout> = ({ content }) => {
 					{cart?.length === 0 ? (
 						<></>
 					) : (
-						<span className='absolute top-1 left-[9px] text-[10px]'>
+						<span className='absolute top-1 left-[10px] text-[10px]'>
 							{cart?.length}
 						</span>
 					)}

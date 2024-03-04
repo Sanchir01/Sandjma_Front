@@ -16,7 +16,7 @@ export const OrderForm: FC = () => {
 		<div
 			className={cn(
 				styles.order__form,
-				'border rounded-lg shadow p-4 h-[400px] min-w-[500px]'
+				'border rounded-lg shadow p-4 h-[470px] min-w-[500px]'
 			)}
 		>
 			<h2 className='text-2xl font-semibold'>Ваш заказ</h2>

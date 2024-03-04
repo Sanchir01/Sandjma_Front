@@ -1,9 +1,10 @@
 import { useBurger } from '@/Providers/store/useBurger'
 import { ToggleTheme } from '@/features/themesToggle/toggle-theme'
 import { header } from '@/shared/constants/header'
-import { FavoritesLogo } from '@/shared/icons/favorites'
+
 import styles from '@/shared/styles/Header.module.scss'
 
+import FavoritesLogo from '@/shared/icons/Favorites/FavoritesLogo'
 import cn from 'clsx'
 import Link from 'next/link'
 import { FC } from 'react'
@@ -14,10 +15,9 @@ export const BurgerMenu: FC = () => {
 	const [burger, toggleBurger] = useBurger(
 		useShallow(state => [state.toggleBurger, state.setToggleBurger])
 	)
-
 	return (
 		<div
-			className={cn(styles.menu, burger ? styles.menu__active : '')}
+			className={cn(styles.menu, burger ? styles.menu__active : 'lg:hidden')}
 			onClick={toggleBurger}
 		>
 			<div className={styles.menu__content} onClick={e => e.stopPropagation()}>
@@ -33,7 +33,7 @@ export const BurgerMenu: FC = () => {
 			</div>
 			<div className={styles.menu__footer}>
 				<div className='px-10 py-2 flex items-center justify-around'>
-					<FavoritesLogo color='white' href={'/favorites'} />
+					<FavoritesLogo />
 					<ToggleTheme />
 					<HeaderProfile />
 				</div>

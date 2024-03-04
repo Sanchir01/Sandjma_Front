@@ -7,22 +7,27 @@ import { AddToFavorites } from '@/features/AddTofavorites/AddTofavorites'
 import styles from '@/shared/styles/Catalog.module.scss'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { GetAllProductsDashboardQuery } from 'gql/gql/graphql'
+import { useShallow } from 'zustand/react/shallow'
 const GridCatalog = ({
 	initialData
 }: {
 	initialData: GetAllProductsDashboardQuery
 }) => {
-	const sorting = useFilters(state => state.sorting)
+	const [sorting, category, color] = useFilters(
+		useShallow(state => [state.sorting, state.category, state.color])
+	)
 	const [parent] = useAutoAnimate({ easing: 'ease-in-out', duration: 500 })
-	const { data, isFetching, isPending, isLoading } = useGetAllProducts({
+	const { data, isFetching } = useGetAllProducts({
 		page: '1',
 		initialData,
-		sort: sorting
+		sort: sorting,
+		categoryId: category,
+		colorId: Number(color)
 	})
 
 	return (
 		<>
-			{isLoading ? (
+			{isFetching ? (
 				<div className={styles.catalog__items}>
 					{[...Array(10)].map((_, i) => (
 						<SkeletonCart key={i} />
@@ -41,7 +46,15 @@ const GridCatalog = ({
 							colors={item.colors}
 							productColorId={item.productColorId}
 						>
-							<AddToFavorites id={item.id} />
+							<AddToFavorites
+								id={item.id}
+								colors={item.colors}
+								images={item.images}
+								name={item.name}
+								price={item.price}
+								slug={item.slug}
+								productColorId={item.productColorId}
+							/>
 						</OneCart>
 					))}
 				</div>

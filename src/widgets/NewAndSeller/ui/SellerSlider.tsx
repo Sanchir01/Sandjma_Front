@@ -3,18 +3,18 @@ import { useGetAllProducts } from '@/entities/product/api/useGetAllProducts'
 import { SliderBlock } from '@/entities/SliderBlock/SliderBlock'
 import { FC } from 'react'
 
-const RecommendedSlider: FC = () => {
-	const { data, isLoading } = useGetAllProducts({ page: '1', seller: true })
-	return isLoading ? (
-		<></>
+const SellerSlider: FC = () => {
+	const { data, isFetching } = useGetAllProducts({ page: '1', seller: true })
+	return isFetching ? (
+		<>Loading</>
 	) : (
 		data && (
 			<SliderBlock
-				title={'Рекомендуемые'}
+				title={'хиты'}
 				products={data?.getAllProducts.products}
 			/>
 		)
 	)
 }
 
-export default RecommendedSlider
+export default SellerSlider
