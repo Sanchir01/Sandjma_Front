@@ -1,5 +1,4 @@
 .footer {
-	margin-top: 100px;
 	background-color: #c2c7da;
 
 	&__container {
@@ -53,7 +52,6 @@
 }
 @media screen and (max-width: 1280px) {
 	.footer {
-		margin-top: 40px;
 		&__container {
 			display: flex;
 			padding: 20px;

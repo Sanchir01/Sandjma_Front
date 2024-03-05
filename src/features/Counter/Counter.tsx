@@ -1,4 +1,5 @@
 import useCartStore from '@/Providers/store/useCart'
+import styles from '@/shared/styles/Cart.module.scss'
 import { IColors, ISize } from '@/shared/types/Slider.interface'
 import { Button } from '@/shared/ui'
 import cn from 'clsx'
@@ -22,17 +23,17 @@ const Counter: FC<{
 				size={'icon'}
 				disabled={quantity === 1}
 				onClick={() => minus(id, size, color)}
-				className='rounded '
+				className={cn('rounded ', styles.cart__minus)}
 			>
-				<Minus />
+				<Minus size={14} />
 			</Button>
 			<div className='p-1'>{quantity}</div>
 			<Button
 				size={'icon'}
 				onClick={() => plus(id, size, color)}
-				className='rounded '
+				className={cn('rounded  ', styles.cart__plus)}
 			>
-				<Plus />
+				<Plus size={14} />
 			</Button>
 		</div>
 	)

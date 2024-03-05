@@ -11,7 +11,7 @@ export const header = [
 	},
 	{
 		id: 2,
-		title: 'помощь',
-		href: '/help'
+		title: 'О бренде',
+		href: '/about'
 	}
 ]

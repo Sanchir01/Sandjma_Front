@@ -41,14 +41,17 @@ const LayoutCart: FC<ICartLayout> = ({ content }) => {
 			{
 				<SheetContent
 					className={cn(
-						'p-0 max-[650px]:w-full min-[640px]:max-w-[600px]',
+						'p-0 pb-2 max-[650px]:w-full min-[640px]:max-w-[600px]',
 						styles.scroll
 					)}
 				>
 					<SheetHeader className='border-b-2 border-black pt-4 dark:border-white'>
-						<div className='px-4 pb-4 '>
+						<div className='px-4 pb-4 flex gap-2 items-center uppercase'>
 							<SheetTitle>Корзина</SheetTitle>
-							<SheetDescription>Ваша корзина</SheetDescription>
+							<SheetDescription className='flex gap-1'>
+								<span>{cart?.length}</span>
+								<span>товаров</span>
+							</SheetDescription>
 						</div>
 					</SheetHeader>
 					{cart?.length !== 0 ? (

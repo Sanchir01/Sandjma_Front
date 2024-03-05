@@ -14,9 +14,18 @@
 	}
 }
 
+@media (max-width: (768px)) {
+	.cart {
+		&__plus,
+		&__minus {
+			width: 24px;
+			height: 24px;
+		}
+	}
+}
+
 @media (max-width: 413px) {
 	.cart {
-		
 		&__name {
 			font-size: 14px;
 		}

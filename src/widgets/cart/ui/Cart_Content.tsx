@@ -8,6 +8,7 @@ const CartContent: FC = () => {
 	const cartContetn = useStoreZustand(useCartStore, state => state.cart)
 
 	const [parent] = useAutoAnimate({ easing: 'ease-in-out', duration: 400 })
+
 	if (cartContetn === undefined) {
 		return 'Корзина пуста'
 	}

@@ -1,0 +1,35 @@
+.hero {
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-size: cover;
+	min-height: 100svh;
+	background-image: url('../images/lookbook/bgtest.jpg');
+	color: white;
+	&__title {
+		font-size: clamp(1.625rem, 3.557rem + 3.995vw, 4.063rem);
+	}
+	&__description {
+		font-size: clamp(1.625rem, 1.557rem + 2.995vw, 4.063rem);
+	}
+}
+
+.fashion {
+	margin-top: 100px;
+	&__title {
+		margin: 0 auto;
+		font-size: clamp(0.75rem, 0.52rem + 0.98vw, 1.5rem);
+		max-width: 800px;
+	}
+	&__top {
+		padding-top: 100px;
+		display: flex;
+		justify-content: center;
+		gap: 150px;
+	}
+	&__bottom {
+		padding-top: 100px;
+		display: flex;
+		justify-content: center;
+		gap: 11%;
+	}
+}
