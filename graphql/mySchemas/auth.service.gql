@@ -30,6 +30,5 @@ mutation GetNewTokens {
 			isAdmin
 		}
 		refreshToken
-		accessToken
 	}
 }
