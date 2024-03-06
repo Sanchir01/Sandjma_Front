@@ -33,10 +33,7 @@ const PushOrder = () => {
 					)
 				)
 				.catch(
-					er => (
-						toast.error('Для создания заказа нужно зарегистрироваться'),
-						console.log(er)
-					)
+					er => (toast.error(er.response.errors[0].message), console.log(er))
 				)
 		}
 	}

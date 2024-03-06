@@ -17,6 +17,8 @@ export const registerSchema = z.object({
 	phone: z
 		.string()
 		.min(16, 'не корректный номер телефона, должно быть максимум 16 цыфр'),
-	name: z.string(),
-	email: z.string()
+	password: z
+		.string()
+		.min(6, 'не корректный пароль, должно быть минимум 6 символов'),
+	email: z.string().email('не корректный email')
 })

@@ -1,4 +1,6 @@
 'use client'
+import { useUser } from '@/Providers/store/useUser'
+import { authService } from '@/shared/service/auth.service'
 import { IInputRegister, registerSchema } from '@/shared/types/Auth.types'
 import { Button } from '@/shared/ui'
 import { Card, CardContent, CardHeader } from '@/shared/ui/card'
@@ -10,19 +12,55 @@ import {
 	FormLabel,
 	FormMessage
 } from '@/shared/ui/form'
+import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
 import { zodResolver } from '@hookform/resolvers/zod'
-
+import { useMutation } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import { toast } from 'react-hot-toast'
 import InputMask from 'react-input-mask'
 export default function RegisterPage() {
+	const { mutateAsync } = useMutation({
+		mutationKey: ['registration'],
+		mutationFn: ({
+			email,
+			password,
+			phone
+		}: {
+			email: string
+			password: string
+			phone: string
+		}) =>
+			authService.register({
+				email,
+				password,
+				phone
+			})
+	})
 	const form = useForm<IInputRegister>({
 		resolver: zodResolver(registerSchema),
 		defaultValues: {
 			phone: '+7 (***) ***-**-**'
 		}
 	})
-
+	const { push } = useRouter()
+	const userStore = useUser(state => state.setUser)
 	const onSubmit = (data: IInputRegister) => {
+		mutateAsync({
+			email: data.email,
+			password: data.password,
+			phone: data.phone
+		})
+			.then(
+				r => (
+					AuthServiceTokens.saveTokenToStorage(r.register.refreshToken),
+					userStore(r.register.user),
+					push('/catalog'),
+					toast.success('Удачная авторизация'),
+					console.log(r.register.user)
+				)
+			)
+			.catch(er => toast.error(er.response.errors[0].message))
 		console.log(data)
 	}
 	return (
@@ -71,7 +109,7 @@ export default function RegisterPage() {
 							)}
 						/>
 						<FormField
-							name='name'
+							name='password'
 							control={form.control}
 							render={({ field }) => (
 								<FormItem className='flex flex-col gap-2'>
@@ -79,7 +117,7 @@ export default function RegisterPage() {
 									<FormControl>
 										<InputMask
 											mask={''}
-											placeholder='Никнейм'
+											placeholder='Введите пароль'
 											type='text'
 											className='border border-black rounded-lg p-1'
 											{...field}

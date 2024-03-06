@@ -28,7 +28,7 @@ export default function LoginPage() {
 			password: ''
 		}
 	})
-	const { replace } = useRouter()
+	const { push } = useRouter()
 	const { mutateAsync } = useMutation({
 		mutationFn: ({ password, phone }: { password: string; phone: string }) =>
 			authService.login({ password, phone })
@@ -41,10 +41,11 @@ export default function LoginPage() {
 				r => (
 					AuthServiceTokens.saveTokenToStorage(r.login.refreshToken),
 					userStorage(r.login.user),
-					toast.success('Удачная авторизация')
+					toast.success('Удачная авторизация'),
+					() => push('/catalog')
 				)
 			)
-			.then(() => replace('/catalog'))
+			.catch(er => toast.error(er.response.errors[0].message))
 	}
 	return (
 		<Card className='p-8'>
