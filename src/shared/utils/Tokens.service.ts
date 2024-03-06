@@ -11,8 +11,8 @@ export const AuthServiceTokens = {
 		const expirationDate = new Date(Date.now() + oneDay)
 		Cookies.set(EnumTokens.REFRESH_TOKEN, refreshToken, {
 			expires: expirationDate,
-			domain: `localhost`,
-			sameSite: 'Strict',
+			domain: process.env.CLIENT_DOMAIN,
+			sameSite: 'lax',
 			secure: true
 		})
 	},

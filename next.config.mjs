@@ -59,6 +59,9 @@ const nextConfig = {
 		locales: ['en', 'ru'],
 		defaultLocale: 'ru'
 	},
+	env: {
+		CLIENT_DOMAIN: process.env.CLIENT_DOMAIN
+	},
 	optimizeFonts: true,
 	swcMinify: true
 }
