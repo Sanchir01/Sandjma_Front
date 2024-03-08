@@ -4,17 +4,18 @@ import { useStoreZustand } from '@/shared/hooks/useStoreZustand'
 import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
 import { Footer } from '@/widgets/footer/Footer'
 import { Header, HeaderProfileEnum } from '@/widgets/header/Header'
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { FC } from 'react'
 
 const Layout: FC<{ children: React.ReactNode }> = ({ children }) => {
 	const refreshToken = AuthServiceTokens.getRefreshToken()
+	const { replace } = useRouter()
 	const user = useStoreZustand(useUser, state => state.user)
 	if (refreshToken) {
-		redirect('/catalog')
+		replace('/catalog')
 	}
 	if (user) {
-		redirect('/catalog')
+		replace('/catalog')
 	}
 	return (
 		<>
