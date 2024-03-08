@@ -53,7 +53,7 @@ export default function RegisterPage() {
 		})
 			.then(
 				r => (
-					AuthServiceTokens.saveTokenToStorage(r.register.refreshToken),
+					AuthServiceTokens.saveRefreshTokenToStorage(r.register.refreshToken),
 					userStore(r.register.user),
 					push('/catalog'),
 					toast.success('Удачная авторизация'),

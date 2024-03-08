@@ -27,7 +27,9 @@ export const useUser = create<IUserStore>()(
 			checkAuth: async () => {
 				try {
 					const resp = await authService.getNewToken()
-					AuthServiceTokens.saveTokenToStorage(resp.newToken.refreshToken)
+					AuthServiceTokens.saveRefreshTokenToStorage(
+						resp.newToken.refreshToken
+					)
 					set({ user: resp.newToken.user })
 				} catch (er) {
 					const { logout } = get()
