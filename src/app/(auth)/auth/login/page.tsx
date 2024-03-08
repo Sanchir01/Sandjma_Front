@@ -13,13 +13,15 @@ import {
 	FormMessage
 } from '@/shared/ui/form'
 import { Input } from '@/shared/ui/input'
-import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
+import { AuthServiceTokens, EnumTokens } from '@/shared/utils/Tokens.service'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import InputMask from 'react-input-mask'
+
 export default function LoginPage() {
 	const form = useForm<IInputLogin>({
 		resolver: zodResolver(loginSchema),
@@ -39,12 +41,13 @@ export default function LoginPage() {
 		mutateAsync({ password: data.password, phone: data.phone })
 			.then(
 				r => (
-					AuthServiceTokens.saveTokenToStorage(r.login.refreshToken),
+					AuthServiceTokens.saveRefreshTokenToStorage(r.login.refreshToken),
 					userStorage(r.login.user),
-					toast.success('Удачная авторизация'),
-					() => push('/catalog')
+					() => push('/catalog'),
+					toast.success('Удачная авторизация')
 				)
 			)
+			.then(() => console.log(Cookies.get(EnumTokens.REFRESH_TOKEN)))
 			.catch(er => toast.error(er.response.errors[0].message))
 	}
 	return (
