@@ -14,7 +14,6 @@ export const myRequest = new GraphQLClient(
 		headers: {
 			authorization: token ? `Bearer ${token}` : ''
 		},
-		next: { revalidate: 600 },
 		credentials: 'include'
 	}
 )

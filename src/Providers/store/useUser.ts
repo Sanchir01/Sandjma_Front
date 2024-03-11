@@ -1,5 +1,7 @@
 import { authService } from '@/shared/service/auth.service'
+import { myRequest } from '@/shared/service/user.service'
 import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
+import { LogoutDocument } from 'gql/gql/graphql'
 
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
@@ -22,15 +24,17 @@ export const useUser = create<IUserStore>()(
 			user: null,
 			setUser: (data: IUserProps) => set({ user: data }),
 			logout: () => (
-				set({ user: null }), AuthServiceTokens.removerTokenFromStorage()
+				set({ user: null }),
+				AuthServiceTokens.removerTokenFromStorage(),
+				myRequest.request(LogoutDocument)
 			),
 			checkAuth: async () => {
 				try {
-					const resp = await authService.getNewToken()
-					AuthServiceTokens.saveRefreshTokenToStorage(
-						resp.newToken.refreshToken
+					const { newToken } = await authService.getNewToken()
+					await AuthServiceTokens.saveRefreshTokenToStorage(
+						newToken.refreshToken
 					)
-					set({ user: resp.newToken.user })
+					set({ user: newToken.user })
 				} catch (er) {
 					const { logout } = get()
 					logout()

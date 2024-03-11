@@ -24,12 +24,31 @@
 		padding-top: 100px;
 		display: flex;
 		justify-content: center;
-		gap: 150px;
+		gap: 70px;
 	}
 	&__bottom {
 		padding-top: 100px;
-		display: flex;
-		justify-content: center;
-		gap: 11%;
+	}
+}
+@media (max-width: (1440px)) {
+	.fashion {
+		margin-top: 50px;
+		&__top {
+			padding-top: 50px;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: minmax(300px, auto);
+			grid-gap: 20px;
+		}
+	}
+}
+
+@media (max-width: (768px)) {
+	.fashion {
+		margin-top: 50px;
+
+		&__bottom {
+			padding-top: 50px;
+		}
 	}
 }

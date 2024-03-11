@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @next/next/no-async-client-component */
 'use client'
 import { useUser } from '@/Providers/store/useUser'
 import { useStoreZustand } from '@/shared/hooks/useStoreZustand'
@@ -12,6 +10,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	useEffect(() => {
 		user === null && replace('/catalog')
 		user?.isAdmin === false && replace('/catalog')
-	}, [user])
+	}, [replace, user])
 	return <>{children}</>
 }

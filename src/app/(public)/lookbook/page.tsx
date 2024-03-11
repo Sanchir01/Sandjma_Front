@@ -30,33 +30,25 @@ export default function LookBookPage() {
 						ручеек дал заманивший.
 					</h2>
 					<div className={styles.fashion__top}>
-						<div className='w-[400px] h-auto mt-[100px]'>
+						<div className='max-w-[400px] h-auto  min-[1440px]:mt-[100px] '>
 							<Image
-								className=''
+								width={0}
+								height={0}
 								src={fashion1}
 								alt='bg'
-								style={{ objectFit: 'cover' }}
+								sizes='100vw'
+								style={{ width: 'auto' }}
 							/>
 						</div>
-						<div className='w-[400px] h-auto '>
-							<Image
-								className=''
-								src={fashion2}
-								alt='bg'
-								style={{ objectFit: 'cover' }}
-							/>
+						<div className='max-w-[400px] h-auto '>
+							<Image src={fashion2} alt='bg' style={{ objectFit: 'cover' }} />
 						</div>
-						<div className='w-[400px] h-auto mt-[100px] '>
-							<Image
-								className=''
-								src={fashion3}
-								alt='bg'
-								style={{ objectFit: 'cover' }}
-							/>
+						<div className='max-w-[400px] h-auto min-[1440px]:mt-[100px]'>
+							<Image src={fashion3} alt='bg' style={{ objectFit: 'cover' }} />
 						</div>
 					</div>
 					<div className={styles.fashion__bottom}>
-						<div className='flex gap-10 w-full justify-evenly'>
+						<div className='flex gap-10 w-full justify-evenly max-[768px]:gap-5'>
 							<div className=''>
 								<Image
 									src={fashion4}
@@ -77,8 +69,15 @@ export default function LookBookPage() {
 					</div>
 				</div>
 			</section>
-			<section>
-				<Image src={fashion6} alt='bg' style={{ objectFit: 'cover' }} />
+			<section className='mt-[100px] max-[768px]:mt-[50px]'>
+				<div>
+					<Image
+						className='mx-auto'
+						src={fashion6}
+						alt='bg'
+						style={{ objectFit: 'cover' }}
+					/>
+				</div>
 			</section>
 		</>
 	)

@@ -17,7 +17,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
-import { toast } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 import InputMask from 'react-input-mask'
 export default function RegisterPage() {
 	const { mutateAsync } = useMutation({
@@ -43,25 +43,24 @@ export default function RegisterPage() {
 			phone: '+7 (***) ***-**-**'
 		}
 	})
-	const { push } = useRouter()
+	const { replace } = useRouter()
 	const userStore = useUser(state => state.setUser)
-	const onSubmit = (data: IInputRegister) => {
-		mutateAsync({
-			email: data.email,
-			password: data.password,
-			phone: data.phone
-		})
-			.then(
-				r => (
-					AuthServiceTokens.saveRefreshTokenToStorage(r.register.refreshToken),
-					userStore(r.register.user),
-					push('/catalog'),
-					toast.success('Удачная авторизация'),
-					console.log(r.register.user)
-				)
-			)
-			.catch(er => toast.error(er.response.errors[0].message))
+	const onSubmit = async (data: IInputRegister) => {
 		console.log(data)
+
+		try {
+			const { register } = await mutateAsync({
+				email: data.email,
+				password: data.password,
+				phone: data.phone
+			})
+			AuthServiceTokens.saveRefreshTokenToStorage(register.refreshToken),
+				userStore(register.user),
+				replace('/catalog'),
+				toast.success('Удачная авторизация')
+		} catch (e) {
+			toast.error((e as Error).message)
+		}
 	}
 	return (
 		<Card className='p-8'>

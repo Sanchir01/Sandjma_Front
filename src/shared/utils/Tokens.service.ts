@@ -25,6 +25,6 @@ export const AuthServiceTokens = {
 
 	logout: () => {
 		AuthServiceTokens.removerTokenFromStorage()
-		localStorage.removeItem('User')
+		localStorage.removeItem('user')
 	}
 }

@@ -27,6 +27,7 @@ const GridCatalog = ({
 
 	return (
 		<>
+			
 			{isFetching ? (
 				<div className={styles.catalog__items}>
 					{[...Array(10)].map((_, i) => (

@@ -13,10 +13,9 @@ import {
 	FormMessage
 } from '@/shared/ui/form'
 import { Input } from '@/shared/ui/input'
-import { AuthServiceTokens, EnumTokens } from '@/shared/utils/Tokens.service'
+import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
-import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -30,7 +29,7 @@ export default function LoginPage() {
 			password: ''
 		}
 	})
-	const { push } = useRouter()
+	const { replace } = useRouter()
 	const { mutateAsync } = useMutation({
 		mutationFn: ({ password, phone }: { password: string; phone: string }) =>
 			authService.login({ password, phone })
@@ -38,17 +37,19 @@ export default function LoginPage() {
 	const userStorage = useUser(state => state.setUser)
 	const onSubmit = async (data: IInputLogin) => {
 		console.log(data)
-		mutateAsync({ password: data.password, phone: data.phone })
-			.then(
-				r => (
-					AuthServiceTokens.saveRefreshTokenToStorage(r.login.refreshToken),
-					userStorage(r.login.user),
-					() => push('/catalog'),
-					toast.success('Удачная авторизация')
-				)
-			)
-			.then(() => console.log(Cookies.get(EnumTokens.REFRESH_TOKEN)))
-			.catch(er => toast.error(er.response.errors[0].message))
+
+		try {
+			const { login } = await mutateAsync({
+				password: data.password,
+				phone: data.phone
+			})
+			await AuthServiceTokens.saveRefreshTokenToStorage(login.refreshToken)
+			await userStorage(login.user)
+			toast.success('Удачная авторизация')
+			await replace('/catalog')
+		} catch (e) {
+			toast.error((e as Error).message)
+		}
 	}
 	return (
 		<Card className='p-8'>

@@ -1,3 +1,4 @@
+'use client'
 import useCartStore from '@/Providers/store/useCart'
 import { useStoreZustand } from '@/shared/hooks/useStoreZustand'
 import { OrderService } from '@/shared/service/order.service'
@@ -6,7 +7,6 @@ import { useMutation } from '@tanstack/react-query'
 import { OrderItemDto } from 'gql/gql/graphql'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
-
 const PushOrder = () => {
 	const cartArray = useStoreZustand(useCartStore, state => state.cart)
 	const resetCart = useCartStore(state => state.resetCart)

@@ -22,6 +22,10 @@ mutation Register($authInput: AuthInput!) {
 	}
 }
 
+mutation Logout {
+	logout
+}
+
 mutation GetNewTokens {
 	newToken {
 		user {
