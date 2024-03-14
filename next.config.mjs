@@ -60,7 +60,8 @@ const nextConfig = {
 		defaultLocale: 'ru'
 	},
 	env: {
-		CLIENT_DOMAIN: process.env.CLIENT_DOMAIN
+		CLIENT_DOMAIN: process.env.CLIENT_DOMAIN,
+		SERVER_URL: process.env.SERVER_GRAPHQL
 	},
 	optimizeFonts: true,
 	swcMinify: true

@@ -87,10 +87,6 @@ export type GetCategoryByIdInput = {
   id: Scalars['Int']['input'];
 };
 
-export type GetCategoryBySlugInput = {
-  slug: Scalars['String']['input'];
-};
-
 export type GetProductByColor = {
   colorId: Scalars['Int']['input'];
   slug: Scalars['String']['input'];
@@ -128,10 +124,9 @@ export type Mutation = {
   deleteSize: Size;
   login: AuthResponse;
   logout: Scalars['String']['output'];
-  newToken: AuthResponse;
+  newToken: NewTokensResponse;
   placeOrderOne: Scalars['String']['output'];
   register: AuthResponse;
-  toggleFavoritesProfile: Scalars['String']['output'];
   updateCategory: ResponseCategory;
   updateColor: ReturnColors;
   updateInsolation: Insolation;
@@ -215,11 +210,6 @@ export type MutationRegisterArgs = {
 };
 
 
-export type MutationToggleFavoritesProfileArgs = {
-  productId: Scalars['Float']['input'];
-};
-
-
 export type MutationUpdateCategoryArgs = {
   updateCategoryInput: UpdateCategoryInput;
 };
@@ -242,6 +232,12 @@ export type MutationUpdateProductColorArgs = {
 
 export type MutationUpdateProfileArgs = {
   updateUserProfileInput: UpdateUserProfileInput;
+};
+
+export type NewTokensResponse = {
+  __typename?: 'NewTokensResponse';
+  refreshToken: Scalars['String']['output'];
+  user: ReturnUserFields;
 };
 
 export type OrderItemDto = {
@@ -297,8 +293,6 @@ export type Query = {
   getAllProducts: AllProductsAndLength;
   getAllSize: Array<Size>;
   getCategoryById: ResponseCategory;
-  /** nameGetCategoryBySlug */
-  getCategoryBySlug: ResponseCategory;
   getProductByColor: Array<Product>;
   getProductById: Product;
   getProfile: User;
@@ -312,11 +306,6 @@ export type QueryGetAllProductsArgs = {
 
 export type QueryGetCategoryByIdArgs = {
   getCategoryByIdInput: GetCategoryByIdInput;
-};
-
-
-export type QueryGetCategoryBySlugArgs = {
-  getCategoryBySlugInput: GetCategoryBySlugInput;
 };
 
 
@@ -384,7 +373,6 @@ export type User = {
   __typename?: 'User';
   avatarPath: Scalars['String']['output'];
   email: Scalars['String']['output'];
-  favorites?: Maybe<Array<Product>>;
   id: Scalars['Int']['output'];
   isAdmin: Scalars['Boolean']['output'];
   name: Scalars['String']['output'];
@@ -433,7 +421,7 @@ export type LogoutMutation = { __typename?: 'Mutation', logout: string };
 export type GetNewTokensMutationVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetNewTokensMutation = { __typename?: 'Mutation', newToken: { __typename?: 'AuthResponse', refreshToken: string, user: { __typename?: 'returnUserFields', email: string, id: number, isAdmin: boolean } } };
+export type GetNewTokensMutation = { __typename?: 'Mutation', newToken: { __typename?: 'NewTokensResponse', refreshToken: string, user: { __typename?: 'returnUserFields', email: string, id: number, isAdmin: boolean } } };
 
 export type GetAllCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -464,23 +452,6 @@ export type GetProductByColorQueryVariables = Exact<{
 
 export type GetProductByColorQuery = { __typename?: 'Query', getProductByColor: Array<{ __typename?: 'Product', id: number, images: Array<string>, name: string, price: number, productColorId: number, description: string, categoryId: number, slug: string, colors: Array<{ __typename?: 'ReturnColors', id: number, imageCss: string, name: string }>, size: Array<{ __typename?: 'Size', id: number, name: string }> }> };
 
-export type ToggleFavoritesProfileMutationVariables = Exact<{
-  productId: Scalars['Float']['input'];
-}>;
-
-
-export type ToggleFavoritesProfileMutation = { __typename?: 'Mutation', toggleFavoritesProfile: string };
-
-export type GetUserFavoritesIdArrayQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetUserFavoritesIdArrayQuery = { __typename?: 'Query', getProfile: { __typename?: 'User', favorites?: Array<{ __typename?: 'Product', id: number }> | null } };
-
-export type GetAllFavoritesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetAllFavoritesQuery = { __typename?: 'Query', getProfile: { __typename?: 'User', favorites?: Array<{ __typename?: 'Product', id: number, images: Array<string>, name: string, price: number, productColorId: number, slug: string }> | null } };
-
 
 export const CreateOrderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"createOrder"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createOrderInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateOrderInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"placeOrderOne"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createOrderInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createOrderInput"}}}]}]}}]} as unknown as DocumentNode<CreateOrderMutation, CreateOrderMutationVariables>;
 export const LoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"Login"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"loginInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"LoginInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"loginInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"loginInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"accessToken"}},{"kind":"Field","name":{"kind":"Name","value":"refreshToken"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"isAdmin"}}]}}]}}]}}]} as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;
@@ -492,6 +463,3 @@ export const GetAllInsolationDocument = {"kind":"Document","definitions":[{"kind
 export const GetAllColorsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAllColors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getAllColors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imageCss"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<GetAllColorsQuery, GetAllColorsQueryVariables>;
 export const GetAllProductsDashboardDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAllProductsDashboard"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"getAllProductInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetAllProductInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getAllProducts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getAllProductInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"getAllProductInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"length"}},{"kind":"Field","name":{"kind":"Name","value":"products"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"images"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"productColorId"}},{"kind":"Field","name":{"kind":"Name","value":"colors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"imageCss"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"size"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"colors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imageCss"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetAllProductsDashboardQuery, GetAllProductsDashboardQueryVariables>;
 export const GetProductByColorDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetProductByColor"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"getProductByColor"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"GetProductByColor"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getProductByColor"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"getProductByColor"},"value":{"kind":"Variable","name":{"kind":"Name","value":"getProductByColor"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"colors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imageCss"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"images"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"productColorId"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"categoryId"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"size"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<GetProductByColorQuery, GetProductByColorQueryVariables>;
-export const ToggleFavoritesProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"ToggleFavoritesProfile"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"productId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Float"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"toggleFavoritesProfile"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"productId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"productId"}}}]}]}}]} as unknown as DocumentNode<ToggleFavoritesProfileMutation, ToggleFavoritesProfileMutationVariables>;
-export const GetUserFavoritesIdArrayDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUserFavoritesIdArray"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"favorites"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<GetUserFavoritesIdArrayQuery, GetUserFavoritesIdArrayQueryVariables>;
-export const GetAllFavoritesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAllFavorites"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"favorites"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"images"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"productColorId"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]} as unknown as DocumentNode<GetAllFavoritesQuery, GetAllFavoritesQueryVariables>;

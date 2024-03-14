@@ -11,7 +11,6 @@ import {
 	IProductServicePropsGetAll,
 	productService
 } from '../service/products.service'
-import { userService } from '../service/user.service'
 
 export interface IUseGetAllProductsQuery extends IProductServicePropsGetAll {
 	initialData?: GetAllProductsDashboardQuery
@@ -88,16 +87,6 @@ export const useAllMutation = <T>({
 	})
 
 	return { mutateAsync, data, isPending, isSuccess }
-}
-
-export const useGetAllFavorites = () => {
-	const { data, isFetching } = useQuery({
-		queryFn: () => userService.getAllFavorites(),
-		queryKey: ['favoritesArray'],
-		select: data => data.getProfile.favorites
-	})
-
-	return { data, isFetching }
 }
 
 export const useGetSimilar = ({ categoryId }: { categoryId: string }) => {
