@@ -1,5 +1,6 @@
 import { productService } from '@/shared/service/products.service'
 import { OneProduct } from '@/widgets/oneproduct/OneProduct'
+import { redirect } from 'next/navigation'
 export async function generateStaticParams() {
 	const data = await productService.getAllProducts({ page: '1' })
 
@@ -49,7 +50,7 @@ export async function generateStaticParams() {
 // 	}
 // }
 
-export default async function Page({
+export default async function OneProductPage({
 	params
 }: {
 	params: { product: string[] }
@@ -60,21 +61,22 @@ export default async function Page({
 		slug: decodeURIComponent(product[0]),
 		colorId: Number(product[1])
 	})
-	console.log(getProductByColor[0].colors)
 
-	return getProductByColor.map(item => (
-		<OneProduct
-			key={item.id}
-			categoryId={item.categoryId.toString()}
-			description={item.description}
-			id={item.id}
-			images={item.images}
-			name={item.name}
-			price={item.price}
-			slug={item.slug}
-			productColorId={item.productColorId}
-			size={item.size}
-			colors={item.colors}
-		/>
-	))
+	return getProductByColor
+		? getProductByColor.map(item => (
+				<OneProduct
+					key={item.id}
+					categoryId={item.categoryId.toString()}
+					description={item.description}
+					id={item.id}
+					images={item.images}
+					name={item.name}
+					price={item.price}
+					slug={item.slug}
+					productColorId={item.productColorId}
+					size={item.size}
+					colors={item.colors}
+				/>
+			))
+		: redirect('/not-found')
 }

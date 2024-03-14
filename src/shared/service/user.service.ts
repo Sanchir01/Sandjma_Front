@@ -6,14 +6,9 @@ import {
 } from 'gql/gql/graphql'
 import { GraphQLClient } from 'graphql-request'
 
-const token = AuthServiceTokens.getRefreshToken()
-
 export const myRequest = new GraphQLClient(
 	process.env.NEXT_PUBLIC_SERVER_GRAPHQL ?? '',
 	{
-		headers: {
-			authorization: token ? `Bearer ${token}` : ''
-		},
 		credentials: 'include'
 	}
 )
