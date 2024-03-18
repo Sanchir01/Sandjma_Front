@@ -1,7 +1,6 @@
 import { HeroSlide } from '@/shared/HeroSlider/HeroSlider'
 import NewAndSeller from '@/widgets/NewAndSeller/NewAndSeller'
 import type { Metadata, Viewport } from 'next'
-import { cookies } from 'next/headers'
 
 export const viewport: Viewport = {
 	themeColor: [
@@ -35,12 +34,9 @@ export const metadata: Metadata = {
 	creator: 'Sanchir team'
 }
 export default function Home() {
-	const refresh = cookies().get('refreshToken')?.value
-	console.log(refresh, 'asdsad')
 	return (
 		<>
 			<HeroSlide />
-			{refresh}
 			<NewAndSeller />
 		</>
 	)
