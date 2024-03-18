@@ -1,7 +1,6 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useUser } from '@/Providers/store/useUser'
-import { useStoreZustand } from '@/shared/hooks/useStoreZustand'
 import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
 import { Footer } from '@/widgets/footer/Footer'
 import { Header, HeaderProfileEnum } from '@/widgets/header/Header'
@@ -9,15 +8,12 @@ import { ReactNode, useEffect } from 'react'
 
 const layout = ({ children }: { children: ReactNode }) => {
 	const refreshToken = AuthServiceTokens.getRefreshToken()
-	const checkAuth = useUser(state => state.checkAuth)
-	const user = useStoreZustand(useUser, state => state.user)
-	const logout = useUser(state => state.logout)
+
+	const updateUser = useUser(state => state.resetUser)
+	console.log()
 	useEffect(() => {
-		refreshToken === undefined && checkAuth()
-	}, [checkAuth, refreshToken])
-	useEffect(() => {
-		user === null && logout()
-	}, [logout, user])
+		refreshToken === undefined && updateUser()
+	}, [refreshToken, updateUser])
 
 	return (
 		<>

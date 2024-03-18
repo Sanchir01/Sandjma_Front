@@ -29,7 +29,7 @@ export default function LoginPage() {
 			password: ''
 		}
 	})
-	const { replace } = useRouter()
+	const { push } = useRouter()
 	const { mutateAsync } = useMutation({
 		mutationFn: ({ password, phone }: { password: string; phone: string }) =>
 			authService.login({ password, phone })
@@ -46,7 +46,7 @@ export default function LoginPage() {
 			await AuthServiceTokens.saveRefreshTokenToStorage(login.refreshToken)
 			await userStorage(login.user)
 			toast.success('Удачная авторизация')
-			await replace('/catalog')
+			await push('/catalog')
 		} catch (e) {
 			toast.error((e as Error).message)
 		}

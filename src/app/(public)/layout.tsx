@@ -1,22 +1,17 @@
 'use client'
 import { useUser } from '@/Providers/store/useUser'
-import { useStoreZustand } from '@/shared/hooks/useStoreZustand'
 import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
 import { Footer } from '@/widgets/footer/Footer'
 import { Header, HeaderProfileEnum } from '@/widgets/header/Header'
 import { useEffect } from 'react'
 export default function Layout({ children }: { children: React.ReactNode }) {
 	const refreshToken = AuthServiceTokens.getRefreshToken()
-	const checkAuth = useUser(state => state.checkAuth)
-	const user = useStoreZustand(useUser, state => state.user)
-	const logout = useUser(state => state.logout)
-	useEffect(() => {
-		refreshToken === undefined && checkAuth()
-	}, [checkAuth, refreshToken])
-	useEffect(() => {
-		user === null && logout()
-	}, [logout, user])
 
+	const updateUser = useUser(state => state.resetUser)
+	console.log(refreshToken)
+	useEffect(() => {
+		refreshToken === undefined && updateUser()
+	}, [refreshToken, updateUser])
 	return (
 		<>
 			<Header variant={HeaderProfileEnum.PUBLIC} />

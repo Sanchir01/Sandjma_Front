@@ -17,12 +17,14 @@ export interface IUserStore {
 	setUser: (data: IUserProps) => void
 	logout: () => void
 	checkAuth: () => void
+	resetUser: () => void
 }
 export const useUser = create<IUserStore>()(
 	persist(
 		(set, get) => ({
 			user: null,
 			setUser: (data: IUserProps) => set({ user: data }),
+			resetUser: () => set({ user: null }),
 			logout: () => (
 				set({ user: null }),
 				AuthServiceTokens.removerTokenFromStorage(),

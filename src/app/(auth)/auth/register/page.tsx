@@ -43,7 +43,7 @@ export default function RegisterPage() {
 			phone: '+7 (***) ***-**-**'
 		}
 	})
-	const { replace } = useRouter()
+	const { push } = useRouter()
 	const userStore = useUser(state => state.setUser)
 	const onSubmit = async (data: IInputRegister) => {
 		console.log(data)
@@ -56,7 +56,7 @@ export default function RegisterPage() {
 			})
 			AuthServiceTokens.saveRefreshTokenToStorage(register.refreshToken),
 				userStore(register.user),
-				replace('/catalog'),
+				push('/catalog'),
 				toast.success('Удачная авторизация')
 		} catch (e) {
 			toast.error((e as Error).message)

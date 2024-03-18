@@ -1,22 +1,20 @@
 'use client'
-import { useUser } from '@/Providers/store/useUser'
-import { useStoreZustand } from '@/shared/hooks/useStoreZustand'
-import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
 import { Footer } from '@/widgets/footer/Footer'
 import { Header, HeaderProfileEnum } from '@/widgets/header/Header'
-import { useRouter } from 'next/navigation'
 import { FC } from 'react'
 
 const Layout: FC<{ children: React.ReactNode }> = ({ children }) => {
-	const refreshToken = AuthServiceTokens.getRefreshToken()
-	const { replace } = useRouter()
-	const user = useStoreZustand(useUser, state => state.user)
-	if (refreshToken) {
-		replace('/catalog')
-	}
-	if (user) {
-		replace('/catalog')
-	}
+	// const refreshToken = AuthServiceTokens.getRefreshToken()
+	// const { replace } = useRouter()
+	// const user = useStoreZustand(useUser, state => state.user)
+	// console.log(refreshToken)
+	// if (refreshToken) {
+	// 	replace('/catalog')
+	// }
+	// if (user) {
+	// 	replace('/catalog')
+	// }
+	const pa = ''
 	return (
 		<>
 			<Header variant={HeaderProfileEnum.AUTH} />
