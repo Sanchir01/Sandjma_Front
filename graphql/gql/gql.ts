@@ -17,7 +17,7 @@ const documents = {
     "mutation Login($loginInput: LoginInput!) {\n  login(loginInput: $loginInput) {\n    accessToken\n    refreshToken\n    user {\n      id\n      email\n      isAdmin\n    }\n  }\n}\n\nmutation Register($authInput: AuthInput!) {\n  register(authInput: $authInput) {\n    accessToken\n    refreshToken\n    user {\n      id\n      email\n      isAdmin\n    }\n  }\n}\n\nmutation Logout {\n  logout\n}\n\nmutation GetNewTokens {\n  newToken {\n    user {\n      email\n      id\n      isAdmin\n    }\n    refreshToken\n  }\n}": types.LoginDocument,
     "query GetAllCategories {\n  getAllCategories {\n    id\n    name\n  }\n}\n\nquery GetAllInsolation {\n  getAllInsolation {\n    id\n    name\n  }\n}\n\nquery GetAllColors {\n  getAllColors {\n    id\n    imageCss\n    name\n  }\n}": types.GetAllCategoriesDocument,
     "query GetAllProductsDashboard($getAllProductInput: GetAllProductInput!) {\n  getAllProducts(getAllProductInput: $getAllProductInput) {\n    length\n    products {\n      id\n      images\n      name\n      price\n      slug\n      productColorId\n      colors {\n        imageCss\n        id\n        name\n      }\n      size {\n        id\n        name\n      }\n      colors {\n        id\n        imageCss\n        name\n      }\n    }\n  }\n}\n\nquery GetProductByColor($getProductByColor: GetProductByColor!) {\n  getProductByColor(getProductByColor: $getProductByColor) {\n    id\n    colors {\n      id\n      imageCss\n      name\n    }\n    images\n    name\n    price\n    productColorId\n    description\n    categoryId\n    slug\n    size {\n      id\n      name\n    }\n  }\n}": types.GetAllProductsDashboardDocument,
-    "query GetUserProfile {\n  getProfile {\n    id\n    isAdmin\n  }\n}": types.GetUserProfileDocument,
+    "query GetUserProfile {\n  getProfile {\n    id\n    isAdmin\n    email\n  }\n}": types.GetUserProfileDocument,
 };
 
 /**
@@ -53,7 +53,7 @@ export function graphql(source: "query GetAllProductsDashboard($getAllProductInp
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query GetUserProfile {\n  getProfile {\n    id\n    isAdmin\n  }\n}"): (typeof documents)["query GetUserProfile {\n  getProfile {\n    id\n    isAdmin\n  }\n}"];
+export function graphql(source: "query GetUserProfile {\n  getProfile {\n    id\n    isAdmin\n    email\n  }\n}"): (typeof documents)["query GetUserProfile {\n  getProfile {\n    id\n    isAdmin\n    email\n  }\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

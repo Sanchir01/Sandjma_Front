@@ -7,6 +7,8 @@ import fashion6 from '@/shared/images/lookbook/fashion/5.jpg'
 import styles from '@/shared/styles/LookBook.module.scss'
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import { Suspense } from 'react'
+import Loading from './loading'
 export const metadata: Metadata = {
 	title: 'Lookbook',
 	description: 'LookBook'
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function LookBookPage() {
 	return (
-		<>
+		<Suspense fallback={<Loading />}>
 			<section className={styles.hero}>
 				<div className='flex justify-center items-center flex-col pt-[30vh]'>
 					<h1 className={styles.hero__title}>Sandjma </h1>
@@ -79,6 +81,6 @@ export default function LookBookPage() {
 					/>
 				</div>
 			</section>
-		</>
+		</Suspense>
 	)
 }

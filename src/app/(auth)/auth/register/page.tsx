@@ -15,6 +15,7 @@ import {
 import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -58,8 +59,8 @@ export default function RegisterPage() {
 				userStore(register.user),
 				push('/catalog'),
 				toast.success('Удачная авторизация')
-		} catch (e) {
-			toast.error((e as Error).message)
+		} catch (e: any) {
+			toast.error(e.response.errors[0].message)
 		}
 	}
 	return (
@@ -125,9 +126,14 @@ export default function RegisterPage() {
 								</FormItem>
 							)}
 						/>
-
-						<Button type='submit' className='w-full'>
-							Submit
+						<Link
+							href={'/auth/login'}
+							className='hover:underline max-[776px]:pointer-events-none'
+						>
+							Войти в аккаунт
+						</Link>
+						<Button type='submit' className='w-full '>
+							Регистация
 						</Button>
 					</form>
 				</Form>

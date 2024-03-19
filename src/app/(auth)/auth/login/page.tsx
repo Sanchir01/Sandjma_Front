@@ -16,6 +16,7 @@ import { Input } from '@/shared/ui/input'
 import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -47,8 +48,9 @@ export default function LoginPage() {
 			await userStorage(login.user)
 			toast.success('Удачная авторизация')
 			await push('/catalog')
-		} catch (e) {
-			toast.error((e as Error).message)
+		} catch (e: any) {
+			toast.error(e.response.errors[0].message)
+			console.log(e.response.errors[0].message)
 		}
 	}
 	return (
@@ -95,8 +97,14 @@ export default function LoginPage() {
 								</FormItem>
 							)}
 						/>
-						<Button type='submit' className='w-full'>
-							Submit
+						<Link
+							href={'/auth/register'}
+							className='hover:underline max-[776px]:pointer-events-none'
+						>
+							Пройти регистрацию
+						</Link>
+						<Button type='submit' className='w-full '>
+							Войти
 						</Button>
 					</form>
 				</Form>

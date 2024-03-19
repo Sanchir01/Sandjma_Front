@@ -64,7 +64,7 @@ export async function middleware(request: NextRequest) {
 
 		response.cookies.set('refreshToken', newToken.refreshToken, {
 			path: '/',
-			expires: myDate.setHours(myDate.getHours() + 12),
+			expires: myDate.setHours(myDate.getHours() + 4),
 			secure: true,
 			httpOnly: false,
 			domain:
@@ -96,7 +96,6 @@ export async function middleware(request: NextRequest) {
 		}).then(res => res.json())
 	).data as GetUserProfileQuery
 
-	console.log(getUser)
 	if (orderPage && getUser === undefined)
 		return NextResponse.redirect(new URL('/auth/login', url))
 	if (getUser?.getProfile?.isAdmin === true) return NextResponse.next()
