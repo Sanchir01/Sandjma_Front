@@ -49,8 +49,8 @@ export default function LoginPage() {
 			toast.success('Удачная авторизация')
 			await push('/catalog')
 		} catch (e: any) {
-			toast.error(e.response.errors[0].message)
-			console.log(e.response.errors[0].message)
+			toast.error(e.message)
+			console.log(e.message)
 		}
 	}
 	return (
