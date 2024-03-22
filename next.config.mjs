@@ -56,6 +56,7 @@ const nextConfig = {
 		loader: 'default'
 	},
 	i18n: {
+		locales: ['ru'],
 		defaultLocale: 'ru'
 	},
 	env: {
