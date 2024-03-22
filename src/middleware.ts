@@ -60,6 +60,7 @@ export async function middleware(request: NextRequest) {
 		if (newToken.refreshToken === undefined) {
 			return NextResponse.redirect(new URL('/auth/login', url))
 		}
+		alert('Токен обновлен')
 		const myDate = new Date()
 
 		response.cookies.set('refreshToken', newToken.refreshToken, {
@@ -97,7 +98,9 @@ export async function middleware(request: NextRequest) {
 	).data as GetUserProfileQuery
 
 	if (orderPage && getUser === undefined)
-		return NextResponse.redirect(new URL('/auth/login', url))
+		return (
+			alert('Токен устарел'), NextResponse.redirect(new URL('/auth/login', url))
+		)
 	if (getUser?.getProfile?.isAdmin === true) return NextResponse.next()
 
 	if (adminPanel) {
