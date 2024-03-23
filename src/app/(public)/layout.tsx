@@ -10,7 +10,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	const updateUser = useUser(state => state.resetUser)
 	const setUser = useUser(state => state.setUser)
 	const { data } = useUserProfile()
-	
+
 	useEffect(() => {
 		if (refreshToken == undefined) {
 			updateUser()
