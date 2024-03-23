@@ -40,7 +40,7 @@ export default function Home() {
 	return (
 		<>
 			<HeroSlide />
-			{refresh} test
+			{refresh ? refresh : 'Token отсутствует'} test
 			<NewAndSeller />
 		</>
 	)

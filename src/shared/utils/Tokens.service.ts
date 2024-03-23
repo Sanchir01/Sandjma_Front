@@ -13,7 +13,7 @@ export const AuthServiceTokens = {
 				process.env.NODE_ENV === 'production'
 					? process.env.CLIENT_DOMAIN
 					: 'localhost',
-			sameSite: 'Lax',
+			sameSite: 'none',
 			secure: true
 		})
 	},
