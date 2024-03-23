@@ -9,7 +9,7 @@ import toast from 'react-hot-toast'
 const client = new ApolloClient({
 	uri:
 		process.env.NODE_ENV === 'production'
-			? (process.env.SERVER_GRAPHQL as string)
+			? (process.env.SERVER_URL as string)
 			: 'http://localhost:5000/graphql',
 	credentials: 'include',
 	cache: new InMemoryCache()

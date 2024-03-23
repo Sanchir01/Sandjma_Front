@@ -4,7 +4,7 @@ import { AuthServiceTokens } from '../utils/Tokens.service'
 const refreshToken = AuthServiceTokens.getRefreshToken()
 export const myRequest = new GraphQLClient(
 	process.env.NODE_ENV === 'production'
-		? (process.env.SERVER_GRAPHQL as string)
+		? (process.env.SERVER_URL as string)
 		: 'http://localhost:5000/graphql',
 	{
 		credentials: 'same-origin',
