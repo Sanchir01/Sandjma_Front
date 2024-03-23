@@ -83,7 +83,6 @@ export async function middleware(request: NextRequest) {
 						isAdmin
 					}
 					}`
-
 	const getUser = (
 		await fetch(process.env.SERVER_GRAPHQL as string, {
 			credentials: 'include',
@@ -97,10 +96,10 @@ export async function middleware(request: NextRequest) {
 		}).then(res => res.json())
 	).data as GetUserProfileQuery
 
-	if (orderPage && getUser === undefined)
-		return (
-			alert('Токен устарел'), NextResponse.redirect(new URL('/auth/login', url))
-		)
+	// if (orderPage && getUser === undefined)
+	// 	return (
+	// 		alert('Токен устарел'), NextResponse.redirect(new URL('/auth/login', url))
+	// 	)
 	if (getUser?.getProfile?.isAdmin === true) return NextResponse.next()
 
 	if (adminPanel) {
@@ -115,5 +114,5 @@ export async function middleware(request: NextRequest) {
 	return response
 }
 export const config = {
-	matcher: ['/order', '/auth/:path*', '/admin/:path*']
+	matcher: ['/auth/:path*', '/admin/:path*']
 }

@@ -1,20 +1,30 @@
 'use client'
 import useCartStore from '@/Providers/store/useCart'
 import { useStoreZustand } from '@/shared/hooks/useStoreZustand'
-import { OrderService } from '@/shared/service/order.service'
 import { Button } from '@/shared/ui'
-import { useMutation } from '@tanstack/react-query'
-import { OrderItemDto } from 'gql/gql/graphql'
+import { ApolloClient, InMemoryCache, useMutation } from '@apollo/client'
+import { CreateOrderDocument } from 'gql/gql/graphql'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
+const client = new ApolloClient({
+	uri:
+		process.env.NODE_ENV === 'production'
+			? (process.env.SERVER_GRAPHQL as string)
+			: 'http://localhost:5000/graphql',
+	credentials: 'include',
+	cache: new InMemoryCache()
+})
 const PushOrder = () => {
 	const cartArray = useStoreZustand(useCartStore, state => state.cart)
 	const resetCart = useCartStore(state => state.resetCart)
 	const { replace } = useRouter()
-	const { mutateAsync } = useMutation({
-		mutationKey: ['order'],
-		mutationFn: ({ cartItems }: { cartItems: OrderItemDto[] }) =>
-			OrderService.createOrder({ cartItems })
+	// const { mutateAsync } = useMutation({
+	// 	mutationKey: ['order'],
+	// 	mutationFn: ({ cartItems }: { cartItems: OrderItemDto[] }) =>
+	// 		OrderService.createOrder({ cartItems })
+	// })
+	const [mutateAsync, { data }] = useMutation(CreateOrderDocument, {
+		client: client
 	})
 	const cartItems = cartArray?.map(item => ({
 		price: item.price,
@@ -26,10 +36,15 @@ const PushOrder = () => {
 	}))
 	const pushOrder = async () => {
 		if (cartItems) {
-			await mutateAsync({ cartItems: cartItems })
+			await mutateAsync({
+				variables: { createOrderInput: { items: cartItems } }
+			})
 				.then(
 					() => (
-						toast.success('Заказ оформлен'), resetCart(), replace('/thanks')
+						toast.success('Заказ оформлен'),
+						resetCart(),
+						replace('/thanks'),
+						console.log(data)
 					)
 				)
 				.catch(
