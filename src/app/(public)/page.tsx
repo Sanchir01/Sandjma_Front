@@ -36,10 +36,11 @@ export const metadata: Metadata = {
 }
 export default function Home() {
 	const refresh = AuthServiceTokens.getRefreshToken()
+	console.log(refresh)
 	return (
 		<>
 			<HeroSlide />
-			{refresh}
+			{refresh} test
 			<NewAndSeller />
 		</>
 	)
