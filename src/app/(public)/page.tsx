@@ -2,6 +2,7 @@ import { HeroSlide } from '@/shared/HeroSlider/HeroSlider'
 import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
 import NewAndSeller from '@/widgets/NewAndSeller/NewAndSeller'
 import type { Metadata, Viewport } from 'next'
+export const dynamic = 'force-dynamic'
 
 export const viewport: Viewport = {
 	themeColor: [
