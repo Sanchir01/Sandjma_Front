@@ -1,4 +1,5 @@
 import { HeroSlide } from '@/shared/HeroSlider/HeroSlider'
+import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
 import NewAndSeller from '@/widgets/NewAndSeller/NewAndSeller'
 import type { Metadata, Viewport } from 'next'
 
@@ -34,9 +35,11 @@ export const metadata: Metadata = {
 	creator: 'Sanchir team'
 }
 export default function Home() {
+	const refresh = AuthServiceTokens.getRefreshToken()
 	return (
 		<>
 			<HeroSlide />
+			{refresh}
 			<NewAndSeller />
 		</>
 	)
