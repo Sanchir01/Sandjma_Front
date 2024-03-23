@@ -9,10 +9,6 @@ export const AuthServiceTokens = {
 	saveRefreshTokenToStorage: (refreshToken: string) => {
 		Cookies.set(EnumTokens.REFRESH_TOKEN, refreshToken, {
 			expires: process.env.NODE_ENV === 'production' ? 1 / 24 : 1,
-			domain:
-				process.env.NODE_ENV === 'production'
-					? process.env.CLIENT_DOMAIN
-					: 'localhost',
 			sameSite: 'none',
 			secure: true
 		})
