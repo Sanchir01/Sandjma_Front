@@ -13,7 +13,6 @@ import {
 	FormMessage
 } from '@/shared/ui/form'
 import { Input } from '@/shared/ui/input'
-import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import Link from 'next/link'
@@ -40,14 +39,14 @@ export default function LoginPage() {
 		console.log(data)
 
 		try {
-			const { login } = await mutateAsync({
+			await mutateAsync({
 				password: data.password,
 				phone: data.phone
 			})
-			await AuthServiceTokens.saveRefreshTokenToStorage(login.refreshToken)
-			await userStorage(login.user)
+				.then(e => (userStorage(e.login.user), console.log(e)))
+				.catch(e => console.log(e))
 			toast.success('Удачная авторизация')
-			await push('/catalog')
+			push('/catalog')
 		} catch (e: any) {
 			toast.error(e.message)
 			console.log(e.message)

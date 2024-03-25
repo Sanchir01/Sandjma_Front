@@ -21,9 +21,6 @@ export async function middleware(request: NextRequest) {
 	if (loginPage || registerPage) return NextResponse.next()
 
 	if (accessToken === undefined) {
-		console.log(response.cookies.get(EnumTokens.REFRESH_TOKEN))
-
-		console.log(response.cookies.get(EnumTokens.REFRESH_TOKEN))
 		return (
 			NextResponse.rewrite(url, response),
 			NextResponse.redirect(new URL('/auth/login', url))
@@ -55,24 +52,11 @@ export async function middleware(request: NextRequest) {
 				}
 			}).then(res => res.json())
 		).data as GetNewTokensMutation
-		console.log(newToken, 'token')
 
-		if (newToken.refreshToken === undefined) {
+		if (newToken === undefined) {
 			return NextResponse.redirect(new URL('/auth/login', url))
 		}
 		alert('Токен обновлен')
-		const myDate = new Date()
-
-		response.cookies.set('refreshToken', newToken.refreshToken, {
-			path: '/',
-			expires: myDate.setHours(myDate.getHours() + 4),
-			secure: true,
-			httpOnly: false,
-			domain:
-				process.env.NODE_ENV === 'production'
-					? process.env.CLIENT_DOMAIN
-					: 'localhost'
-		})
 
 		return NextResponse.rewrite(url, response)
 	}
@@ -96,10 +80,9 @@ export async function middleware(request: NextRequest) {
 		}).then(res => res.json())
 	).data as GetUserProfileQuery
 
-	// if (orderPage && getUser === undefined)
-	// 	return (
-	// 		alert('Токен устарел'), NextResponse.redirect(new URL('/auth/login', url))
-	// 	)
+	if (orderPage && getUser === undefined)
+		return NextResponse.redirect(new URL('/auth/login', url))
+
 	if (getUser?.getProfile?.isAdmin === true) return NextResponse.next()
 
 	if (adminPanel) {
@@ -114,5 +97,5 @@ export async function middleware(request: NextRequest) {
 	return response
 }
 export const config = {
-	matcher: ['/auth/:path*', '/admin/:path*']
+	matcher: ['/order', '/auth/:path*', '/admin/:path*']
 }

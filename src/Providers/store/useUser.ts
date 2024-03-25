@@ -1,5 +1,5 @@
 import { authService } from '@/shared/service/auth.service'
-import { myRequest } from '@/shared/service/user.service'
+import { myRequest, userService } from '@/shared/service/user.service'
 import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
 import { LogoutDocument } from 'gql/gql/graphql'
 
@@ -32,11 +32,8 @@ export const useUser = create<IUserStore>()(
 			),
 			checkAuth: async () => {
 				try {
-					const { newToken } = await authService.getNewToken()
-					await AuthServiceTokens.saveRefreshTokenToStorage(
-						newToken.refreshToken
-					)
-					set({ user: newToken.user })
+					const { getProfile } = await userService.getProfile()
+					set({ user: getProfile })
 				} catch (er) {
 					const { logout } = get()
 					logout()

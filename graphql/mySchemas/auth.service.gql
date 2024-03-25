@@ -1,7 +1,5 @@
 mutation Login($loginInput: LoginInput!) {
 	login(loginInput: $loginInput) {
-		accessToken
-		refreshToken
 		user {
 			id
 			email
@@ -12,8 +10,6 @@ mutation Login($loginInput: LoginInput!) {
 
 mutation Register($authInput: AuthInput!) {
 	register(authInput: $authInput) {
-		accessToken
-		refreshToken
 		user {
 			id
 			email
@@ -27,12 +23,5 @@ mutation Logout {
 }
 
 mutation GetNewTokens {
-	newToken {
-		user {
-			email
-			id
-			isAdmin
-		}
-		refreshToken
-	}
+	newToken
 }
