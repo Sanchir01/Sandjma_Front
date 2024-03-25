@@ -12,7 +12,6 @@ import {
 	FormLabel,
 	FormMessage
 } from '@/shared/ui/form'
-import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import Link from 'next/link'
@@ -55,7 +54,6 @@ export default function RegisterPage() {
 				password: data.password,
 				phone: data.phone
 			})
-			AuthServiceTokens.saveRefreshTokenToStorage(register.refreshToken),
 				userStore(register.user),
 				push('/catalog'),
 				toast.success('Удачная авторизация')
