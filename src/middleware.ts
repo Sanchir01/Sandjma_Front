@@ -1,5 +1,5 @@
 import { EnumTokens } from '@/shared/utils/Tokens.service'
-import { GetNewTokenMutation, GetUserProfileQuery } from 'gql/gql/graphql'
+import { GetUserProfileQuery } from 'gql/gql/graphql'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function middleware(request: NextRequest) {
@@ -39,30 +39,28 @@ export async function middleware(request: NextRequest) {
 }
 			`
 
-		const { newToken } = (
-			await fetch(process.env.SERVER_GRAPHQL as string, {
-				credentials: 'include',
-				body: JSON.stringify({
-					query: GetNewToken
-				}),
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					Cookie: `${EnumTokens.ACCESS_TOKEN}=${accessToken}`
-				}
-			}).then(res => res.json())
-		).data as GetNewTokenMutation
+		const resp = await fetch(process.env.SERVER_GRAPHQL as string, {
+			credentials: 'include',
+			body: JSON.stringify({
+				query: GetNewToken
+			}),
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Cookie: `${EnumTokens.ACCESS_TOKEN}=${accessToken}`
+			}
+		}).then(res => res.json())
 
-		console.log(newToken, 'token')
+		console.log(resp.data.newToken, 'token')
 
-		if (newToken.refreshToken === undefined) {
+		if (resp.data.newToken.refreshToken === undefined) {
 			return NextResponse.redirect(new URL('/auth/login', url))
 		}
 		const myDate = new Date()
 		myDate.setHours(myDate.getHours() + 4)
 		response.cookies.set({
 			name: EnumTokens.REFRESH_TOKEN,
-			value: newToken.refreshToken,
+			value: resp.data.newToken.refreshToken,
 			expires: myDate,
 			secure: true,
 			sameSite: 'none'
