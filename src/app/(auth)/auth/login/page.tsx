@@ -29,7 +29,7 @@ export default function LoginPage() {
 			password: ''
 		}
 	})
-	const { push } = useRouter()
+	const { replace } = useRouter()
 	const { mutateAsync } = useMutation({
 		mutationFn: ({ password, phone }: { password: string; phone: string }) =>
 			authService.login({ password, phone })
@@ -43,10 +43,10 @@ export default function LoginPage() {
 				password: data.password,
 				phone: data.phone
 			})
-				.then(e => (userStorage(e.login.user), console.log(e)))
+				.then(e => userStorage(e.login.user))
 				.catch(e => console.log(e))
 			toast.success('Удачная авторизация')
-			push('/catalog')
+			replace('/catalog')
 		} catch (e: any) {
 			toast.error(e.message)
 			console.log(e.message)

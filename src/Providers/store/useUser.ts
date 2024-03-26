@@ -1,4 +1,3 @@
-import { authService } from '@/shared/service/auth.service'
 import { myRequest, userService } from '@/shared/service/user.service'
 import { AuthServiceTokens } from '@/shared/utils/Tokens.service'
 import { LogoutDocument } from 'gql/gql/graphql'

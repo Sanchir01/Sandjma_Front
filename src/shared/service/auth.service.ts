@@ -1,5 +1,5 @@
 import {
-	GetNewTokensDocument,
+	GetNewTokenDocument,
 	LoginDocument,
 	RegisterDocument
 } from 'gql/gql/graphql'
@@ -23,6 +23,6 @@ export const authService = {
 		})
 	},
 	async getNewToken() {
-		return myRequest.request(GetNewTokensDocument)
+		return myRequest.request(GetNewTokenDocument)
 	}
 }

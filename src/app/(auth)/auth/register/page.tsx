@@ -43,20 +43,19 @@ export default function RegisterPage() {
 			phone: '+7 (***) ***-**-**'
 		}
 	})
-	const { push } = useRouter()
+	const { replace } = useRouter()
 	const userStore = useUser(state => state.setUser)
 	const onSubmit = async (data: IInputRegister) => {
 		console.log(data)
 
 		try {
-			const { register } = await mutateAsync({
+			await mutateAsync({
 				email: data.email,
 				password: data.password,
 				phone: data.phone
-			})
-				userStore(register.user),
-				push('/catalog'),
-				toast.success('Удачная авторизация')
+			}).then(res => userStore(res.register.user))
+
+			replace('/catalog'), toast.success('Удачная авторизация')
 		} catch (e: any) {
 			toast.error(e.response.errors[0].message)
 		}

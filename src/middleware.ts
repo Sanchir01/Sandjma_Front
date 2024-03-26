@@ -1,6 +1,7 @@
 import { EnumTokens } from '@/shared/utils/Tokens.service'
-import { GetNewTokensMutation, GetUserProfileQuery } from 'gql/gql/graphql'
+import { GetNewTokenMutation, GetUserProfileQuery } from 'gql/gql/graphql'
 import { NextRequest, NextResponse } from 'next/server'
+
 export async function middleware(request: NextRequest) {
 	const { cookies, url } = request
 	const response = new NextResponse()
@@ -19,25 +20,24 @@ export async function middleware(request: NextRequest) {
 		}
 	}
 	if (loginPage || registerPage) return NextResponse.next()
+	console.log(accessToken, 'acccessToken', refreshToken, 'refresh')
 
 	if (accessToken === undefined) {
-		return (
-			NextResponse.rewrite(url, response),
-			NextResponse.redirect(new URL('/auth/login', url))
-		)
+		return NextResponse.redirect(new URL('/auth/login', url))
 	}
 
 	if (refreshToken === undefined) {
-		const GetNewToken = `mutation GetNewTokens {
-		newToken {
-			user {
-				email
-				id
-				isAdmin
-			}
-			refreshToken
-			}
-		}`
+		const GetNewToken = `mutation Mutation {
+	newToken {
+		refreshToken
+		user {
+			email
+			id
+			isAdmin
+		}
+	}
+}
+			`
 
 		const { newToken } = (
 			await fetch(process.env.SERVER_GRAPHQL as string, {
@@ -48,16 +48,25 @@ export async function middleware(request: NextRequest) {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					Cookie: `accessToken=${accessToken}`
+					Cookie: `${EnumTokens.ACCESS_TOKEN}=${accessToken}`
 				}
 			}).then(res => res.json())
-		).data as GetNewTokensMutation
+		).data as GetNewTokenMutation
 
-		if (newToken === undefined) {
+		console.log(newToken, 'token')
+
+		if (newToken.refreshToken === undefined) {
 			return NextResponse.redirect(new URL('/auth/login', url))
 		}
-		alert('Токен обновлен')
-
+		const myDate = new Date()
+		myDate.setHours(myDate.getHours() + 4)
+		response.cookies.set({
+			name: EnumTokens.REFRESH_TOKEN,
+			value: newToken.refreshToken,
+			expires: myDate,
+			secure: true,
+			sameSite: 'none'
+		})
 		return NextResponse.rewrite(url, response)
 	}
 
@@ -83,7 +92,7 @@ export async function middleware(request: NextRequest) {
 	if (orderPage && getUser === undefined)
 		return NextResponse.redirect(new URL('/auth/login', url))
 
-	if (getUser?.getProfile?.isAdmin === true) return NextResponse.next()
+	if (getUser?.getProfile?.isAdmin === true) return
 
 	if (adminPanel) {
 		return NextResponse.redirect(new URL('/404', url))

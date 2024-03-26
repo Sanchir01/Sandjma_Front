@@ -3,7 +3,7 @@ import {
 	GetProductByColorDocument
 } from 'gql/gql/graphql'
 import { myRequest } from './user.service'
-const url = process.env.SERVER_GRAPHQL as string
+
 export interface IProductServicePropsGetAll {
 	page?: string
 	sort?: string

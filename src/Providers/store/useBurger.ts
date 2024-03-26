@@ -13,5 +13,5 @@ export const useBurger = create<IUseBurger>((set, get) => ({
 			? (document.body.style.overflow = '')
 			: (document.body.style.overflow = 'hidden'),
 			set({ toggleBurger: !toggleBurger })
-	},
+	}
 }))

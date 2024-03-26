@@ -36,11 +36,12 @@ export const metadata: Metadata = {
 	creator: 'Sanchir team'
 }
 export default function Home() {
-	const token = cookies().get(EnumTokens.REFRESH_TOKEN)?.value
+	const token = cookies().get(EnumTokens.ACCESS_TOKEN)?.value
 	console.log(token)
 	return (
 		<>
 			<HeroSlide />
+			{token}
 			<NewAndSeller />
 		</>
 	)
