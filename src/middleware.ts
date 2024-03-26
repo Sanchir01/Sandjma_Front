@@ -39,7 +39,7 @@ export async function middleware(request: NextRequest) {
 }
 			`
 
-		const resp = await fetch(process.env.SERVER_GRAPHQL as string, {
+		const resp = await fetch(process.env.SERVER_URL as string, {
 			credentials: 'include',
 			body: JSON.stringify({
 				query: GetNewToken
@@ -75,7 +75,7 @@ export async function middleware(request: NextRequest) {
 					}
 					}`
 	const getUser = (
-		await fetch(process.env.SERVER_GRAPHQL as string, {
+		await fetch(process.env.SERVER_URL as string, {
 			credentials: 'include',
 			body: JSON.stringify({ query }),
 			headers: {
