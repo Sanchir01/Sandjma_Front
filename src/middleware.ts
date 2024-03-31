@@ -13,7 +13,7 @@ export async function middleware(request: NextRequest) {
 	const registerPage = url.includes('/auth/register')
 	const adminPanel = url.includes('/admin')
 	const orderPage = url.includes('/order')
-
+	console.log(process.env.SERVER_URL as string)
 	if (loginPage || registerPage) {
 		if (accessToken && refreshToken) {
 			return NextResponse.redirect(new URL('/catalog', url))
@@ -39,17 +39,22 @@ export async function middleware(request: NextRequest) {
 }
 			`
 
-		const resp = await fetch(process.env.SERVER_URL as string, {
-			credentials: 'include',
-			body: JSON.stringify({
-				query: GetNewToken
-			}),
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Cookie: `${EnumTokens.ACCESS_TOKEN}=${accessToken}`
+		const resp = await fetch(
+			process.env.NODE_ENV === 'production'
+				? (process.env.SERVER_URL as string)
+				: (process.env.LOCAL_SERVER as string),
+			{
+				credentials: 'include',
+				body: JSON.stringify({
+					query: GetNewToken
+				}),
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Cookie: `${EnumTokens.ACCESS_TOKEN}=${accessToken}`
+				}
 			}
-		}).then(res => res.json())
+		).then(res => res.json())
 
 		console.log(resp.data.newToken, 'token')
 
@@ -63,6 +68,7 @@ export async function middleware(request: NextRequest) {
 			value: resp.data.newToken.refreshToken,
 			expires: myDate,
 			secure: true,
+			partitioned: true,
 			sameSite: 'none'
 		})
 		return NextResponse.rewrite(url, response)
@@ -75,16 +81,21 @@ export async function middleware(request: NextRequest) {
 					}
 					}`
 	const getUser = (
-		await fetch(process.env.SERVER_URL as string, {
-			credentials: 'include',
-			body: JSON.stringify({ query }),
-			headers: {
-				'Content-Type': 'application/json',
-				Cookie: `refreshToken=${refreshToken}`
-			},
+		await fetch(
+			process.env.NODE_ENV === 'production'
+				? (process.env.SERVER_URL as string)
+				: (process.env.LOCAL_SERVER as string),
+			{
+				credentials: 'include',
+				body: JSON.stringify({ query }),
+				headers: {
+					'Content-Type': 'application/json',
+					Cookie: `refreshToken=${refreshToken}`
+				},
 
-			method: 'POST'
-		}).then(res => res.json())
+				method: 'POST'
+			}
+		).then(res => res.json())
 	).data as GetUserProfileQuery
 
 	if (orderPage && getUser === undefined)

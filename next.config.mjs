@@ -62,7 +62,7 @@ const nextConfig = {
 	env: {
 		CLIENT_DOMAIN: process.env.CLIENT_DOMAIN,
 		SERVER_URL: process.env.SERVER_GRAPHQL,
-		TEST_ENV_BASE_TEST: process.env.TEST_ENV_BASE_TEST
+		LOCAL_SERVER: process.env.TEST_ENV_BASE_TEST,
 	},
 	optimizeFonts: true,
 	swcMinify: true

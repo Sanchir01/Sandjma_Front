@@ -4,7 +4,7 @@ import { GraphQLClient } from 'graphql-request'
 export const myRequest = new GraphQLClient(
 	process.env.NODE_ENV === 'production'
 		? (process.env.SERVER_URL as string)
-		: 'http://localhost:5000/graphql',
+		: (process.env.LOCAL_SERVER as string),
 	{
 		credentials: 'include'
 	}

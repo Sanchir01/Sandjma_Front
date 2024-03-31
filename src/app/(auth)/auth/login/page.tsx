@@ -43,10 +43,14 @@ export default function LoginPage() {
 				password: data.password,
 				phone: data.phone
 			})
-				.then(e => userStorage(e.login.user))
+				.then(
+					e => (
+						userStorage(e?.login?.user),
+						toast.success('Удачная авторизация'),
+						replace('/catalog')
+					)
+				)
 				.catch(e => console.log(e))
-			toast.success('Удачная авторизация')
-			replace('/catalog')
 		} catch (e: any) {
 			toast.error(e.message)
 			console.log(e.message)
