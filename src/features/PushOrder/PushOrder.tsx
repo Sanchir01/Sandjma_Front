@@ -38,7 +38,7 @@ const PushOrder = () => {
 		}
 	}
 	return (
-		<Button variant={'default'} onClick={pushOrder}>
+		<Button className='w-full' variant={'default'} onClick={pushOrder}>
 			Отправить заказ
 		</Button>
 	)

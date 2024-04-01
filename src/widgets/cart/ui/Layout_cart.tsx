@@ -40,10 +40,7 @@ const LayoutCart: FC<ICartLayout> = ({ content }) => {
 			</SheetTrigger>
 			{
 				<SheetContent
-					className={cn(
-						'p-0 pb-2 max-[650px]:w-full min-[640px]:max-w-[600px]',
-						styles.scroll
-					)}
+					className={'p-0 pb-2 max-[650px]:w-full min-[640px]:max-w-[600px]'}
 				>
 					<SheetHeader className='border-b-2 border-black pt-4 dark:border-white'>
 						<div className='px-4 pb-4 flex gap-2 items-center uppercase'>
@@ -56,7 +53,7 @@ const LayoutCart: FC<ICartLayout> = ({ content }) => {
 					</SheetHeader>
 					{cart?.length !== 0 ? (
 						<>
-							{content}
+							<div className={cn(styles.scroll, 'h-[84vh]')}>{content}</div>
 							<SheetFooter className='mt-5 px-3'>
 								<SheetClose asChild>
 									<Button className='w-full' onClick={() => push('/order')}>

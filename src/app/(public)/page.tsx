@@ -1,8 +1,6 @@
 import { HeroSlide } from '@/shared/HeroSlider/HeroSlider'
-import { EnumTokens } from '@/shared/utils/Tokens.service'
 import NewAndSeller from '@/widgets/NewAndSeller/NewAndSeller'
 import { Metadata, Viewport } from 'next'
-import { cookies } from 'next/headers'
 
 export const viewport: Viewport = {
 	themeColor: [
@@ -20,7 +18,8 @@ export const metadata: Metadata = {
 	applicationName: 'Sandjma',
 	authors: [{ name: 'sanchir' }],
 	robots: {
-		follow: true
+		follow: true,
+		
 	},
 	generator: 'Sadjma',
 	keywords: `Sadjma, sadjma, одежда, калмыцкая одежда, купить одежду, купить калмыцкую одежду, Санджирма, Национальная одежда Элисты, Элиста,
@@ -31,18 +30,14 @@ export const metadata: Metadata = {
 		'og:image:type': 'image/jpg',
 		'og:image:width': '800',
 		'og:image:height': '630',
-		'og:url': 'https://frontsandjma.vercel.app/'
+		'og:url': 'https://sandjma.ru'
 	},
 	creator: 'Sanchir team'
 }
 export default function Home() {
-	console.log(process.env.SERVER_URL as string, 'url')
-	const token = cookies().get(EnumTokens.ACCESS_TOKEN)?.value
-	console.log(token, 'main page token')
 	return (
 		<>
 			<HeroSlide />
-			{token} sdasd
 			<NewAndSeller />
 		</>
 	)

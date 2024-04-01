@@ -2,7 +2,7 @@ export const ColumnArr = [
 	{
 		title: 'Разделы',
 		content: [
-			{ id: 0, text: 'О бредне', href: '/about' },
+			{ id: 0, text: 'О бренде', href: '/about' },
 			{ id: 1, text: 'Лукбук', href: '/lookbook' },
 			{ id: 2, text: 'Помощь', href: '/help' }
 		]

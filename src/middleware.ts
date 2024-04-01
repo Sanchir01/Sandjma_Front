@@ -13,15 +13,12 @@ export async function middleware(request: NextRequest) {
 	const registerPage = url.includes('/auth/register')
 	const adminPanel = url.includes('/admin')
 	const orderPage = url.includes('/order')
-	console.log(process.env.SERVER_URL as string)
 	if (loginPage || registerPage) {
 		if (accessToken && refreshToken) {
 			return NextResponse.redirect(new URL('/catalog', url))
 		}
 	}
 	if (loginPage || registerPage) return NextResponse.next()
-	console.log(accessToken, 'acccessToken', refreshToken, 'refresh')
-
 	if (accessToken === undefined) {
 		return NextResponse.redirect(new URL('/auth/login', url))
 	}
@@ -56,7 +53,6 @@ export async function middleware(request: NextRequest) {
 			}
 		).then(res => res.json())
 
-		console.log(resp.data.newToken, 'token')
 
 		if (resp.data.newToken.refreshToken === undefined) {
 			return NextResponse.redirect(new URL('/auth/login', url))

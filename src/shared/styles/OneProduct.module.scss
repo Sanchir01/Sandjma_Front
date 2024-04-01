@@ -2,6 +2,7 @@
 	padding-top: 43px;
 	&__wrapper {
 		display: flex;
+
 		gap: 30px;
 		justify-content: center;
 		@apply px-5;
@@ -30,19 +31,33 @@
 	box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1024px) {
 	.oneProduct {
 		&__wrapper {
-			@apply flex flex-col px-10;
+			@apply px-5;
+		}
+		&__images {
+			display: grid;
+			grid-template-columns: repeat(1, 1fr);
+			grid-gap: 10px;
+		}
+	}
+}
+@media (max-width: 776px) {
+	.oneProduct {
+		padding-top: 0;
+		&__wrapper {
+			@apply flex flex-col p-0;
 		}
 	}
 }
 @media (max-width: 576px) {
 	.oneProduct {
+		padding-top: 0;
 		&__description {
 			width: 340px;
 		}
-		padding-top: 0;
+
 		&__wrapper {
 			@apply flex flex-col px-0;
 		}

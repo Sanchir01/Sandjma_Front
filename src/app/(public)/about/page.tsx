@@ -17,6 +17,7 @@ export default function AboutPage() {
 						width={undefined}
 						height={undefined}
 						style={{ height: '100vh' }}
+						placeholder='blur'
 					/>
 				</div>
 				<div className=''></div>

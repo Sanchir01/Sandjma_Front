@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { FC } from 'react'
 import { SwiperSlide } from 'swiper/react'
 const ImageGallery: FC<{ images: string[] }> = ({ images }) => {
-	const isMedia1024 = useMediaQuery('(max-width:1024px)')
+	const isMedia1024 = useMediaQuery('(max-width:777px)')
 
 	return isMedia1024 ? (
 		<div className='flex justify-center items-center'>
@@ -43,6 +43,7 @@ const ImageGallery: FC<{ images: string[] }> = ({ images }) => {
 					height={480}
 					draggable
 					priority
+					style={isMedia1024 ? { width: '100dvh', height: 'auto' } : {}}
 				/>
 			))}
 		</div>

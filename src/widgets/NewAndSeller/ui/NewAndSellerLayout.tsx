@@ -9,7 +9,7 @@ const NewAndSellerLayout: FC<INewAndSellerLayout> = ({
 }) => {
 	const a = ''
 	return (
-		<div className='flex flex-col gap-[120px] py-[50px] max-[768px]:gap-[50px]'>
+		<div className='pt-10'>
 			{seller} {newProduct}
 		</div>
 	)

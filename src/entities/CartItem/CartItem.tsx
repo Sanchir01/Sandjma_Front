@@ -15,7 +15,9 @@ const CartItem: FC<ICartProps> = ({ cartItem, children }) => {
 	const toggleItem = useCartStore(state => state.toggleCartItem)
 	return (
 		<div className={cn(styles.cart__item, 'dark:border-b-white')}>
-			<Link href={`/catalog/${cartItem.slug}/${cartItem.productColorId}`}>
+			<Link
+				href={`/catalog/${decodeURIComponent(cartItem.slug)}/${cartItem.productColorId}`}
+			>
 				<Image
 					src={cartItem.image}
 					alt={cartItem.name}

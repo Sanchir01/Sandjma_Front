@@ -5,7 +5,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 export const metadata: Metadata = {
 	title: 'Спасибо',
-	description: 'Thanks for your order'
+	description: 'Thanks for your order',
+	icons: { icon: '../../favicon.ico' }
 }
 
 export default function Page() {

@@ -12,6 +12,8 @@ import {
 	FormLabel,
 	FormMessage
 } from '@/shared/ui/form'
+import { Input } from '@/shared/ui/input'
+import Loader from '@/shared/ui/loader'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import Link from 'next/link'
@@ -19,8 +21,9 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import InputMask from 'react-input-mask'
+import { PasswordInput } from './passwordInput'
 export default function RegisterPage() {
-	const { mutateAsync } = useMutation({
+	const { mutateAsync, isPending } = useMutation({
 		mutationKey: ['registration'],
 		mutationFn: ({
 			email,
@@ -46,22 +49,24 @@ export default function RegisterPage() {
 	const { replace } = useRouter()
 	const userStore = useUser(state => state.setUser)
 	const onSubmit = async (data: IInputRegister) => {
-		console.log(data)
-
 		try {
 			await mutateAsync({
 				email: data.email,
 				password: data.password,
 				phone: data.phone
-			}).then(res => userStore(res.register.user))
-
-			replace('/catalog'), toast.success('Удачная авторизация')
+			}).then(
+				res => (
+					userStore(res.register.user),
+					replace('/catalog'),
+					toast.success('Удачная авторизация')
+				)
+			)
 		} catch (e: any) {
 			toast.error(e.response.errors[0].message)
 		}
 	}
 	return (
-		<Card className='p-8'>
+		<Card className='p-8 max-w-[350px]'>
 			<CardHeader className='text-xl'>Регистация</CardHeader>
 			<CardContent>
 				<Form {...form}>
@@ -94,14 +99,13 @@ export default function RegisterPage() {
 								<FormItem className='flex flex-col gap-2'>
 									<FormLabel>Введите email</FormLabel>
 									<FormControl>
-										<InputMask
-											mask={''}
-											placeholder='Электронная почта'
-											type='email'
-											className='border border-black rounded-lg p-1'
+										<Input
+											placeholder='Введите email'
 											{...field}
+											type='email'
 										/>
 									</FormControl>
+									<FormMessage />
 								</FormItem>
 							)}
 						/>
@@ -110,16 +114,11 @@ export default function RegisterPage() {
 							control={form.control}
 							render={({ field }) => (
 								<FormItem className='flex flex-col gap-2'>
-									<FormLabel>Введите никнейм</FormLabel>
+									<FormLabel>Введите пароль</FormLabel>
 									<FormControl>
-										<InputMask
-											mask={''}
-											placeholder='Введите пароль'
-											type='text'
-											className='border border-black rounded-lg p-1'
-											{...field}
-										/>
+										<PasswordInput {...field} />
 									</FormControl>
+									<FormMessage />
 								</FormItem>
 							)}
 						/>
@@ -130,7 +129,7 @@ export default function RegisterPage() {
 							Войти в аккаунт
 						</Link>
 						<Button type='submit' className='w-full '>
-							Регистация
+							{isPending ? <Loader /> : 'Регистация'}
 						</Button>
 					</form>
 				</Form>

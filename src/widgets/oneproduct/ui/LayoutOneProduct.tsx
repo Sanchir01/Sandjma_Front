@@ -28,14 +28,16 @@ export const LayoutOneProduct: React.FC<ILayoutOneProduct> = ({
 		<div className='wrapper'>
 			<div className={styles.oneProduct__wrapper}>
 				{ImageGallery}
-				<div className={styles.oneProduct__right}>
-					<div className={'flex flex-col gap-[10px]'}>
-						{NameAndPrice}
-						{Actions}
-					</div>
+				<div className='min-[576px]:p-5'>
+					<div className={styles.oneProduct__right}>
+						<div className={'flex flex-col gap-[10px]'}>
+							{NameAndPrice}
+							{Actions}
+						</div>
 
-					<div className={cn('w-[400px]', styles.oneProduct__description)}>
-						{Descriptions}
+						<div className={cn('w-[400px]', styles.oneProduct__description)}>
+							{Descriptions}
+						</div>
 					</div>
 				</div>
 			</div>

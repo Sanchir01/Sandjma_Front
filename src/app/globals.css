@@ -107,9 +107,9 @@ body {
 		font-size: 22px !important;
 	}
 }
-
-.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
-.swiper-pagination-horizontal.swiper-pagination-bullets
-	.swiper-pagination-bullet {
-	color: white !important;
+.swiper-pagination-bullet-active {
+	background: white !important;
+}
+.swiper-pagination-bullet {
+	opacity: 0.8 !important;
 }

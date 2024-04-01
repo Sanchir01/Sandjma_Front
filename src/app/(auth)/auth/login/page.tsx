@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 'use client'
 import { useUser } from '@/Providers/store/useUser'
 import { authService } from '@/shared/service/auth.service'
@@ -13,8 +14,10 @@ import {
 	FormMessage
 } from '@/shared/ui/form'
 import { Input } from '@/shared/ui/input'
+import Loader from '@/shared/ui/loader'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
+
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
@@ -30,34 +33,29 @@ export default function LoginPage() {
 		}
 	})
 	const { replace } = useRouter()
-	const { mutateAsync } = useMutation({
+	const { mutateAsync, isPending } = useMutation({
 		mutationFn: ({ password, phone }: { password: string; phone: string }) =>
 			authService.login({ password, phone })
 	})
 	const userStorage = useUser(state => state.setUser)
 	const onSubmit = async (data: IInputLogin) => {
-		console.log(data)
-
 		try {
 			await mutateAsync({
 				password: data.password,
 				phone: data.phone
-			})
-				.then(
-					e => (
-						userStorage(e?.login?.user),
-						toast.success('Удачная авторизация'),
-						replace('/catalog')
-					)
+			}).then(
+				e => (
+					userStorage(e?.login?.user),
+					toast.success('Удачная авторизация'),
+					replace('/catalog')
 				)
-				.catch(e => console.log(e))
+			)
 		} catch (e: any) {
 			toast.error(e.message)
-			console.log(e.message)
 		}
 	}
 	return (
-		<Card className='p-8'>
+		<Card className='p-8 max-w-[350px]'>
 			<CardHeader className='text-xl'>Вход в аккаунт</CardHeader>
 			<CardContent>
 				<Form {...form}>
@@ -107,7 +105,7 @@ export default function LoginPage() {
 							Пройти регистрацию
 						</Link>
 						<Button type='submit' className='w-full '>
-							Войти
+							{isPending ? <Loader /> : 'Войти'}
 						</Button>
 					</form>
 				</Form>

@@ -4,7 +4,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<>
 			<Header variant={HeaderProfileEnum.PUBLIC} />
-			<main className='main'>{children}</main>
+			<main className='main pb-[50px] '>{children}</main>
 			<Footer />
 		</>
 	)

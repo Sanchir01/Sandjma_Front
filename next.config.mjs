@@ -59,10 +59,11 @@ const nextConfig = {
 		locales: ['ru'],
 		defaultLocale: 'ru'
 	},
+	compress: true,
 	env: {
 		CLIENT_DOMAIN: process.env.CLIENT_DOMAIN,
 		SERVER_URL: process.env.SERVER_GRAPHQL,
-		LOCAL_SERVER: process.env.TEST_ENV_BASE_TEST,
+		LOCAL_SERVER: process.env.TEST_ENV_BASE_TEST
 	},
 	optimizeFonts: true,
 	swcMinify: true

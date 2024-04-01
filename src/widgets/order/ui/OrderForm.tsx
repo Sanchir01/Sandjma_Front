@@ -16,21 +16,24 @@ export const OrderForm: FC = () => {
 		<div
 			className={cn(
 				styles.order__form,
-				'border rounded-lg shadow p-4 h-[470px] min-w-[500px]'
+				'border rounded-lg shadow p-4 h-[470px] min-w-[500px] overflow-hidden relative'
 			)}
 		>
 			<h2 className='text-2xl font-semibold'>Ваш заказ</h2>
-			<div className='flex flex-col items-center gap-2 w-full mt-10 border-b-2 pb-10'>
-				{cart?.map((item, i) => (
-					<div className='flex justify-between w-full' key={i}>
-						<div className='flex gap-2'>
-							<span>x{item.quantity}</span>
-							<p>{item.name}</p>
+			<div className='h-[260px] overflow-y-scroll '>
+				<div className='flex flex-col items-center gap-2 w-full mt-10 border-b-2 pb-10 '>
+					{cart?.map((item, i) => (
+						<div className='flex justify-between w-full ' key={i}>
+							<div className='flex gap-2'>
+								<span>x{item.quantity}</span>
+								<p>{item.name}</p>
+							</div>
+							<div className=''>{item.price}P</div>
 						</div>
-						<div className=''>{item.price}P</div>
-					</div>
-				))}
+					))}
+				</div>
 			</div>
+
 			<div className='mt-10 flex flex-col gap-3'>
 				<div className=' flex flex-col justify-between items-center'>
 					<div className='flex gap-2'>
