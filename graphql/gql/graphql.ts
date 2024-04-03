@@ -108,7 +108,6 @@ export type LoginInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  HiBot: Scalars['String']['output'];
   crateInsolation: Insolation;
   createCategory: ResponseCategory;
   createColor: ReturnColors;

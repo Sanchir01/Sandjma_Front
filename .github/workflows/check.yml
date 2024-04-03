@@ -19,3 +19,5 @@ jobs:
         run: npm run lint
       - name: Test types
         run: npm run lint:types
+      - name: Playwright tests
+        run: npm run test:e2e
