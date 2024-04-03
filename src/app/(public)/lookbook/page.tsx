@@ -9,9 +9,15 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { Suspense } from 'react'
 import Loading from './loading'
+
+
 export const metadata: Metadata = {
 	title: 'Lookbook',
-	description: 'LookBook'
+	description: 'LookBook',
+	robots: {
+		index: true,
+		follow: true
+	}
 }
 
 export default function LookBookPage() {

@@ -124,7 +124,7 @@ export default function RegisterPage() {
 						/>
 						<Link
 							href={'/auth/login'}
-							className='hover:underline max-[776px]:pointer-events-none'
+							className='hover:underline  cursor-pointer py-2'
 						>
 							Войти в аккаунт
 						</Link>

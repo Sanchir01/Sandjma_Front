@@ -9,6 +9,7 @@ import cn from 'clsx'
 import Link from 'next/link'
 import { FC } from 'react'
 import { useShallow } from 'zustand/react/shallow'
+import HeaderAdmin from './HeaderAdmin'
 import { HeaderProfile } from './HeaderProfile'
 
 export const BurgerMenu: FC = () => {
@@ -32,9 +33,10 @@ export const BurgerMenu: FC = () => {
 				</nav>
 			</div>
 			<div className={styles.menu__footer}>
-				<div className='px-10 py-2 flex items-center justify-around'>
+				<div className='py-2 flex items-center justify-evenly'>
 					<FavoritesLogo />
 					<ToggleTheme />
+					<HeaderAdmin />
 					<HeaderProfile />
 				</div>
 			</div>

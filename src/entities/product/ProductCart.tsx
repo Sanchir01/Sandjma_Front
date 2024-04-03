@@ -24,7 +24,6 @@ export const OneCart: FC<IOneCartProps> = ({
 	colors,
 	productColorId
 }) => {
-	console.log()
 	const isExistColor = colors.find(item => item.id === productColorId)
 	return (
 		<article className={cn(st.catalog__items__article, className)}>

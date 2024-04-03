@@ -18,8 +18,8 @@ export const metadata: Metadata = {
 	applicationName: 'Sandjma',
 	authors: [{ name: 'sanchir' }],
 	robots: {
-		follow: true,
-		
+		index: true,
+		follow: true
 	},
 	generator: 'Sadjma',
 	keywords: `Sadjma, sadjma, одежда, калмыцкая одежда, купить одежду, купить калмыцкую одежду, Санджирма, Национальная одежда Элисты, Элиста,

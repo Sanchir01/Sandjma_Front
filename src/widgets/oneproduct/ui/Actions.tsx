@@ -50,8 +50,7 @@ const Actions: FC<IOneProductActions> = ({
 						variant={activeSize === i ? 'default' : 'secondary'}
 						className={cn(
 							'items-center h-8 w-8 p-2 justify-center flex',
-							activeSize === i ? 'bg-[#383838] text-white' : 'bg-[#D9D9D9]',
-							activeSize === i && 'pointer-events-none'
+							activeSize === i ? 'bg-[#383838] text-white' : 'bg-[#D9D9D9]'
 						)}
 						key={item.id}
 					>

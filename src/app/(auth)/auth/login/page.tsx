@@ -20,6 +20,7 @@ import { useMutation } from '@tanstack/react-query'
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import InputMask from 'react-input-mask'
@@ -37,6 +38,7 @@ export default function LoginPage() {
 		mutationFn: ({ password, phone }: { password: string; phone: string }) =>
 			authService.login({ password, phone })
 	})
+	const [redirectTo, setRedirectTo] = useState<string>('')
 	const userStorage = useUser(state => state.setUser)
 	const onSubmit = async (data: IInputLogin) => {
 		try {
@@ -54,6 +56,12 @@ export default function LoginPage() {
 			toast.error(e.message)
 		}
 	}
+	useEffect(() => {
+		if (document.referrer) {
+			setRedirectTo(document.referrer)
+			console.log(document.referrer)
+		}
+	}, [])
 	return (
 		<Card className='p-8 max-w-[350px]'>
 			<CardHeader className='text-xl'>Вход в аккаунт</CardHeader>
@@ -100,7 +108,7 @@ export default function LoginPage() {
 						/>
 						<Link
 							href={'/auth/register'}
-							className='hover:underline max-[776px]:pointer-events-none'
+							className='hover:underline  cursor-pointer py-2'
 						>
 							Пройти регистрацию
 						</Link>

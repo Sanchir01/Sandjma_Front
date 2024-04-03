@@ -9,11 +9,12 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 export const GridFavorites = () => {
 	const [parent] = useAutoAnimate({ easing: 'ease-in-out', duration: 500 })
 	const data = useStoreZustand(useFavorites, state => state.favorites)
+
 	return (
 		<>
 			{data === undefined ? (
 				<SkeletonGrid numberSkeleton={10} />
-			) : (
+			) : data.length !== 0 ? (
 				<div ref={parent} className={styles.catalog__items}>
 					{data.map(item => (
 						<OneCart
@@ -37,6 +38,10 @@ export const GridFavorites = () => {
 							/>
 						</OneCart>
 					))}
+				</div>
+			) : (
+				<div className='flex  justify-center items-center'>
+					<span className='text-xl'> Ваш список избранного пуст</span>
 				</div>
 			)}
 		</>

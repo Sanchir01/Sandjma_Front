@@ -32,9 +32,7 @@ const PushOrder = () => {
 						toast.success('Заказ оформлен'), resetCart(), replace('/thanks')
 					)
 				)
-				.catch(
-					er => (toast.error(er.response.errors[0].message), console.log(er))
-				)
+				.catch(er => toast.error(er.response.errors[0].message))
 		}
 	}
 	return (

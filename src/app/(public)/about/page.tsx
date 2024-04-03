@@ -3,7 +3,11 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 export const metadata: Metadata = {
 	title: 'О нас',
-	description: 'Описания Магазина'
+	description: 'Описания Магазина',
+	robots: {
+		index: true,
+		follow: true
+	}
 }
 
 export default function AboutPage() {

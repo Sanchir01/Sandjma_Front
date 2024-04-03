@@ -29,6 +29,7 @@ export async function generateMetadata({
 		applicationName: 'Sandjma',
 		authors: [{ name: 'sanchir' }],
 		robots: {
+			index: true,
 			follow: true
 		},
 		generator: 'Sandjma',
