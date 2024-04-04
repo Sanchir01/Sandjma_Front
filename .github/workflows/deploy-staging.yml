@@ -9,7 +9,7 @@ jobs:
   lint:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20.x.x
@@ -19,7 +19,7 @@ jobs:
       - run: npm run build
   deploy:
     needs: lint
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     concurrency:
       group: staging
       cancel-in-progress: true
@@ -35,7 +35,7 @@ jobs:
   e2e:
     needs: deploy
     timeout-minutes: 60
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
