@@ -1,7 +1,12 @@
 import { test } from '@playwright/test'
+require('dotenv').config()
 
 test('test', async ({ page }) => {
-	await page.goto('http://localhost:3000/')
+	await page.goto(
+		process.env.NODE_ENV === 'production'
+			? (process.env.CLIENT_URL as string)
+			: 'http://localhost:3000/'
+	)
 	await page.getByRole('button', { name: 'Переключатель темы' }).click()
 	await page.getByRole('menuitem', { name: 'Тёмная' }).click()
 	await page.getByRole('button', { name: 'Переключатель темы' }).click()
