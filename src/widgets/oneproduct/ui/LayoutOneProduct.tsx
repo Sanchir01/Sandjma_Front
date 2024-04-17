@@ -11,18 +11,20 @@ export interface IProductPage extends IOneProduct {
 }
 
 export interface ILayoutOneProduct {
-	Actions: ReactNode
-	Descriptions: ReactNode
-	ImageGallery: ReactNode
-	SimilarSlider: ReactNode
-	NameAndPrice: ReactNode
+	Actions?: ReactNode
+	Descriptions?: ReactNode
+	ImageGallery?: ReactNode
+	SimilarSlider?: ReactNode
+	NameAndPrice?: ReactNode
+	Breadcrumbs?: ReactNode
 }
 export const LayoutOneProduct: React.FC<ILayoutOneProduct> = ({
 	Actions,
 	Descriptions,
 	ImageGallery,
 	SimilarSlider,
-	NameAndPrice
+	NameAndPrice,
+	Breadcrumbs
 }) => (
 	<div className={styles.oneProduct}>
 		<div className='wrapper'>
@@ -31,6 +33,7 @@ export const LayoutOneProduct: React.FC<ILayoutOneProduct> = ({
 				<div className='min-[576px]:p-5'>
 					<div className={styles.oneProduct__right}>
 						<div className={'flex flex-col gap-[10px]'}>
+							{Breadcrumbs}
 							{NameAndPrice}
 							{Actions}
 						</div>

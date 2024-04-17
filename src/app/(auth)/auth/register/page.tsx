@@ -12,7 +12,7 @@ import {
 	FormLabel,
 	FormMessage
 } from '@/shared/ui/form'
-import { Input } from '@/shared/ui/input'
+import { Input } from '@/shared/ui/input/input'
 import Loader from '@/shared/ui/loader'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'

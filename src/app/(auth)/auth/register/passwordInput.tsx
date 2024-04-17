@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { Input } from '@/shared/ui/input'
+import { Input } from '@/shared/ui/input/input'
 import { cn } from '@/shared/utils/utils'
 import { Eye, EyeOffIcon } from 'lucide-react'
 import React from 'react'

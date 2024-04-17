@@ -42,9 +42,9 @@ export const AddToFavorites: FC<IToggleFavoritesFeature> = ({
 	return (
 		<Button
 			aria-label='Add to favorites'
-			variant={'secondary'}
+			variant='secondary'
 			onClick={() => toggle()}
-			size={'default'}
+			size='default'
 		>
 			<Heart
 				size={isMedia664 ? 20 : 15}

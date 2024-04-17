@@ -10,10 +10,11 @@ import CircleColor from './ui/CircleColor'
 export interface IOneCartProps extends IEntityCartProps {
 	colors: IColors[]
 	productColorId: number
+	focusImage?: boolean
 }
 
 export const OneCart: FC<IOneCartProps> = ({
-	priority = false,
+	focusImage,
 	children,
 	name,
 	price,
@@ -31,7 +32,7 @@ export const OneCart: FC<IOneCartProps> = ({
 				href={`/catalog/${slug}/${String(colorId)}`}
 				className={styles.slider__imageBlock}
 			>
-				<ImagesGallery images={images} />
+				<ImagesGallery images={images} focusImage={focusImage} />
 			</Link>
 			<div className='flex justify-between mt-3 mr-3'>
 				<div className='flex flex-col gap-1'>

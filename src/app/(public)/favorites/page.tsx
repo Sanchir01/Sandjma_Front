@@ -1,5 +1,3 @@
-import { useFavorites } from '@/Providers/store/useFavorites'
-import { useStoreZustand } from '@/shared/hooks/useStoreZustand'
 import { LayoutCatalog } from '@/widgets/catalog/ui/LayoutCatalog'
 import SellerSlider from '@/widgets/NewAndSeller/ui/SellerSlider'
 import { GridFavorites } from './grid'

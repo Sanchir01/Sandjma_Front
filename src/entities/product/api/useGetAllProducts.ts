@@ -17,11 +17,13 @@ export const useGetAllProducts = ({
 	colorId,
 	newProduct,
 	getProductByInsulation,
-	initialData
+	initialData,
+	page
 }: IUseGetAllProducts) =>
 	useQuery({
 		queryKey: [
 			'products',
+			page,
 			sort,
 			seller,
 			categoryId,
@@ -31,7 +33,7 @@ export const useGetAllProducts = ({
 		],
 		queryFn: () =>
 			productService.getAllProducts({
-				page: '1',
+				page,
 				sort,
 				seller,
 				categoryId,

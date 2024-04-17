@@ -27,6 +27,7 @@ export const productService = {
 			document: GetAllProductsDashboardDocument,
 			variables: {
 				getAllProductInput: {
+					perPage: '10',
 					page,
 					sort,
 					colorId,

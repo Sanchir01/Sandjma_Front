@@ -18,6 +18,7 @@ export const GridFavorites = () => {
 				<div ref={parent} className={styles.catalog__items}>
 					{data.map(item => (
 						<OneCart
+							focusImage={false}
 							key={item.id}
 							images={[item.image]}
 							price={item.price}

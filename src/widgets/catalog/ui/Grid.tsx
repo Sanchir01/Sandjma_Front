@@ -13,21 +13,27 @@ const GridCatalog = ({
 }: {
 	initialData: GetAllProductsDashboardQuery
 }) => {
-	const [sorting, category, color] = useFilters(
-		useShallow(state => [state.sorting, state.category, state.color])
+	const [sorting, category, color, pagination] = useFilters(
+		useShallow(state => [
+			state.sorting,
+			state.category,
+			state.color,
+			state.pagination
+		])
 	)
 	const [parent] = useAutoAnimate({ easing: 'ease-in-out', duration: 500 })
+
+	console.log(pagination)
 	const { data, isFetching } = useGetAllProducts({
-		page: '1',
+		page: pagination,
 		initialData,
 		sort: sorting,
 		categoryId: category,
-		colorId: Number(color)
+		colorId: +color
 	})
 
 	return (
 		<>
-			
 			{isFetching ? (
 				<div className={styles.catalog__items}>
 					{[...Array(10)].map((_, i) => (
@@ -38,6 +44,7 @@ const GridCatalog = ({
 				<div ref={parent} className={styles.catalog__items}>
 					{data.getAllProducts.products.map(item => (
 						<OneCart
+							focusImage
 							key={item.id}
 							images={item.images}
 							price={item.price}

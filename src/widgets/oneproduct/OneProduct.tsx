@@ -3,6 +3,7 @@ import React from 'react'
 import { IOneProduct } from '@/shared/types/Slider.interface'
 
 import Actions from './ui/Actions'
+import BreadcrumbsOneProduct from './ui/Breadcrumbs'
 import Descriptions from './ui/Descriptions'
 import ImageGallery from './ui/ImageGallery'
 import { LayoutOneProduct } from './ui/LayoutOneProduct'
@@ -39,6 +40,7 @@ export const OneProduct: React.FC<IProductPage> = ({
 				size={size}
 			/>
 		}
+		Breadcrumbs={<BreadcrumbsOneProduct />}
 		Descriptions={<Descriptions description={description} />}
 		ImageGallery={<ImageGallery images={images} />}
 		SimilarSlider={<SimilarSlider categoryId={categoryId} />}

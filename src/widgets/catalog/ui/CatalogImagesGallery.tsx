@@ -4,10 +4,13 @@ import styles from '@/shared/styles/Slider.module.scss'
 import { cn } from '@/shared/utils/utils'
 import Image from 'next/image'
 import { FC, useState } from 'react'
-const ImagesGallery: FC<{ images: string[] }> = ({ images }) => {
+const ImagesGallery: FC<{ images: string[]; focusImage?: boolean }> = ({
+	images,
+	focusImage = false
+}) => {
 	const [indexImages, setIndexImages] = useState(0)
 	const isMedia992 = useMediaQuery('(min-width:992px)')
-	return isMedia992 ? (
+	return isMedia992 || focusImage ? (
 		<Image
 			onMouseMove={() => setIndexImages(1)}
 			onMouseLeave={() => setIndexImages(0)}
