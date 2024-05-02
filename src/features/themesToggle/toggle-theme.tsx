@@ -3,7 +3,7 @@
 
 import { useTheme } from 'next-themes'
 
-import { Button } from '@/shared/ui/button'
+
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -12,6 +12,7 @@ import {
 } from '@/shared/ui/dropdown-menu'
 import { Moon, Sun } from 'lucide-react'
 import { FC } from 'react'
+import { Button } from '@/shared/ui'
 
 export const ToggleTheme: FC = () => {
 	const { setTheme } = useTheme()

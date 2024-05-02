@@ -2,7 +2,7 @@
 import { useBurger } from '@/Providers/store/useBurger'
 import { useMediaQuery } from '@/shared/hooks'
 import styles from '@/shared/styles/Header.module.scss'
-import { Button } from '@/shared/ui/button'
+import { Button } from '@/shared/ui'
 import ShoppingCartHeader from '@/widgets/cart/Cart'
 import cn from 'clsx'
 import { Menu } from 'lucide-react'
