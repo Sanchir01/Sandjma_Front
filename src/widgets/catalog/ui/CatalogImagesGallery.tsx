@@ -10,7 +10,7 @@ const ImagesGallery: FC<{ images: string[]; focusImage?: boolean }> = ({
 }) => {
 	const [indexImages, setIndexImages] = useState(0)
 	const isMedia992 = useMediaQuery('(min-width:992px)')
-	return isMedia992 || focusImage ? (
+	return isMedia992 && focusImage ? (
 		<Image
 			onMouseMove={() => setIndexImages(1)}
 			onMouseLeave={() => setIndexImages(0)}

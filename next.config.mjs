@@ -5,7 +5,11 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: 'i.ibb.co'
+				hostname: 'fastly.picsum.photos'
+			},
+			{
+				protocol: 'https',
+				hostname: 'picsum.photos'
 			},
 			{
 				protocol: 'https',
@@ -13,7 +17,7 @@ const nextConfig = {
 			},
 			{
 				protocol: 'https',
-				hostname: 'cdn.sela.ru'
+				hostname: 'loremflickr.com'
 			},
 			{
 				protocol: 'https',

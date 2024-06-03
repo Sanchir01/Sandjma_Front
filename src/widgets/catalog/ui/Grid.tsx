@@ -23,7 +23,6 @@ const GridCatalog = ({
 	)
 	const [parent] = useAutoAnimate({ easing: 'ease-in-out', duration: 500 })
 
-	console.log(pagination)
 	const { data, isFetching } = useGetAllProducts({
 		page: pagination,
 		initialData,

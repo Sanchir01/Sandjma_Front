@@ -1,11 +1,25 @@
-import { NO_INDEX_PAGE } from '@/shared/constants/Seo.constants'
-import type { Metadata } from 'next'
+'use client'
 
-export const metadata: Metadata = {
-	title: 'Admin',
-	...NO_INDEX_PAGE
-}
+import jsonServerProvider from 'ra-data-json-server'
+import { Admin, EditGuesser, ListGuesser, Resource } from 'react-admin'
 
+const data = jsonServerProvider('https://jsonplaceholder.typicode.com')
 export default function Page() {
-	return <div>Admin</div>
+	return (
+		<Admin dataProvider={data}>
+			<Resource
+				name='users'
+				list={ListGuesser}
+				edit={EditGuesser}
+				recordRepresentation={'name'}
+			/>
+			<Resource
+				name='users'
+				list={ListGuesser}
+				edit={EditGuesser}
+				recordRepresentation={'title'}
+			/>
+			<Resource name='comments' list={ListGuesser} edit={EditGuesser} />
+		</Admin>
+	)
 }

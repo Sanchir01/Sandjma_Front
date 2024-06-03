@@ -53,7 +53,6 @@ export async function middleware(request: NextRequest) {
 			}
 		).then(res => res.json())
 
-
 		if (resp.data.newToken.refreshToken === undefined) {
 			return NextResponse.redirect(new URL('/auth/login', url))
 		}
@@ -111,5 +110,5 @@ export async function middleware(request: NextRequest) {
 	return response
 }
 export const config = {
-	matcher: ['/order', '/auth/:path*', '/admin/:path*']
+	matcher: [, '/auth/:path*', '/admin/:path*']
 }

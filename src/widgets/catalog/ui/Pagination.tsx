@@ -3,7 +3,6 @@ import { useFilters } from '@/Providers/store/useFilters'
 import {
 	Pagination,
 	PaginationContent,
-	PaginationEllipsis,
 	PaginationItem,
 	PaginationLink,
 	PaginationNext,
@@ -44,10 +43,6 @@ const PaginationCatalog: FC<IPaginationCatalog> = ({ length }) => {
 						</PaginationItem>
 					)
 				})}
-
-				<PaginationItem>
-					<PaginationEllipsis />
-				</PaginationItem>
 				<PaginationItem>
 					<PaginationNext
 						onClick={

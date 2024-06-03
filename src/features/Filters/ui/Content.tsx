@@ -31,7 +31,7 @@ const ContentFilters: FC = () => {
 		insulationProps: string
 	}) => (
 		changeCategory(categoryProps),
-		console.log(colorProps),
+
 		changeColors(colorProps),
 		changeInsulation(insulationProps)
 	)

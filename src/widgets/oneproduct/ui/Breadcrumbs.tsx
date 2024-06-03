@@ -1,10 +1,10 @@
 import {
 	Breadcrumb,
 	BreadcrumbItem,
-	BreadcrumbLink,
 	BreadcrumbList,
 	BreadcrumbSeparator
 } from '@/shared/ui/breadcrumb'
+import Link from 'next/link'
 import { FC } from 'react'
 
 const BreadcrumbsOneProduct: FC = () => {
@@ -13,9 +13,19 @@ const BreadcrumbsOneProduct: FC = () => {
 		<Breadcrumb>
 			<BreadcrumbList>
 				<BreadcrumbItem>
-					<BreadcrumbLink href='/'>Home</BreadcrumbLink>
+					<Link href={'/'} className='transition-colors hover:text-foreground'>
+						Home
+					</Link>
 				</BreadcrumbItem>
 				<BreadcrumbSeparator />
+				<BreadcrumbItem>
+					<Link
+						href={'/catalog'}
+						className='transition-colors hover:text-foreground'
+					>
+						Catalog
+					</Link>
+				</BreadcrumbItem>
 			</BreadcrumbList>
 		</Breadcrumb>
 	)
