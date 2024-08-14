@@ -10,13 +10,10 @@ export const ColumnArr = [
 	{
 		title: 'Социальные сети',
 		content: [
-<<<<<<< HEAD
 			{ id: 0, text: 'Инстаграм', href: 'https://www.instagram.com/sandjma/' },
 			{ id: 1, text: 'Телеграм', href: 'https://t.me/sandjma' },
-=======
 			{ id: 0, text: 'Истаграм', href: 'https://www.instagram.com/sandjma/' },
 			{ id: 1, text: 'Телеграм', href: 'https://www.t.me/sandjma' },
->>>>>>> 2ccf0588f1ace467ccfbfff9c60092eb73b25212
 			{ id: 2, text: 'Вконтакте', href: 'https://vk.com/sandjma' }
 		]
 	},
