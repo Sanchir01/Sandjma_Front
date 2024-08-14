@@ -12,6 +12,8 @@ export const ColumnArr = [
 		content: [
 			{ id: 0, text: 'Инстаграм', href: 'https://www.instagram.com/sandjma/' },
 			{ id: 1, text: 'Телеграм', href: 'https://t.me/sandjma' },
+			{ id: 0, text: 'Истаграм', href: 'https://www.instagram.com/sandjma/' },
+			{ id: 1, text: 'Телеграм', href: 'https://www.t.me/sandjma' },
 			{ id: 2, text: 'Вконтакте', href: 'https://vk.com/sandjma' }
 		]
 	},

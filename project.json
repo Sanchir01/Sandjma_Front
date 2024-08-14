@@ -1,0 +1,37 @@
+{
+  "name": "front",
+  "projectType": "application",
+  "sourceRoot": "packages/Sandjma_Front",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/next:build",
+      "options": {
+        "outputPath": "{projectRoot}/.next"
+      },
+      "outputs": ["{options.outputPath}"]
+    },
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "options": {
+        "buildTarget": "front:build",
+        "dev": true,
+        "port": 3000
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/web/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/web"],
+      "options": {
+        "jestConfig": "apps/web/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
